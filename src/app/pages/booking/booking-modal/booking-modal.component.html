@@ -1,0 +1,120 @@
+<div class="modal-header align-middle">
+    <h4 id="modal-title" class="text-primary">Confirm information</h4>
+    <button
+      (click)="activeModal.dismiss('Cross click')"
+      aria-describedby="modal-title"
+      class="close"
+      type="button"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" id="form-1">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 form-group">
+          <label class="pt-1">Code</label>
+          <input
+            [ngClass]="{ 'is-invalid': isSubmit && f.code.errors }"
+            maxlength="255"
+            class="form-control"
+            formControlName="code"
+            autocomplete="none"
+            type="text"
+            [readonly]="true"
+          />
+        </div>
+  
+        <div class="col-sm-12 col-md-6 form-group">
+          <label class="pt-1">Name<span class="text-danger"> (*)</span></label>
+          <input
+            [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }"
+            maxlength="255"
+            class="form-control"
+            formControlName="name"
+            autocomplete="none"
+            placeholder="Enter your name"
+            type="text"
+          />
+          <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
+            <span *ngIf="f.name.errors.required">Please enter your name</span>
+          </div>
+        </div>
+  
+        <div class="col-sm-12 col-md-6 form-group">
+          <label class="pt-1">Phone<span class="text-danger"> (*)</span></label>
+          <input
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isSubmit && f.phone.errors }"
+            formControlName="phone"
+            placeholder="Enter your phone"
+            autocomplete="none"
+            type="text"
+            maxlength="255"
+          />
+          <div *ngIf="isSubmit && f.phone.errors" class="invalid-feedback">
+            <span *ngIf="f.phone.errors.required">Please enter your phone</span>
+            <span *ngIf="f.phone.errors.pattern">Phone number must be validate</span>
+            <br />
+          </div>
+        </div>
+  
+        <div class="col-sm-12 col-md-6 form-group">
+          <label class="pt-1">Date</label>
+          <input
+            #event
+            type="text"
+            [ngClass]="{ 'is-invalid': isSubmit && f.date.errors }"
+            formControlName="date"
+            class="form-control"
+            [readonly]="true"
+          />
+        </div>
+  
+        <div class="col-sm-12 col-md-6 form-group">
+          <label class="pt-1">Time</label>
+          <input
+            #event
+            type="text"
+            [ngClass]="{ 'is-invalid': isSubmit && f.date.errors }"
+            formControlName="time"
+            class="form-control"
+            [readonly]="true"
+          />
+        </div>
+  
+        <div class="col-sm-12 col-md-6 form-group">
+          <label class="pt-1">Service</label>
+          <ng-select
+            [items]="listService"
+            bindValue="id"
+            bindLabel="name"
+            formControlName="serviceId"
+            [readonly]="true"
+          >
+          </ng-select>
+        </div>
+  
+        <div class="col-sm-12 col-md-6 form-group">
+          <label class="pt-1">Room</label>
+          <ng-select
+            [items]="listEmployee"
+            bindValue="id"
+            bindLabel="room"
+            formControlName="employeeId"
+            [readonly]="true"
+          >
+          </ng-select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="close()" class="btn btn-secondary" type="button">
+      <i class="fa-solid fa-xmark mr-1"></i>Cancel
+    </button>
+    <button (click)="submit()" class="btn btn-primary" type="button">
+      <i class="fa fa-check mr-1"></i>Confirm
+    </button>
+  </div>
+  

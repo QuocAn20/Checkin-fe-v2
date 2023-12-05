@@ -1,0 +1,47 @@
+<div class="modal-header align-middle">
+    <h4 id="modal-title" class="text-primary">Add comment</h4>
+    <button (click)="activeModal.dismiss('Cross click')" aria-describedby="modal-title" class="close" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" id="form-1">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 form-group">
+                <label class="pt-1">Rating:</label>
+                <div class="star-widget">
+                    <input type="radio" name="rate" id="rate-5" hidden value="5">
+                    <label for="rate-5" class="fas fa-star star"></label>
+                    <input type="radio" name="rate" id="rate-4" hidden value="4">
+                    <label for="rate-4" class="fas fa-star star"></label>
+                    <input type="radio" name="rate" id="rate-3" hidden value="3">
+                    <label for="rate-3" class="fas fa-star star"></label>
+                    <input type="radio" name="rate" id="rate-2" hidden value="2">
+                    <label for="rate-2" class="fas fa-star star"></label>
+                    <input type="radio" name="rate" id="rate-1" hidden value="1">
+                    <label for="rate-1" class="fas fa-star star"></label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 form-group">
+                <label class="pt-1">Comment:</label>
+                <textarea class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.comment.errors }"
+                    formControlName="comment" placeholder="Enter your comment" autocomplete="none" type="text" rows="5"
+                    maxlength="500">
+          </textarea>
+                <div *ngIf="isSubmit && f.comment.errors" class="invalid-feedback">
+                    <span *ngIf="f.comment.errors.maxlength">Your comment is so long. Maximum is 500
+                        characters</span><br />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button (click)="close()" class="btn btn-secondary" type="button">
+        <i class="fa fa-xmark mr-1"></i>Cancel
+    </button>
+    <button (click)="submit()" class="btn btn-primary" type="button">
+        <i class="fa fa-check mr-1"></i>Save
+    </button>
+</div>
