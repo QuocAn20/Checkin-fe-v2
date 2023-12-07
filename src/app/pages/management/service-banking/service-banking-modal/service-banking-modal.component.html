@@ -54,10 +54,10 @@
   
         <div
           class="col-sm-12 col-md-12"
-          *ngIf="base64Image || f.image.value"
+          *ngIf="nameImage || f.image.value"
           style="height: 30%"
         >
-          <img [src]="base64Image || f.image.value" />
+          <img [src]="nameImage || f.image.value" />
         </div>
   
         <div class="col-sm-12 col-md-12 form-group">
