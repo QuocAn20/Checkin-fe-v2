@@ -13,6 +13,7 @@ import { TicketService } from 'src/app/service/module/ticket.service';
 import { TicketModalComponent } from './ticket-modal/ticket-modal.component';
 import { createFileType, downLoadFile } from 'src/app/utils/export.util';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ticket',
@@ -206,5 +207,40 @@ export class TicketComponent implements OnInit {
         this.toastService.error('Export error', 'Error');
       }
     );
+  }
+
+  delete(item: any) {
+    if (item) {
+      Swal.fire({
+        title: 'Warning!',
+        text: 'Are you sure about deleting',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: 'Cancel',
+      }).then((res) => {
+        if (res.value) {
+          const json = {
+            id: item.id,
+            // deleted: 1,
+          };
+          this.ticketService.deleteTicket(json).subscribe(
+            (res) => {
+              if (res.errorCode === '0') {
+                this.toastService.success(res.errorDesc, 'Success');
+                this.getEmployee();
+              } else {
+                this.toastService.warning(res.errorDesc, 'Warning');
+              }
+            },
+            (err) => {
+              this.toastService.error(err, 'Notification');
+            }
+          );
+        }
+      });
+      return;
+    }
   }
 }
