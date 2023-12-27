@@ -132,6 +132,7 @@
                 <td class="align-middle text-center">
                   <i *ngIf="item?.status != 2" class="fas fa-edit fa-lg text-primary m-cursor" title="Chỉnh sửa"
                     (click)="openModal(item, 'edit')"></i>
+                  <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá" (click)="delete(item)"></i>
                   <i *ngIf="item?.status === 1" title="Speak" class="fa-solid fa-volume-high m-cursor"
                     (click)="speakText(item)"></i>
                 </td>
