@@ -91,7 +91,8 @@
                 <th class="text-center align-middle mw-50">Status</th>
                 <th class="text-center align-middle mw-100">Attitude</th>
                 <th class="text-center align-middle mw-100">Comment</th>
-                <th class="text-center align-middle mw-150">Action</th>
+                <th class="text-center align-middle mw-50">Calling</th>
+                <th class="text-center align-middle mw-150">Action</th>                
               </tr>
             </thead>
             <tbody>
@@ -130,12 +131,14 @@
                   {{ item?.comment }}
                 </td>
                 <td class="align-middle text-center">
-                  <i *ngIf="item?.status != 2" class="fas fa-edit fa-lg text-primary m-cursor" title="Chỉnh sửa"
-                    (click)="openModal(item, 'edit')"></i>
-                  <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá" (click)="delete(item)"></i>
                   <i *ngIf="item?.status === 1" title="Speak" class="fa-solid fa-volume-high m-cursor"
-                    (click)="speakText(item)"></i>
+                    (click)="speakText(item)"></i>                  
                 </td>
+                <td class="align-middle text-center">                  
+                  <i *ngIf="item?.status != 2" class="fas fa-edit fa-lg text-primary m-cursor" title="Chỉnh sửa"
+                    (click)="openModal(item, 'edit')"></i>                  
+                    <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá" (click)="delete(item)"></i>
+                </td>                
               </tr>
             </tbody>
           </table>
