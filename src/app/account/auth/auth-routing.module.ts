@@ -3,7 +3,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [
   { 
-    path: '', component: LoginPageComponent
+    path: 'login', component: LoginPageComponent
   },
 ];
 
