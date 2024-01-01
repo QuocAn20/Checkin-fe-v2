@@ -6,7 +6,7 @@ import { TvScreenComponent } from './tv-screen/tv-screen.component';
 
 const routes: Routes = [
   {
-    path: "", component: BookingComponent
+    path: "booking", component: BookingComponent
   },
   {
     path: "tv", component: TvScreenComponent
