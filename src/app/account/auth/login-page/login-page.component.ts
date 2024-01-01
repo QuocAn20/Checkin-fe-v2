@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     document.body.style.backgroundImage =
-      "url('assets/img/login-background.webp')";
+      "url('assets/img/tet-holiday-1.jpg')";
     this.initForm();
   }
 
