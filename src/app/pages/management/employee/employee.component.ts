@@ -6,14 +6,14 @@ import { ServiceBankingService } from 'src/app/service/module/service-banking.se
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { EmployeeModalComponent } from './employee-modal/employee-modal.component';
+import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  styleUrls: ['./employee.component.scss'],
 })
-export class EmployeeComponent implements OnInit{
-
+export class EmployeeComponent implements OnInit {
   form: any;
   listRole: any;
   listEmployee: Array<any> = [];
@@ -28,25 +28,36 @@ export class EmployeeComponent implements OnInit{
     private serviceBankingService: ServiceBankingService,
     private employeeService: EmployeeService,
     public toastService: ToastrService
-    ) {
-    }
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
     this.getEmployee();
     this.getRole();
+    this.getStt(this.listEmployee);
   }
 
   initForm() {
     this.form = this.formBuilder.group({
       code: [null],
       name: [null],
+      gender: [null],
+      room: [null],
+      position: [null],
+      status: [null],
       role: [null],
     });
   }
 
   get f() {
     return this.form.controls;
+  }
+
+  getStt(item: any) {
+    let counter = 0;
+    for (let i = 0; i < item.length; i++) {
+      if (item[i].status === '0') counter++;
+    }
   }
 
   getEmployee() {

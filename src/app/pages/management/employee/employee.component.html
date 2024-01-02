@@ -6,19 +6,30 @@
           <div class="p-2">
             <form [formGroup]="form">
               <div class="row">
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Code:
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Room
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                  <input type="text" formControlName="code" class="form-control py-2" placeholder="Enter employee code"
-                    autocomplete="none" />
+                  <input type="text" formControlName="room" class="form-control py-2" autocomplete="none" />
                 </div>
 
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Name:
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Gender
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                  <input type="text" formControlName="name" class="form-control py-2" placeholder="Enter employee name"
-                    autocomplete="none" />
+                  <input type="text" formControlName="gender" class="form-control py-2" autocomplete="none" />
                 </div>
+
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Position
+                </label>
+                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                  <input type="text" formControlName="position" class="form-control py-2" autocomplete="none" />
+                </div>
+
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Status
+                </label>
+                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                  <input type="text" formControlName="status" class="form-control py-2" autocomplete="none" />
+                </div>
+
               </div>
             </form>
 
@@ -54,11 +65,14 @@
           <table class="table table-bordered table-sm table-hover m-w-tabble">
             <thead>
               <tr class="m-header-table">
+                <th class="text-center align-middle mw-100">STT</th>
                 <th class="text-center align-middle mw-100">Code</th>
                 <th class="text-center align-middle mw-50">Name</th>
+                <th class="text-center align-middle mw-50">Date of Birth</th>
+                <th class="text-center align-middle mw-50">Gender</th>
                 <th class="text-center align-middle mw-50">Room</th>
-                <th class="text-center align-middle mw-50">Limit Customer</th>
-                <th class="text-center align-middle mw-100">Create date</th>
+                <th class="text-center align-middle mw-50">Position</th>
+                <th class="text-center align-middle mw-100">Status</th>
                 <th class="text-center align-middle mw-150">Action</th>
               </tr>
             </thead>
@@ -67,25 +81,34 @@
                 <td class="text-center align-middle" colspan="11">No data</td>
               </tr>
               <tr *ngFor="let item of listEmployee; let i = index">
+                <td class="align-middle">
+                  {{ getStt(i) }}
+                </td>
                 <td class="align-middle text-center text-primary" (click)="openEmployeeModal(item, 'view')">
                   <span class="m-cursor"> {{ item?.code }}</span>
                 </td>
                 <td class="align-middle">
                   {{ item?.name }}
+                </td>                
+                <td class="align-middle">
+                  {{ item?.dob | date : "dd-MM-yyyy" }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.gender }}
                 </td>
                 <td class="align-middle">
                   {{ item?.room }}
                 </td>
                 <td class="align-middle">
-                  {{ item?.maxCustomer }}
-                </td>              
+                  {{ item?.position }}
+                </td>
                 <td class="align-middle">
-                  {{ item?.createDate | date : "dd-MM-yyyy" }}
+                  {{ item?.status }}
                 </td>
                 <td class="align-middle text-center">
                   <i class="fas fa-edit fa-lg text-primary m-cursor" title="Chỉnh sửa"
                     (click)="openEmployeeModal(item, 'edit')"></i>
-                  <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá" (click)="delete(item)"></i>
+                  <!-- <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá" (click)="delete(item)"></i> -->
                 </td>
               </tr>
             </tbody>

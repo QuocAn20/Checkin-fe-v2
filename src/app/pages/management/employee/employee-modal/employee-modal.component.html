@@ -34,6 +34,24 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Date Of Birth<span class="text-danger">(*)</span></label>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.dateOfBirth.errors }" maxlength="255" class="form-control"
+          formControlName="dateOfBirth" autocomplete="none" placeholder="Enter your date" type="text" />
+        <div *ngIf="isSubmit && f.dateOfBirth.errors" class="invalid-feedback">
+          <span *ngIf="f.dateOfBirth.errors.required">Please enter your birth date</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Gender<span class="text-danger">(*)</span></label>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.gender.errors }" maxlength="255" class="form-control"
+          formControlName="gender" autocomplete="none" placeholder="Enter your gender" type="text" />
+        <div *ngIf="isSubmit && f.gender.errors" class="invalid-feedback">
+          <span *ngIf="f.gender.errors.required">Please enter your gender</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Phone<span class="text-danger">(*)</span></label>
         <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.phone.errors }" formControlName="phone"
           placeholder="Enter your phone" autocomplete="none" type="text" maxlength="255" />
@@ -45,17 +63,93 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">National ID<span class="text-danger">(*)</span></label>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.nationalId.errors }" maxlength="255" class="form-control"
+          formControlName="nationalId" autocomplete="none" placeholder="Enter your National ID" type="text" />
+        <div *ngIf="isSubmit && f.nationalId.errors" class="invalid-feedback">
+          <span *ngIf="f.nationalId.errors.required">Please enter your National ID</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+        <label class="pt-1">National ID Image<span class="text-danger">(*)</span></label>
+        <input
+        [ngClass]="{ 'is-invalid': isSubmit && f.imgNationalId.errors }"
+          type="file"
+          class="form-control py-2"            
+          formControlName="imgNationalId"
+          (change)="addFile($event)"
+        />
+        <div *ngIf="isSubmit && f.imgNationalId.errors" class="invalid-feedback">
+          <span *ngIf="f.imgNationalId.errors.required">Please enter your National ID Image</span
+          ><br />
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Unit<span class="text-danger">(*)</span></label>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.unit.errors }" maxlength="255" class="form-control"
+          formControlName="unit" autocomplete="none" placeholder="Enter your unit" type="text" />
+        <div *ngIf="isSubmit && f.unit.errors" class="invalid-feedback">
+          <span *ngIf="f.unit.errors.required">Please enter your unit</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Room<span class="text-danger">(*)</span></label>
         <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.room.errors }" formControlName="room"
           placeholder="Enter your room" autocomplete="none" type="text" maxlength="255" />
         <div *ngIf="isSubmit && f.room.errors" class="invalid-feedback">
           <span *ngIf="f.room.errors.required">Please enter your room</span>
-          <span *ngIf="f.phone.errors.pattern">Please enter valid room</span>
           <br />
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Position<span class="text-danger">(*)</span></label>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.position.errors }" maxlength="255" class="form-control"
+          formControlName="position" autocomplete="none" placeholder="Enter your position" type="text" />
+        <div *ngIf="isSubmit && f.position.errors" class="invalid-feedback">
+          <span *ngIf="f.position.errors.required">Please enter your position</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Job<span class="text-danger">(*)</span></label>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.job.errors }" maxlength="255" class="form-control"
+          formControlName="job" autocomplete="none" placeholder="Enter your job" type="text" />
+        <div *ngIf="isSubmit && f.job.errors" class="invalid-feedback">
+          <span *ngIf="f.job.errors.required">Please enter your job</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Email<span class="text-danger">(*)</span></label>
+        <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.email.errors }" formControlName="email"
+          placeholder="Enter your email" autocomplete="none" type="text" maxlength="255" />
+        <div *ngIf="isSubmit && f.email.errors" class="invalid-feedback">
+          <span *ngIf="f.email.errors.required">Please enter your email</span>
+          <span *ngIf="f.email.errors.pattern">Please enter valid email</span>
+          <br />
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+        <label class="pt-1">Profile Image<span class="text-danger">(*)</span></label>
+        <input
+        [ngClass]="{ 'is-invalid': isSubmit && f.imgProfile.errors }"
+          type="file"
+          class="form-control py-2"            
+          formControlName="imgProfile"
+          (change)="addFile($event)"
+        />
+        <div *ngIf="isSubmit && f.imgProfile.errors" class="invalid-feedback">
+          <span *ngIf="f.imgProfile.errors.required">Please enter your Profile Image</span
+          ><br />
+        </div>
+      </div>
+
+      <!-- <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Quantity Customer<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.maxCustomer.errors }" [items]="listQuantity"
           bindValue="code" bindLabel="code" formControlName="maxCustomer" placeholder="Select quantity">
@@ -73,7 +167,7 @@
         <div *ngIf="isSubmit && f.role.errors" class="invalid-feedback">
           <span *ngIf="f.role.errors.required">Please enter your roles</span><br />
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="modal-body" *ngIf="type === 'create'">
       <h4 id="modal-title" class="text-primary">Employee account</h4>
