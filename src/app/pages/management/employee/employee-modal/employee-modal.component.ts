@@ -18,6 +18,8 @@ export class EmployeeModalComponent implements OnInit{
 
   form: any;
   isSubmit = false;
+  nationalIdImg: any;
+  base64Image: string = '';
 
   listQuantity = [
     {
@@ -45,12 +47,20 @@ export class EmployeeModalComponent implements OnInit{
   initForm() {
     this.form = this.formBuilder.group({
       id: [null],
-      code: [null],
+      code: [null, [Validators.required]],
       name: [null, [Validators.required]],
-      phone: [null, [Validators.required, Validators.pattern("(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})")]],
-      room: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
-      maxCustomer: [null, [Validators.required]],
-      role: [null, [Validators.required]],
+      dateOfBirth: [null],
+      gender: [null],
+      phone: [null, [Validators.pattern("(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})")]],
+      nationalId: [null],
+      imgNationalId: [null],
+      unit: [null, [Validators.required]],
+      room: [null, [Validators.required]],
+      position: [null, [Validators.required]],
+      job: [null, [Validators.required]],
+      email: [null],
+      imgProfile: [null],
+      role: 'EMPLOYEE',
 
       userName: [null],
       password: [null, Validators.minLength(6)],
@@ -107,5 +117,17 @@ export class EmployeeModalComponent implements OnInit{
         this.toastService.error(res.errorDesc, 'Error');
       }
     });
+  }
+
+  addFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const newFile = event.target.files[0];
+      this.nationalIdImg = newFile;
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.base64Image = event.target.result;
+      };
+      reader.readAsDataURL(newFile);
+    }
   }
 }
