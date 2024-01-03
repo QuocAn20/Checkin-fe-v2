@@ -25,26 +25,7 @@ export class AuthGuard implements CanActivate {
       console.error('Authentication error:', error);
     }
 
-    this.router.navigate(['/account/auth/login']);
+    this.router.navigate(['/login']);
     return false;
-
-    // try {
-    //   const currentUser = await this.authService.currentUser();
-
-    //   if (currentUser) {
-    //     if (currentUser.role === 'ADMIN') {
-    //       // User has the admin role, allow access to any route
-    //       return true;
-    //     } else if (currentUser.role === 'EMPLOYEE' && state.url.includes('/api/banking/ticket')) {
-    //       // User has the employee role, only allow access to the ticket API
-    //       return true;
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.error('Authentication error:', error);
-    // }
-
-    // this.router.navigate(['/account/auth/login']);
-    // return false;
   }
 }
