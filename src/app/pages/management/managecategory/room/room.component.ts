@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EmployeeService } from 'src/app/service/module/employee.service';
 import { FormBuilder } from '@angular/forms';
-import { ServiceBankingService } from 'src/app/service/module/service-banking.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { RoomService } from 'src/app/service/module/room.service';
+import { RoomModalComponent } from './room-modal/room-modal.component';
 import Swal from 'sweetalert2';
-import { EmployeeModalComponent } from './employee-modal/employee-modal.component';
-import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss'],
+  selector: 'app-room',
+  templateUrl: './room.component.html',
+  styleUrls: ['./room.component.scss']
 })
-export class EmployeeComponent implements OnInit {
+export class RoomComponent implements OnInit{
+
   form: any;
-  listRole: any;
-  listEmployee: Array<any> = [];
+  listRoom: Array<any> = [];
+  listBranch: Array<any> = [];
 
   totalSize = 0;
   pageSize = 10;
@@ -25,26 +24,19 @@ export class EmployeeComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private serviceBankingService: ServiceBankingService,
-    private employeeService: EmployeeService,
-    public toastService: ToastrService
+    private toastService: ToastrService,
+    private roomService: RoomService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.getEmployee();
-    this.getRole();
+    this.getRoom();
   }
 
-  initForm() {
+  initForm(){
     this.form = this.formBuilder.group({
-      code: [null],
-      name: [null],
-      gender: [null],
       room: [null],
-      position: [null],
-      status: [null],
-      role: [null],
+      branch: [null],
     });
   }
 
@@ -52,27 +44,16 @@ export class EmployeeComponent implements OnInit {
     return this.form.controls;
   }
 
-  getEmployee() {
+  getRoom(){
     const json = {
       page: this.pageNumber,
       limit: this.pageSize,
       ...this.form.value,
     };
-
-    console.log();
-
-    this.employeeService.getEmployee(json).subscribe((res) => {
+    this.roomService.getRoom(json).subscribe((res) => {
       if (res.errorCode === '0') {
-        this.listEmployee = res.data;
+        this.listRoom = res.data;
         this.totalSize = res.totalRecord;
-      }
-    });
-  }
-
-  getRole() {
-    this.serviceBankingService.getService({}).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.listRole = res.data;
       }
     });
   }
@@ -82,7 +63,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   search() {
-    this.getEmployee();
+    this.getRoom();
   }
 
   delete(item: any) {
@@ -101,11 +82,11 @@ export class EmployeeComponent implements OnInit {
             id: item.id,
             deleted: 1,
           };
-          this.employeeService.deleteEmployee(json).subscribe(
+          this.roomService.deleteRoom(json).subscribe(
             (res) => {
               if (res.errorCode === '0') {
                 this.toastService.success(res.errorDesc, 'Success');
-                this.getEmployee();
+                this.getRoom();
               } else {
                 this.toastService.warning(res.errorDesc, 'Warning');
               }
@@ -120,8 +101,8 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  openEmployeeModal(item: any, type: any) {
-    const modalRef = this.modalService.open(EmployeeModalComponent, {
+  openRoomModal(item: any, type: any) {
+    const modalRef = this.modalService.open(RoomModalComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
@@ -129,23 +110,22 @@ export class EmployeeComponent implements OnInit {
     if (item) {
       modalRef.componentInstance.item = item;
     }
-
     modalRef.componentInstance.type = type;
-    modalRef.componentInstance.listRole = this.listRole;
 
     modalRef.componentInstance.passEntry.subscribe((receive: any) => {
       this.modalService.dismissAll();
-      this.getEmployee();
+      this.getRoom();
     });
   }
 
   changePageSize(item: any) {
     this.pageSize = item;
-    this.getEmployee();
+    this.getRoom();
   }
 
   changePage(size: any) {
     this.pageNumber = size;
-    this.getEmployee();
+    this.getRoom();
   }
+
 }

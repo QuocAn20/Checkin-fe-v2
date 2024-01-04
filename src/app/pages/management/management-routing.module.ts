@@ -40,7 +40,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: "manageform", loadChildren: () => import('./manageform/manageform.module').then(m => m.ManageFormModule)
+    path: "manageform",
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./manageform/manageform.module').then(m => m.ManageFormModule)
+  },
+  {
+    path: "managecategory",
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./managecategory/managecategory.module').then(m => m.ManageCategoryModule)
   }
 ];
 

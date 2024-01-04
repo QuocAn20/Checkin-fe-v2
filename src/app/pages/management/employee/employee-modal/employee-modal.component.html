@@ -2,9 +2,9 @@
   <h4 id="modal-title" class="text-primary">
     {{
     type === "create"
-    ? "Create employee"
+    ? "Create Employee"
     : type === "edit"
-    ? "Edit employee"
+    ? "Edit Employee"
     : "View"
     }}
   </h4>
@@ -108,7 +108,7 @@
           <span *ngIf="f.status.errors.required">Please enter status</span>
         </div>
       </div>
-      
+
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">National ID<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.nationalId.errors }" maxlength="255" class="form-control"
@@ -120,24 +120,14 @@
 
       <div class="col-sm-12 col-md-6">
         <label class="pt-1">Profile Image<span class="text-danger">(*)</span></label>
-        <input
-        [ngClass]="{ 'is-invalid': isSubmit && f.imgProfile.errors }"
-          type="file"
-          class="form-control py-2"            
-          formControlName="imgProfile"
-          (change)="addFile($event)"
-        />
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.imgProfile.errors }" type="file" class="form-control py-2"
+          formControlName="imgProfile" (change)="addFile($event)" />
       </div>
 
       <div class="col-sm-12 col-md-6">
         <label class="pt-1">National ID Image<span class="text-danger">(*)</span></label>
-        <input
-        [ngClass]="{ 'is-invalid': isSubmit && f.imgNationalId.errors }"
-          type="file"
-          class="form-control py-2"            
-          formControlName="imgNationalId"
-          (change)="addFile($event)"
-        />
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.imgNationalId.errors }" type="file" class="form-control py-2"
+          formControlName="imgNationalId" (change)="addFile($event)" />
       </div>
 
     </div>
@@ -172,7 +162,7 @@
   <button (click)="close()" class="btn btn-secondary" type="button">
     <i class="fa-solid fa-xmark mr-1"></i>Cancel
   </button>
-  <button (click)="submit()" class="btn btn-primary" type="button">
+  <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
     <i class="fa fa-check mr-1"></i>Confirm
   </button>
 </div>

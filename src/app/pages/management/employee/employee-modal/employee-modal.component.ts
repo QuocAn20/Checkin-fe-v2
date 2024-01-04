@@ -72,8 +72,8 @@ export class EmployeeModalComponent implements OnInit{
       role: [null],
       status: [null, [Validators.required]],
 
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required, Validators.minLength(6)]],
+      userName: [null],
+      password: [null,Validators.minLength(6)],
       roleCode: [null],
     });
 
@@ -94,9 +94,11 @@ export class EmployeeModalComponent implements OnInit{
   submit() {
     this.isSubmit = true;
     if (this.form.status === 'INVALID') {
+      
       return;
     } else {
       if (this.item) {
+        
         this.update();
       } else {
         this.create();

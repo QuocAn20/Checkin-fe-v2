@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  Renderer2,
   ViewChild,
   ElementRef,
 } from '@angular/core';
@@ -11,14 +10,13 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { AuthService } from 'src/app/service/module/auth.service';
 import { TicketComponent } from 'src/app/pages/management/ticket/ticket.component';
 import { TicketService } from 'src/app/service/module/ticket.service';
+import { MenuService } from 'src/app/service/module/menu.service';
 
 @Component({
-  // moduleId: module.id,
   selector: 'navbar-cmp',
   templateUrl: 'navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
-  private listTitles: any;
   location: Location;
   private nativeElement: Node;
   private toggleButton: any;
@@ -28,12 +26,12 @@ export class NavbarComponent implements OnInit {
 
   public isCollapsed = true;
   @ViewChild('navbar-cmp', { static: false }) button: any;
-
   currentUser: any;
+
+  listTitles: any;
 
   constructor(
     location: Location,
-    private renderer: Renderer2,
     private element: ElementRef,
     private router: Router,
     private authService: AuthService,
@@ -45,7 +43,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listTitles = ROUTES.filter((listTitle: any) => listTitle);
+    this.listTitles = ROUTES.filter((listTitles: any) => listTitles);
     var navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
     this.router.events.subscribe((event) => {
@@ -53,8 +51,8 @@ export class NavbarComponent implements OnInit {
     });
 
     this.currentUser = this.authService.currentUser().userId;
-    // this.connect();
   }
+
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === '#') {
@@ -67,6 +65,7 @@ export class NavbarComponent implements OnInit {
     }
     return 'Dashboard';
   }
+
   sidebarToggle() {
     if (this.sidebarVisible === false) {
       this.sidebarOpen();
