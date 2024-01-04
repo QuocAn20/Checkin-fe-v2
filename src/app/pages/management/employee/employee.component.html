@@ -80,9 +80,9 @@
               <tr *ngIf="listEmployee.length === 0">
                 <td class="text-center align-middle" colspan="11">No data</td>
               </tr>
-              <tr *ngFor="let item of listEmployee; let i = index">
-                <td class="align-middle">
-                  {{ getStt(i) }}
+              <tr *ngFor="let item of listEmployee; index as i">
+                <td class="text-center align-middle">
+                  {{i+1}}
                 </td>
                 <td class="align-middle text-center text-primary" (click)="openEmployeeModal(item, 'view')">
                   <span class="m-cursor"> {{ item?.code }}</span>

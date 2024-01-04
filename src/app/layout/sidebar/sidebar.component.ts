@@ -5,58 +5,64 @@ import { MenuService } from 'src/app/service/module/menu.service';
 export interface RouteInfo {
   path: string;
   title: string;
-  icon: string;
-  class: string;
 }
 
 export const ROUTES: RouteInfo[] = [
   {
     path: '/pages/management/dashboard',
     title: 'Home',
-    icon: 'nc-calendar-60',
-    class: '',
-  },
-  {
-    path: '/pages/management/manageform',
-    title: 'Management Form',
-    icon: 'nc-paper',
-    class: '',
   },
   {
     path: '/pages/management/service',
     title: 'Management Form',
-    icon: 'nc-bank',
-    class: '',
   },
   {
     path: '/pages/management/employee',
     title: 'Employees',
-    icon: 'nc-single-02',
-    class: '',
   },
   {
     path: '/management/ticket',
     title: 'Ticket',
-    icon: 'nc-book-bookmark',
-    class: '',
   },
   {
     path: '/management/screen',
     title: 'Screen',
-    icon: 'nc-tv-2',
-    class: '',
   },
   {
     path: '/pages/management/menu',
     title: 'Menu',
-    icon: 'nc-bullet-list-67',
-    class: '',
+  },
+  {
+    path: '/pages/management/manageform',
+    title: 'Form Management',
   },
   {
     path: '/pages/management/manageform/survey',
     title: 'Survey',
-    icon: 'nc-paper',
-    class: '',
+  },
+  {
+    path: '/pages/management/manageform/register',
+    title: 'Register',
+  },
+  {
+    path: '/pages/management/managecategory',
+    title: 'Category Management',
+  },
+  {
+    path: '/pages/management/managecategory/room',
+    title: 'Room',
+  },
+  {
+    path: '/pages/management/managecategory/event',
+    title: 'Event',
+  },
+  {
+    path: '/pages/management/managecategory/holiday',
+    title: 'Holiday',
+  },
+  {
+    path: '/pages/management/managecategory/unit',
+    title: 'Unit',
   },
 ];
 

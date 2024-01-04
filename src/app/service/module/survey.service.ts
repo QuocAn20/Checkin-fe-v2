@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseListResponse } from 'src/app/models/base-list-response.model';
 import { BaseResponse } from 'src/app/models/base-response.model';
@@ -44,20 +44,4 @@ export class SurveyService {
       json
     );
   }
-
-  // restoreSURVEY(json: any) {
-  //   return this.http.post<BaseResponse>(
-  //     CommandURL.SURVEY + '/restoreSURVEY',
-  //     json,
-  //     { headers: this.header }
-  //   );
-  // }
-
-  // removeSURVEY(json: any) {
-  //   return this.http.post<BaseResponse>(
-  //     CommandURL.SURVEY + '/removeSURVEY',
-  //     json,
-  //     { headers: this.header }
-  //   );
-  // }
 }

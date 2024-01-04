@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseListResponse } from 'src/app/models/base-list-response.model';
 import { BaseResponse } from 'src/app/models/base-response.model';
@@ -7,40 +7,40 @@ import { CommandURL } from '../api-command';
 @Injectable({
   providedIn: 'root',
 })
-export class EmployeeService {
+export class RoomService {
   constructor(private http: HttpClient) {}
 
-  createEmployee(json: any) {
+  createRoom(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.EMPLOYEE + '/createEmployee',
+      CommandURL.ROOM + '/createRoom',
       json
     );
   }
 
-  getEmployee(json: any) {
+  getRoom(json: any) {
     return this.http.post<BaseListResponse>(
-      CommandURL.EMPLOYEE + '/getEmployee',
+      CommandURL.ROOM + '/getRoom',
       json
     );
   }
 
-  getAllEmployee(json: any) {
+  getAllRoom(json: any) {
     return this.http.post<BaseListResponse>(
-      CommandURL.EMPLOYEE + '/getAllEmployee',
+      CommandURL.ROOM + '/getAllRoom',
       json
     );
   }
 
-  updateEmployee(json: any) {
+  updateRoom(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.EMPLOYEE + '/updateEmployee',
+      CommandURL.ROOM + '/updateRoom',
       json
     );
   }
 
-  deleteEmployee(json: any) {
+  deleteRoom(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.EMPLOYEE + '/deleteEmployee',
+      CommandURL.ROOM + '/deleteRoom',
       json
     );
   }
