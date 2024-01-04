@@ -7,33 +7,33 @@ import { CommandURL } from '../api-command';
 @Injectable({
   providedIn: 'root',
 })
-export class RoomService {
+export class UnitService {
   constructor(private http: HttpClient) {}
 
-  createRoom(json: any) {
+  createUnit(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.ROOM + '/createRoom',
+      CommandURL.UNIT + '/createUnit',
       json
     );
   }
 
-  getRoom(json: any) {
+  getUnit(json: any) {
     return this.http.post<BaseListResponse>(
-      CommandURL.ROOM + '/getRoom',
+      CommandURL.UNIT + '/getUnit',
       json
     );
   }
 
-  updateRoom(json: any) {
+  updateUnit(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.ROOM + '/updateRoom',
+      CommandURL.UNIT + '/updateUnit',
       json
     );
   }
 
-  deleteRoom(json: any) {
+  deleteUnit(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.ROOM + '/deleteRoom',
+      CommandURL.UNIT + '/deleteUnit',
       json
     );
   }

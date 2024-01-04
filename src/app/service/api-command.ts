@@ -9,6 +9,8 @@ export class CommandURL{
 
   public static ROOM = environment.PROCESS_SERVICE + '/api/checkin/room';
 
+  public static UNIT = environment.PROCESS_SERVICE + '/api/checkin/unit';
+
   public static ROLE = environment.PROCESS_SERVICE + '/api/checkin/role';
 
   public static TICKET = environment.PROCESS_SERVICE + '/api/checkin/ticket';
