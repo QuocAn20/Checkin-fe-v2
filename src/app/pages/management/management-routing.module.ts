@@ -38,6 +38,9 @@ const routes: Routes = [
     path: 'menu',
     component: MenuComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: "manageform", loadChildren: () => import('./manageform/manageform.module').then(m => m.ManageFormModule)
   }
 ];
 

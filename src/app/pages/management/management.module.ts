@@ -46,7 +46,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ScreenModalComponent,
     DashboardComponent,
     MenuComponent,
-    MenuModalComponent,
+    MenuModalComponent
   ],
 })
 export class ManagementModule {}

@@ -13,6 +13,7 @@ import { MenuService } from 'src/app/service/module/menu.service';
 export class MenuModalComponent implements OnInit{
   @Input() type: any;
   @Input() item: any;
+  @Input() listParentMenu: any;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   form: any;
@@ -39,6 +40,15 @@ export class MenuModalComponent implements OnInit{
     {
       name: 'nc-bullet-list-67',
     },
+    {
+      name: 'nc-note-03',
+    },
+    {
+      name: 'nc-paper',
+    },
+    {
+      name: 'nc-settings-gear-65',
+    },
   ];
   listRole = [
     {
@@ -49,6 +59,7 @@ export class MenuModalComponent implements OnInit{
     },
   ];
   userId: any;
+  listParent: any;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -70,6 +81,8 @@ export class MenuModalComponent implements OnInit{
       path: [null, [Validators.required]],
       icon: [null, [Validators.required]],
       roleCode: [null, [Validators.required]],
+      numerate: [null, [Validators.required]],
+      parentId: [null]
     });
 
     if (this.item) {

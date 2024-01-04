@@ -55,8 +55,7 @@ export class LoginPageComponent implements OnInit {
           if (res) {
             if (res.role === 'ADMIN') {
               this.router.navigate(['/pages/management/dashboard']).then(() => {
-                window.location.reload();
-                console.log(res.user.role);                
+                window.location.reload();        
               });
             } else if (res.role === 'EMPLOYEE') {
               this.router.navigate(['/pages/management/employee']).then(() => {

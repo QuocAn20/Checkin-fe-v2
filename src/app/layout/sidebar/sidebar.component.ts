@@ -17,8 +17,14 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
+    path: '/pages/management/manageform',
+    title: 'Management Form',
+    icon: 'nc-paper',
+    class: '',
+  },
+  {
     path: '/pages/management/service',
-    title: 'Service Banking',
+    title: 'Management Form',
     icon: 'nc-bank',
     class: '',
   },
@@ -44,6 +50,12 @@ export const ROUTES: RouteInfo[] = [
     path: '/pages/management/menu',
     title: 'Menu',
     icon: 'nc-bullet-list-67',
+    class: '',
+  },
+  {
+    path: '/pages/management/manageform/survey',
+    title: 'Survey',
+    icon: 'nc-paper',
     class: '',
   },
 ];

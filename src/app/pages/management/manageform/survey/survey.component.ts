@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { SurveyModalComponent } from './survey-modal/survey-modal.component';
+import Swal from 'sweetalert2';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { MenuService } from 'src/app/service/module/menu.service';
-import { MenuModalComponent } from './menu-modal/menu-modal.component';
-import Swal from 'sweetalert2';
+import { SurveyService } from 'src/app/service/module/survey.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: 'app-survey',
+  templateUrl: './survey.component.html',
+  styleUrls: ['./survey.component.scss']
 })
-export class MenuComponent implements OnInit{
+export class SurveyComponent implements OnInit{
+  
   form: any;
-  listMenu: Array<any> = [];
-  listParentMenu: Array<any> = [];
+  listRequire: any;
+  listNonRequire: any;
+  listQuestionType: any;
+  listSurvey: Array<any> = [];
 
   totalSize = 0;
   pageSize = 10;
@@ -23,18 +26,23 @@ export class MenuComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private toastService: ToastrService,
-    private menuService: MenuService
+    private surveyService: SurveyService,
+    public toastService: ToastrService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initForm();
-    this.getMenu();
+    this.getSurvey();
+    this.getStt(this.listSurvey);
   }
 
   initForm() {
     this.form = this.formBuilder.group({
+      code: [null],
       name: [null],
+      startTime: [null],
+      endTime: [null],
+      questionType: [null]
     });
   }
 
@@ -42,34 +50,51 @@ export class MenuComponent implements OnInit{
     return this.form.controls;
   }
 
-  getMenu() {
+  getStt(item: any) {
+    let counter = 0;
+    for (let i = 0; i < item.length; i++) {
+      if (item[i].status === '0') counter++;
+    }
+  }
+
+  getSurvey() {
     const json = {
       page: this.pageNumber,
       limit: this.pageSize,
       ...this.form.value,
     };
-    this.menuService.getMenu(json).subscribe((res) => {
+
+    console.log();
+
+    this.surveyService.getSurvey(json).subscribe((res) => {
       if (res.errorCode === '0') {
-        this.listMenu = res.data;
-        this.listParentMenu = this.listMenu.filter(e => e.parentId === null)
+        this.listSurvey = res.data;
         this.totalSize = res.totalRecord;
       }
     });
   }
+
+  // getRole() {
+  //   this.serviceBankingService.getService({}).subscribe((res) => {
+  //     if (res.errorCode === '0') {
+  //       this.listRole = res.data;
+  //     }
+  //   });
+  // }
 
   refresh() {
     this.ngOnInit();
   }
 
   search() {
-    this.getMenu();
+    this.getSurvey();
   }
 
   delete(item: any) {
     if (item) {
       Swal.fire({
         title: 'Warning!',
-        text: 'Data is not restore after deleting',
+        text: 'Are you sure about deleting',
         icon: 'error',
         confirmButtonText: 'OK',
         showCancelButton: true,
@@ -79,12 +104,13 @@ export class MenuComponent implements OnInit{
         if (res.value) {
           const json = {
             id: item.id,
+            deleted: 1,
           };
-          this.menuService.deleteMenu(json).subscribe(
+          this.surveyService.deleteSurvey(json).subscribe(
             (res) => {
               if (res.errorCode === '0') {
                 this.toastService.success(res.errorDesc, 'Success');
-                this.getMenu();
+                this.getSurvey();
               } else {
                 this.toastService.warning(res.errorDesc, 'Warning');
               }
@@ -99,8 +125,8 @@ export class MenuComponent implements OnInit{
     }
   }
 
-  openModal(item: any, type: any) {
-    const modalRef = this.modalService.open(MenuModalComponent, {
+  openSurveyModal(item: any, type: any) {
+    const modalRef = this.modalService.open(SurveyModalComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
@@ -108,21 +134,23 @@ export class MenuComponent implements OnInit{
     if (item) {
       modalRef.componentInstance.item = item;
     }
+
     modalRef.componentInstance.type = type;
-    modalRef.componentInstance.listParentMenu = this.listParentMenu;
+    // modalRef.componentInstance.listRole = this.listRole;
+
     modalRef.componentInstance.passEntry.subscribe((receive: any) => {
       this.modalService.dismissAll();
-      this.getMenu();
+      this.getSurvey();
     });
   }
 
   changePageSize(item: any) {
     this.pageSize = item;
-    this.getMenu();
+    this.getSurvey();
   }
 
   changePage(size: any) {
     this.pageNumber = size;
-    this.getMenu();
+    this.getSurvey();
   }
 }

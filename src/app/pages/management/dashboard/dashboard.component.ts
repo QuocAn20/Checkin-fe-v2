@@ -107,8 +107,6 @@ export class DashboardComponent {
       ...this.form.value,
     };
 
-    console.log(json);
-
     this.ticketService.getTicketDataForEmployee(json).subscribe((res) => {
       if (res.errorCode === '0') {
         this.listDataForEmployee = res.data.map((e: any) =>

@@ -33,6 +33,15 @@ export class EmployeeModalComponent implements OnInit{
     },
   ];
 
+  listStatus = [
+    {
+      status: 'Active',
+    },
+    {
+      status: 'inACtive',
+    }
+  ]
+
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
@@ -47,9 +56,9 @@ export class EmployeeModalComponent implements OnInit{
   initForm() {
     this.form = this.formBuilder.group({
       id: [null],
-      code: [null, [Validators.required]],
+      code: [null],
       name: [null, [Validators.required]],
-      dateOfBirth: [null],
+      dob: [null],
       gender: [null],
       phone: [null, [Validators.pattern("(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})")]],
       nationalId: [null],
@@ -58,12 +67,13 @@ export class EmployeeModalComponent implements OnInit{
       room: [null, [Validators.required]],
       position: [null, [Validators.required]],
       job: [null, [Validators.required]],
-      email: [null],
+      email: [null, [Validators.pattern("(^[^\s@]+@[^\s@]+\.[^\s@]+$)")]],
       imgProfile: [null],
-      role: 'EMPLOYEE',
+      role: [null],
+      status: [null, [Validators.required]],
 
-      userName: [null],
-      password: [null, Validators.minLength(6)],
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
       roleCode: [null],
     });
 
