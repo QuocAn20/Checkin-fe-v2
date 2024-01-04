@@ -15,6 +15,7 @@ import { EventComponent } from './event/event.component';
 import { NotificationComponent } from './notification/notification.component';
 import { WaitingScreenComponent } from './waiting-screen/waiting-screen.component';
 import { RoomModalComponent } from './room/room-modal/room-modal.component';
+import { UnitModalComponent } from './unit/unit-modal/unit-modal.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { RoomModalComponent } from './room/room-modal/room-modal.component';
         EventComponent,
         NotificationComponent,
         WaitingScreenComponent,
-        RoomModalComponent
+        RoomModalComponent,
+        UnitModalComponent
   ]
 })
 

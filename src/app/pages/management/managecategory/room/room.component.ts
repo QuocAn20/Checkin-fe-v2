@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
 import { RoomService } from 'src/app/service/module/room.service';
 import { RoomModalComponent } from './room-modal/room-modal.component';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-room',
@@ -24,7 +22,6 @@ export class RoomComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private toastService: ToastrService,
     private roomService: RoomService
   ) {}
 
@@ -64,41 +61,6 @@ export class RoomComponent implements OnInit{
 
   search() {
     this.getRoom();
-  }
-
-  delete(item: any) {
-    if (item) {
-      Swal.fire({
-        title: 'Warning!',
-        text: 'Are you sure about deleting',
-        icon: 'error',
-        confirmButtonText: 'OK',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonText: 'Cancel',
-      }).then((res) => {
-        if (res.value) {
-          const json = {
-            id: item.id,
-            deleted: 1,
-          };
-          this.roomService.deleteRoom(json).subscribe(
-            (res) => {
-              if (res.errorCode === '0') {
-                this.toastService.success(res.errorDesc, 'Success');
-                this.getRoom();
-              } else {
-                this.toastService.warning(res.errorDesc, 'Warning');
-              }
-            },
-            (err) => {
-              this.toastService.error(err, 'Notification');
-            }
-          );
-        }
-      });
-      return;
-    }
   }
 
   openRoomModal(item: any, type: any) {
