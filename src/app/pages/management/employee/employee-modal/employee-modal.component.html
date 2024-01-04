@@ -19,9 +19,6 @@
         <label class="pt-1">Code<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.code.errors }" maxlength="255" class="form-control"
           formControlName="code" autocomplete="none" placeholder="Autogenic Code" type="text" readonly="true" />
-        <div *ngIf="isSubmit && f.code.errors" class="invalid-feedback">
-          <span *ngIf="f.code.errors.required">Please enter your code</span>
-        </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
@@ -35,20 +32,14 @@
 
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Date Of Birth<span class="text-danger">(*)</span></label>
-        <input [ngClass]="{ 'is-invalid': isSubmit && f.dateOfBirth.errors }" maxlength="255" class="form-control"
-          formControlName="dateOfBirth" autocomplete="none" placeholder="Enter your date" type="text" />
-        <div *ngIf="isSubmit && f.dateOfBirth.errors" class="invalid-feedback">
-          <span *ngIf="f.dateOfBirth.errors.required">Please enter your birth date</span>
-        </div>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.dob.errors }" maxlength="255" class="form-control"
+          formControlName="dob" autocomplete="none" placeholder="Enter your date" type="text" />
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Gender<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.gender.errors }" maxlength="255" class="form-control"
           formControlName="gender" autocomplete="none" placeholder="Enter your gender" type="text" />
-        <div *ngIf="isSubmit && f.gender.errors" class="invalid-feedback">
-          <span *ngIf="f.gender.errors.required">Please enter your gender</span>
-        </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
@@ -56,33 +47,8 @@
         <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.phone.errors }" formControlName="phone"
           placeholder="Enter your phone" autocomplete="none" type="text" maxlength="255" />
         <div *ngIf="isSubmit && f.phone.errors" class="invalid-feedback">
-          <span *ngIf="f.phone.errors.required">Please enter your phone</span>
           <span *ngIf="f.phone.errors.pattern">Please enter valid phone number</span>
           <br />
-        </div>
-      </div>
-
-      <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">National ID<span class="text-danger">(*)</span></label>
-        <input [ngClass]="{ 'is-invalid': isSubmit && f.nationalId.errors }" maxlength="255" class="form-control"
-          formControlName="nationalId" autocomplete="none" placeholder="Enter your National ID" type="text" />
-        <div *ngIf="isSubmit && f.nationalId.errors" class="invalid-feedback">
-          <span *ngIf="f.nationalId.errors.required">Please enter your National ID</span>
-        </div>
-      </div>
-
-      <div class="col-sm-12 col-md-6">
-        <label class="pt-1">National ID Image<span class="text-danger">(*)</span></label>
-        <input
-        [ngClass]="{ 'is-invalid': isSubmit && f.imgNationalId.errors }"
-          type="file"
-          class="form-control py-2"            
-          formControlName="imgNationalId"
-          (change)="addFile($event)"
-        />
-        <div *ngIf="isSubmit && f.imgNationalId.errors" class="invalid-feedback">
-          <span *ngIf="f.imgNationalId.errors.required">Please enter your National ID Image</span
-          ><br />
         </div>
       </div>
 
@@ -128,9 +94,27 @@
         <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.email.errors }" formControlName="email"
           placeholder="Enter your email" autocomplete="none" type="text" maxlength="255" />
         <div *ngIf="isSubmit && f.email.errors" class="invalid-feedback">
-          <span *ngIf="f.email.errors.required">Please enter your email</span>
           <span *ngIf="f.email.errors.pattern">Please enter valid email</span>
           <br />
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Status<span class="text-danger">(*)</span></label>
+        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.status.errors }" [items]="listStatus" bindValue="status"
+          bindLabel="status" formControlName="status" placeholder="Select status">
+        </ng-select>
+        <div *ngIf="isSubmit && f.status.errors" class="invalid-feedback">
+          <span *ngIf="f.status.errors.required">Please enter status</span>
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">National ID<span class="text-danger">(*)</span></label>
+        <input [ngClass]="{ 'is-invalid': isSubmit && f.nationalId.errors }" maxlength="255" class="form-control"
+          formControlName="nationalId" autocomplete="none" placeholder="Enter your National ID" type="text" />
+        <div *ngIf="isSubmit && f.nationalId.errors" class="invalid-feedback">
+          <span *ngIf="f.nationalId.errors.required">Please enter your National ID</span>
         </div>
       </div>
 
@@ -143,31 +127,19 @@
           formControlName="imgProfile"
           (change)="addFile($event)"
         />
-        <div *ngIf="isSubmit && f.imgProfile.errors" class="invalid-feedback">
-          <span *ngIf="f.imgProfile.errors.required">Please enter your Profile Image</span
-          ><br />
-        </div>
       </div>
 
-      <!-- <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Quantity Customer<span class="text-danger">(*)</span></label>
-        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.maxCustomer.errors }" [items]="listQuantity"
-          bindValue="code" bindLabel="code" formControlName="maxCustomer" placeholder="Select quantity">
-        </ng-select>
-        <div *ngIf="isSubmit && f.maxCustomer.errors" class="invalid-feedback">
-          <span *ngIf="f.maxCustomer.errors.required">Please enter your quantity</span><br />
-        </div>
+      <div class="col-sm-12 col-md-6">
+        <label class="pt-1">National ID Image<span class="text-danger">(*)</span></label>
+        <input
+        [ngClass]="{ 'is-invalid': isSubmit && f.imgNationalId.errors }"
+          type="file"
+          class="form-control py-2"            
+          formControlName="imgNationalId"
+          (change)="addFile($event)"
+        />
       </div>
 
-      <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Role<span class="text-danger">(*)</span></label>
-        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.role.errors }" [items]="listRole" bindValue="id"
-          bindLabel="name" formControlName="role" [multiple]="true" placeholder="Select roles">
-        </ng-select>
-        <div *ngIf="isSubmit && f.role.errors" class="invalid-feedback">
-          <span *ngIf="f.role.errors.required">Please enter your roles</span><br />
-        </div>
-      </div> -->
     </div>
     <div class="modal-body" *ngIf="type === 'create'">
       <h4 id="modal-title" class="text-primary">Employee account</h4>

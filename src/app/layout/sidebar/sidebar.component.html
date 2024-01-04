@@ -4,18 +4,40 @@
       <div class="logo-image-small">
       </div>
     </a>
-    <a routerLink="/management/dashboard" class="simple-text logo-normal"> FISBank </a>
+    <a routerLink="/pages/management/dashboard" class="simple-text logo-normal"> FIS CheckIn</a>
   </div>
   <ul class="nav">
-    <li
-      *ngFor="let menuItem of listMenu"
-      routerLinkActive="active"
-      class="{{ menuItem?.class }}"
-    >
+    <li *ngFor="let menuItem of listMenu" routerLinkActive="active" class="{{ menuItem?.class }}">
       <a [routerLink]="[menuItem?.path]">
         <i class="nc-icon {{ menuItem?.icon }}"></i>
         <p>{{ menuItem?.name }}</p>
       </a>
     </li>
   </ul>
+  <!-- <ul class="nav">
+    <ng-container *ngFor="let menuItem of listMenu">
+      <li *ngIf="!menuItem.parentId; else dropdown" routerLinkActive="active" class="{{ menuItem?.class }}">
+        <a [routerLink]="[menuItem?.path]">
+          <i class="nc-icon {{ menuItem?.icon }}"></i>
+          <p>{{ menuItem?.name }}</p>
+        </a>
+      </li>
+      <ng-template #dropdown>
+        <li routerLinkActive="active" class="dropdown {{ menuItem?.class }}">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="nc-icon {{ menuItem?.icon }}"></i>
+            <p>{{ menuItem?.name }} <b class="caret"></b></p>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let childMenu of menuItem.parentId" routerLinkActive="active">
+              <a [routerLink]="[childMenu?.path]">
+                <i class="nc-icon {{ childMenu?.icon }}"></i>
+                <p>{{ childMenu?.name }}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ng-template>
+    </ng-container>
+  </ul> -->
 </div>

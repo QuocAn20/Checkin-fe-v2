@@ -71,7 +71,7 @@
                   <th class="text-center align-middle mw-50">Name</th>
                   <th class="text-center align-middle mw-50">Path</th>
                   <th class="text-center align-middle mw-50">Icon</th>
-                  <th class="text-center align-middle mw-50">Create date</th>
+                  <th class="text-center align-middle mw-50">Creator</th>
                   <th class="text-center align-middle mw-150">Action</th>
                 </tr>
               </thead>
@@ -93,7 +93,7 @@
                     <span class=""> {{ item?.icon }}</span>
                   </td>
                   <td class="align-middle">
-                    {{ item?.createDate | date : "dd-MM-yyyy" }}
+                    {{ item?.creatorName}}
                   </td>
                   <td class="align-middle text-center">
                     <i
