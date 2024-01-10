@@ -45,7 +45,8 @@ export class UnitModalComponent implements OnInit{
   initform(){
     this.form = this.formBuilder.group({
       id: [null],
-      unit: [null, [Validators.required]],
+      code: [null],
+      name: [null, [Validators.required]],
       branch: [null, [Validators.required]],
       note: [null],
       status: [null, [Validators.required]]

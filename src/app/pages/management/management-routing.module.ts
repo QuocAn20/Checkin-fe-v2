@@ -48,7 +48,12 @@ const routes: Routes = [
     path: "managecategory",
     canActivate: [AuthGuard],
     loadChildren: () => import('./managecategory/managecategory.module').then(m => m.ManageCategoryModule)
-  }
+  },
+  {
+    path: "managestatistic",
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./managestatistic/managestatistic.module').then(m => m.ManageStatisticModule)
+  },
 ];
 
 @NgModule({

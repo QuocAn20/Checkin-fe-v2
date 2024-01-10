@@ -13,7 +13,6 @@ export class RoomComponent implements OnInit{
 
   form: any;
   listRoom: Array<any> = [];
-  listBranch: Array<any> = [];
 
   totalSize = 0;
   pageSize = 10;
@@ -32,7 +31,7 @@ export class RoomComponent implements OnInit{
 
   initForm(){
     this.form = this.formBuilder.group({
-      room: [null],
+      name: [null],
       branch: [null],
     });
   }

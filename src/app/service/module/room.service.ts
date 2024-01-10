@@ -30,11 +30,4 @@ export class RoomService {
       json
     );
   }
-
-  deleteRoom(json: any) {
-    return this.http.post<BaseResponse>(
-      CommandURL.ROOM + '/deleteRoom',
-      json
-    );
-  }
 }

@@ -30,11 +30,4 @@ export class UnitService {
       json
     );
   }
-
-  deleteUnit(json: any) {
-    return this.http.post<BaseResponse>(
-      CommandURL.UNIT + '/deleteUnit',
-      json
-    );
-  }
 }

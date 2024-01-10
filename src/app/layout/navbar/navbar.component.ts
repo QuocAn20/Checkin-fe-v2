@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ROUTES } from '../sidebar/sidebar.component';
@@ -11,6 +6,9 @@ import { AuthService } from 'src/app/service/module/auth.service';
 import { TicketComponent } from 'src/app/pages/management/ticket/ticket.component';
 import { TicketService } from 'src/app/service/module/ticket.service';
 import { MenuService } from 'src/app/service/module/menu.service';
+import { CheckInOutService } from 'src/app/service/module/checkinout.service';
+import { ToastrService } from 'ngx-toastr';
+import { base64DecodeUnicode } from 'src/app/utils/convert.util';
 
 @Component({
   selector: 'navbar-cmp',
@@ -23,6 +21,7 @@ export class NavbarComponent implements OnInit {
   private sidebarVisible: boolean;
   counter = 0;
   listNotification: Array<any> = [];
+  listAuthData: any;
 
   public isCollapsed = true;
   @ViewChild('navbar-cmp', { static: false }) button: any;
@@ -35,7 +34,9 @@ export class NavbarComponent implements OnInit {
     private element: ElementRef,
     private router: Router,
     private authService: AuthService,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private checkInOutService: CheckInOutService,
+    private toastService: ToastrService
   ) {
     this.location = location;
     this.nativeElement = element.nativeElement;
@@ -123,8 +124,37 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  getIdFromToken(): any {
+    if (sessionStorage.getItem('remember')) {
+      this.listAuthData = JSON.parse(
+        base64DecodeUnicode(sessionStorage.getItem('remember'))
+      );
+      return this.listAuthData;
+    }
+  }
+
+  getDate() {
+    const d = new Date();
+    const month =
+      d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1;
+    const day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
+    return d.getFullYear() + '-' + month + '-' + day;
+  }
+
   logout() {
-    this.authService.logout();
+    const json = {
+      id: this.getIdFromToken().currentUser.userId,
+      date: this.getDate(),
+      status: 'Valid'
+    };
+    this.checkInOutService.updateInOut(json).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.toastService.success(res.errorDesc, 'Success');
+        this.authService.logout();
+      } else {
+        this.toastService.error(res.errorDesc, 'Error');
+      }
+    });
   }
 
   searchTicket(item: any) {

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from 'src/app/service/module/employee.service';
+import { UnitService } from 'src/app/service/module/unit.service';
 
 @Component({
   selector: 'app-employee-modal',
@@ -14,12 +15,18 @@ export class EmployeeModalComponent implements OnInit{
   @Input() type: any;
   @Input() item: any;
   @Input() listRole: any;
+  @Input() listEmployee: any;
+  @Input() listRoom: any;
+  @Input() listGender: any;
+  @Input() listPosition: any;
+  @Input() listStatus: any;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   form: any;
   isSubmit = false;
   nationalIdImg: any;
   base64Image: string = '';
+  listUnit: any;
 
   listQuantity = [
     {
@@ -33,24 +40,17 @@ export class EmployeeModalComponent implements OnInit{
     },
   ];
 
-  listStatus = [
-    {
-      status: 'Active',
-    },
-    {
-      status: 'inACtive',
-    }
-  ]
-
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
+    private unitService: UnitService,
     private toastService: ToastrService
   ) {}
 
   ngOnInit() {
     this.initForm();
+    this.getUnit();
   }
 
   initForm() {
@@ -78,9 +78,19 @@ export class EmployeeModalComponent implements OnInit{
     });
 
     if (this.item) {
-      this.f.code.disable();
       this.form.patchValue(this.item);
     }
+  }
+
+  getUnit() {
+    const json = {
+      status: 'Active'
+    };
+    this.unitService.getUnit(json).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.listUnit = res.data.map((e: any) => e.name);
+      }
+    });
   }
 
   get f() {

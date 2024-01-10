@@ -18,10 +18,10 @@
   
         <div class="col-sm-12 col-md-6 form-group">
           <label class="pt-1">Unit<span class="text-danger">(*)</span></label>
-          <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.unit.errors }" formControlName="unit"
+          <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" formControlName="name"
             placeholder="Enter your unit" autocomplete="none" type="text" maxlength="255" />
-          <div *ngIf="isSubmit && f.unit.errors" class="invalid-feedback">
-            <span *ngIf="f.unit.errors.required">Please enter your unit</span>
+          <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
+            <span *ngIf="f.name.errors.required">Please enter your unit</span>
             <br />
           </div>
         </div>

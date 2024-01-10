@@ -45,7 +45,8 @@ export class RoomModalComponent implements OnInit{
   initform(){
     this.form = this.formBuilder.group({
       id: [null],
-      room: [null, [Validators.required]],
+      code: [null],
+      name: [null, [Validators.required]],
       branch: [null, [Validators.required]],
       note: [null],
       status: [null, [Validators.required]]

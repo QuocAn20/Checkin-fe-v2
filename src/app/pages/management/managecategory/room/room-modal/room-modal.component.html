@@ -18,10 +18,10 @@
   
         <div class="col-sm-12 col-md-6 form-group">
           <label class="pt-1">Room<span class="text-danger">(*)</span></label>
-          <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.room.errors }" formControlName="room"
+          <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" formControlName="name"
             placeholder="Enter your room" autocomplete="none" type="text" maxlength="255" />
-          <div *ngIf="isSubmit && f.room.errors" class="invalid-feedback">
-            <span *ngIf="f.room.errors.required">Please enter your room</span>
+          <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
+            <span *ngIf="f.name.errors.required">Please enter your room</span>
             <br />
           </div>
         </div>
