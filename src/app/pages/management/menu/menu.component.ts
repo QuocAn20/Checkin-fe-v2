@@ -29,6 +29,7 @@ export class MenuComponent implements OnInit{
 
   ngOnInit() {
     this.initForm();
+    this.getAllMenu();
     this.getMenu();
   }
 
@@ -46,6 +47,18 @@ export class MenuComponent implements OnInit{
     const json = {
       page: this.pageNumber,
       limit: this.pageSize,
+      ...this.form.value,
+    };
+    this.menuService.getMenu(json).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.listMenu = res.data;
+        this.totalSize = res.totalRecord;
+      }
+    });
+  }
+
+  getAllMenu(){
+    const json = {
       ...this.form.value,
     };
     this.menuService.getMenu(json).subscribe((res) => {

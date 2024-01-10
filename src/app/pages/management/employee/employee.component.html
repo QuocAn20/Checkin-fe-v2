@@ -9,25 +9,33 @@
                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Room
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                  <input type="text" formControlName="room" class="form-control py-2" autocomplete="none" />
+                  <ng-select [items]="listRoom" formControlName="room" placeholder="Enter Room" class="py-2"
+                    bindValue="room" bindLabel="room">
+                  </ng-select>
                 </div>
 
                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Gender
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                  <input type="text" formControlName="gender" class="form-control py-2" autocomplete="none" />
+                  <ng-select [items]="listGender" formControlName="gender" placeholder="Enter Gender" class="py-2"
+                    bindValue="gender" bindLabel="gender">
+                  </ng-select>
                 </div>
 
                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Position
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                  <input type="text" formControlName="position" class="form-control py-2" autocomplete="none" />
+                  <ng-select [items]="listPosition" formControlName="position" placeholder="Enter Position" class="py-2"
+                    bindValue="position" bindLabel="position">
+                  </ng-select>
                 </div>
 
                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Status
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                  <input type="text" formControlName="status" class="form-control py-2" autocomplete="none" />
+                  <ng-select [items]="listStatus" formControlName="status" placeholder="Enter Status" class="py-2"
+                    bindValue="status" bindLabel="status">
+                  </ng-select>
                 </div>
 
               </div>

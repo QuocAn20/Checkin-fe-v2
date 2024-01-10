@@ -43,6 +43,6 @@ import { CommandURL } from '../api-command';
     logout() {
       GlobalVariable.clearVariables();
       this.user = null;
-      this.router.navigate(['/account/auth/login']);
+      this.router.navigate(['']);
     }
   }

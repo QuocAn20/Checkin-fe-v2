@@ -15,11 +15,6 @@
 <div class="modal-body">
   <form [formGroup]="form" id="form-1">
     <div class="row">
-      <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Code<span class="text-danger">(*)</span></label>
-        <input [ngClass]="{ 'is-invalid': isSubmit && f.code.errors }" maxlength="255" class="form-control"
-          formControlName="code" autocomplete="none" placeholder="Autogenic Code" type="text" readonly="true" />
-      </div>
 
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Name<span class="text-danger">(*)</span></label>
@@ -33,13 +28,14 @@
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Date Of Birth<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.dob.errors }" maxlength="255" class="form-control"
-          formControlName="dob" autocomplete="none" placeholder="Enter your date" type="text" />
+          formControlName="dob" autocomplete="none" placeholder="Enter your date" type="date" />
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Gender<span class="text-danger">(*)</span></label>
-        <input [ngClass]="{ 'is-invalid': isSubmit && f.gender.errors }" maxlength="255" class="form-control"
-          formControlName="gender" autocomplete="none" placeholder="Enter your gender" type="text" />
+        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.gender.errors }" [items]="listGender" bindValue="gender"
+          bindLabel="gender" formControlName="gender" placeholder="Select Gender">
+        </ng-select>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
@@ -54,8 +50,9 @@
 
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Unit<span class="text-danger">(*)</span></label>
-        <input [ngClass]="{ 'is-invalid': isSubmit && f.unit.errors }" maxlength="255" class="form-control"
-          formControlName="unit" autocomplete="none" placeholder="Enter your unit" type="text" />
+        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.unit.errors }" [items]="listUnit" bindValue="unit"
+          bindLabel="unit" formControlName="unit" placeholder="Select Unit">
+        </ng-select>
         <div *ngIf="isSubmit && f.unit.errors" class="invalid-feedback">
           <span *ngIf="f.unit.errors.required">Please enter your unit</span>
         </div>
@@ -63,8 +60,9 @@
 
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Room<span class="text-danger">(*)</span></label>
-        <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.room.errors }" formControlName="room"
-          placeholder="Enter your room" autocomplete="none" type="text" maxlength="255" />
+        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.room.errors }" [items]="listRoom" bindValue="room"
+          bindLabel="room" formControlName="room" placeholder="Select Room">
+        </ng-select>
         <div *ngIf="isSubmit && f.room.errors" class="invalid-feedback">
           <span *ngIf="f.room.errors.required">Please enter your room</span>
           <br />
@@ -73,8 +71,9 @@
 
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">Position<span class="text-danger">(*)</span></label>
-        <input [ngClass]="{ 'is-invalid': isSubmit && f.position.errors }" maxlength="255" class="form-control"
-          formControlName="position" autocomplete="none" placeholder="Enter your position" type="text" />
+        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.position.errors }" [items]="listPosition" bindValue="position"
+          bindLabel="position" formControlName="position" placeholder="Select Position">
+        </ng-select>
         <div *ngIf="isSubmit && f.position.errors" class="invalid-feedback">
           <span *ngIf="f.position.errors.required">Please enter your position</span>
         </div>

@@ -9,7 +9,17 @@ export class CommandURL{
 
   public static ROOM = environment.PROCESS_SERVICE + '/api/checkin/room';
 
+  public static HOLIDAY = environment.PROCESS_SERVICE + '/api/checkin/holiday';
+
   public static UNIT = environment.PROCESS_SERVICE + '/api/checkin/unit';
+
+  public static EVENT = environment.PROCESS_SERVICE + '/api/checkin/event';
+
+  public static NOTIFICATION = environment.PROCESS_SERVICE + '/api/checkin/notification';
+  
+  public static WAITINGSCREEN = environment.PROCESS_SERVICE + '/api/checkin/wscreen';
+
+  public static INOUT = environment.PROCESS_SERVICE + '/api/checkin/in-out';
 
   public static ROLE = environment.PROCESS_SERVICE + '/api/checkin/role';
 

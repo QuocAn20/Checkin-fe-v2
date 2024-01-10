@@ -1,0 +1,175 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 card-box">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="p-2">
+                        <form [formGroup]="form">
+                            <div class="row">
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Room
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <ng-select [items]="listCheckIn" formControlName="room" placeholder="Enter Unit"
+                                        class="py-2" bindValue="room" bindLabel="room">
+                                    </ng-select>
+                                </div>
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Unit
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <ng-select [items]="listCheckIn" formControlName="unit" placeholder="Enter Unit"
+                                        class="py-2" bindValue="unit" bindLabel="unit">
+                                    </ng-select>
+                                </div>
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Date
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <ng-select [items]="listCheckIn" formControlName="date"
+                                        placeholder="Enter Date" class="py-2" bindValue="date" bindLabel="date">
+                                    </ng-select>
+                                </div>
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Status
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <ng-select [items]="listStatus" formControlName="status"
+                                        placeholder="Enter Status" class="py-2" bindValue="status" bindLabel="status">
+                                    </ng-select>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <div class="row pt-3">
+                            <div class="col-4 text-left">
+                                <button type="button" class="btn btn-primary mr-1"
+                                    (click)="openInOutModal(null, 'create')">
+                                    <i class="fas fa-plus mr-1"></i>Create
+                                </button>
+                            </div>
+                            <div class="col-8 text-right">
+                                <button type="button" class="btn btn-secondary mr-1 mb-1" (click)="refresh()">
+                                    <i class="fa-solid fa-rotate-right mr-1"></i>Refresh
+                                </button>
+                                <button type="button" class="btn btn-primary mr-1 mb-1" (click)="search()">
+                                    <i class="fas fa-search mr-1"></i>Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-bottom-dotted mt-2">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="text-uppercase font-weight-medium theme-color">Unit list</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 table-responsive mt-2">
+                    <table class="table table-bordered table-sm table-hover m-w-tabble">
+                        <thead>
+                            <tr class="m-header-table">
+                                <th class="text-center align-middle mw-100">STT</th>
+                                <th class="text-center align-middle mw-100">Code</th>
+                                <th class="text-center align-middle mw-50">Name</th>
+                                <th class="text-center align-middle mw-50">Room</th>
+                                <th class="text-center align-middle mw-100">Unit</th>                               
+                                <th class="text-center align-middle mw-100">Date</th>
+                                <th class="text-center align-middle mw-100">Check-In</th>
+                                <th class="text-center align-middle mw-100">Check-Out</th>
+                                <th class="text-center align-middle mw-100">Work Time</th>
+                                <th class="text-center align-middle mw-100">Late</th>
+                                <th class="text-center align-middle mw-100">Soon</th>
+                                <th class="text-center align-middle mw-100">Status</th>
+                                <th class="text-center align-middle mw-150">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="listCheckIn.length === 0">
+                                <td class="text-center align-middle" colspan="13">No data</td>
+                            </tr>
+                            <tr *ngFor="let item of listCheckIn; index as i">
+                                <td class="text-center align-middle">
+                                    {{i+1}}
+                                </td>
+                                <td class="align-middle text-center text-primary"
+                                    (click)="openInOutModal(item, 'view')">
+                                    <span class="m-cursor"> {{ item?.code }}</span>
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.name }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.room }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.unit }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.date | date: "dd/MM/yyyy" }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.checkIn }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.checkOut }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.workTime }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.late }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.soon }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.status }}
+                                </td>
+                                <td class="align-middle text-center">
+                                    <i class="fas fa-edit fa-lg text-primary m-cursor" title="Chỉnh sửa"
+                                        (click)="openInOutModal(item, 'edit')"></i>
+                                    <!-- <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá" (click)="delete(item)"></i> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row col-12 pr-0 justify-content-md-between align-items-md-center">
+                    <div class="p-0 col-sm-12 col-md-4 col-lg-4 col-xl-3 pr-0 d-none d-md-block">
+                        <div class="dataTables_length">
+                            <label class="d-inline-flex align-items-center">Show
+                                <select #t name="tickets-table_length" aria-controls="tickets-table" name="pageSize"
+                                    (change)="changePageSize(t.value)"
+                                    class="form-select custom-select custom-select-sm form-control form-control-sm mx-2">
+                                    <option [value]="10">10</option>
+                                    <option [value]="25">25</option>
+                                    <option [value]="50">50</option>
+                                </select>
+                                rows</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mt-md-0 d-none d-xl-block m-mb-8 text-center">
+                        Show
+                        {{ totalSize === 0 ? 0 : (pageNumber - 1) * pageSize + 1 }}
+                        - {{ pageNumber * pageSize }} of
+                        {{ totalSize }}
+                    </div>
+                    <div class="p-0 col-sm-12 col-md-8 col-lg-4 col-xl-5">
+                        <div class="text-md-right float-md-right mt-2">
+                            <ngb-pagination (pageChange)="changePage($event)" [(page)]="pageNumber"
+                                [collectionSize]="totalSize" [pageSize]="pageSize" [rotate]="true">
+                            </ngb-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

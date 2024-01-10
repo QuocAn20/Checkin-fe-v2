@@ -13,7 +13,6 @@ export class UnitComponent implements OnInit{
 
   form: any;
   listUnit: Array<any> = [];
-  listBranch: Array<any> = [];
 
   totalSize = 0;
   pageSize = 10;
@@ -32,7 +31,7 @@ export class UnitComponent implements OnInit{
 
   initForm(){
     this.form = this.formBuilder.group({
-      unit: [null],
+      name: [null],
       branch: [null],
     });
   }

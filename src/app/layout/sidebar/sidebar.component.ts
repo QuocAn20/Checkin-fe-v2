@@ -64,6 +64,22 @@ export const ROUTES: RouteInfo[] = [
     path: '/pages/management/managecategory/unit',
     title: 'Unit',
   },
+  {
+    path: '/pages/management/managecategory/notification',
+    title: 'Notification',
+  },
+  {
+    path: '/pages/management/managecategory/waiting-screen',
+    title: 'Waiting Screen',
+  },
+  {
+    path: '/pages/management/managestatistic',
+    title: 'Statistic Management',
+  },
+  {
+    path: '/pages/management/managestatistic/in-out',
+    title: 'In/Out',
+  },
 ];
 
 @Component({

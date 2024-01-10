@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeService } from 'src/app/service/module/employee.service';
 import { FormBuilder } from '@angular/forms';
-import { ServiceBankingService } from 'src/app/service/module/service-banking.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { EmployeeModalComponent } from './employee-modal/employee-modal.component';
-import { ItemsList } from '@ng-select/ng-select/lib/items-list';
+import { RoomService } from 'src/app/service/module/room.service';
 
 @Component({
   selector: 'app-employee',
@@ -17,23 +16,52 @@ export class EmployeeComponent implements OnInit {
   form: any;
   listRole: any;
   listEmployee: Array<any> = [];
+  listRoom: Array<any> = [];
 
   totalSize = 0;
   pageSize = 10;
   pageNumber = 1;
 
+  listPosition =[
+    {
+      position: 'Nhan Vien'
+    },
+    {
+      position: 'Truong Phong'
+    }
+  ]
+
+  listGender =[
+    {
+      gender: 'Nam'
+    },
+    {
+      gender: 'Nu'
+    }
+  ]
+
+  listStatus =[
+    {
+      status: 'Active'
+    },
+    {
+      status: 'InActive'
+    },
+  ]
+
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private serviceBankingService: ServiceBankingService,
     private employeeService: EmployeeService,
+    private roomService: RoomService,
     public toastService: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
     this.getEmployee();
-    this.getRole();
+    this.getRoom();
+    // this.getRole();
   }
 
   initForm() {
@@ -52,15 +80,23 @@ export class EmployeeComponent implements OnInit {
     return this.form.controls;
   }
 
+  getRoom() {
+    const json = {
+      status: 'Active'
+    };
+    this.roomService.getRoom(json).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.listRoom = res.data.map((e: any) => e.name);
+      }
+    });
+  }
+
   getEmployee() {
     const json = {
       page: this.pageNumber,
       limit: this.pageSize,
       ...this.form.value,
     };
-
-    console.log();
-
     this.employeeService.getEmployee(json).subscribe((res) => {
       if (res.errorCode === '0') {
         this.listEmployee = res.data;
@@ -69,13 +105,13 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  getRole() {
-    this.serviceBankingService.getService({}).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.listRole = res.data;
-      }
-    });
-  }
+  // getRole() {
+  //   this.serviceBankingService.getService({}).subscribe((res) => {
+  //     if (res.errorCode === '0') {
+  //       this.listRole = res.data;
+  //     }
+  //   });
+  // }
 
   refresh() {
     this.ngOnInit();
@@ -132,6 +168,11 @@ export class EmployeeComponent implements OnInit {
 
     modalRef.componentInstance.type = type;
     modalRef.componentInstance.listRole = this.listRole;
+    modalRef.componentInstance.listEmployee = this.listEmployee;
+    modalRef.componentInstance.listRoom = this.listRoom;
+    modalRef.componentInstance.listPosition = this.listPosition;
+    modalRef.componentInstance.listGender = this.listGender;
+    modalRef.componentInstance.listStatus = this.listStatus;
 
     modalRef.componentInstance.passEntry.subscribe((receive: any) => {
       this.modalService.dismissAll();
