@@ -10,7 +10,7 @@
                                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Room
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <ng-select [items]="listCheckIn" formControlName="room" placeholder="Enter Unit"
+                                    <ng-select [items]="listRoom" formControlName="room" placeholder="Enter Unit"
                                         class="py-2" bindValue="room" bindLabel="room">
                                     </ng-select>
                                 </div>
@@ -18,7 +18,7 @@
                                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Unit
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <ng-select [items]="listCheckIn" formControlName="unit" placeholder="Enter Unit"
+                                    <ng-select [items]="listUnit" formControlName="unit" placeholder="Enter Unit"
                                         class="py-2" bindValue="unit" bindLabel="unit">
                                     </ng-select>
                                 </div>
@@ -26,16 +26,16 @@
                                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Date
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <ng-select [items]="listCheckIn" formControlName="date"
-                                        placeholder="Enter Date" class="py-2" bindValue="date" bindLabel="date">
+                                    <ng-select [items]="listCheckIn" formControlName="date" placeholder="Enter Date"
+                                        class="py-2" bindValue="date" bindLabel="date">
                                     </ng-select>
                                 </div>
 
                                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Status
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <ng-select [items]="listStatus" formControlName="status"
-                                        placeholder="Enter Status" class="py-2" bindValue="status" bindLabel="status">
+                                    <ng-select [items]="listStatus" formControlName="status" placeholder="Enter Status"
+                                        class="py-2" bindValue="status" bindLabel="status">
                                     </ng-select>
                                 </div>
 
@@ -44,9 +44,12 @@
 
                         <div class="row pt-3">
                             <div class="col-4 text-left">
-                                <button type="button" class="btn btn-primary mr-1"
+                                <!-- <button type="button" class="btn btn-primary mr-1"
                                     (click)="openInOutModal(null, 'create')">
                                     <i class="fas fa-plus mr-1"></i>Create
+                                </button> -->
+                                <button class="btn btn-success mr-1" (click)="export()" type="button">
+                                    <i class="fas fa-cloud-download-alt"></i> Export
                                 </button>
                             </div>
                             <div class="col-8 text-right">
@@ -79,7 +82,7 @@
                                 <th class="text-center align-middle mw-100">Code</th>
                                 <th class="text-center align-middle mw-50">Name</th>
                                 <th class="text-center align-middle mw-50">Room</th>
-                                <th class="text-center align-middle mw-100">Unit</th>                               
+                                <th class="text-center align-middle mw-100">Unit</th>
                                 <th class="text-center align-middle mw-100">Date</th>
                                 <th class="text-center align-middle mw-100">Check-In</th>
                                 <th class="text-center align-middle mw-100">Check-Out</th>
@@ -148,6 +151,7 @@
                                 <select #t name="tickets-table_length" aria-controls="tickets-table" name="pageSize"
                                     (change)="changePageSize(t.value)"
                                     class="form-select custom-select custom-select-sm form-control form-control-sm mx-2">
+                                    <option [value]="5">5</option>
                                     <option [value]="10">10</option>
                                     <option [value]="25">25</option>
                                     <option [value]="50">50</option>

@@ -3,9 +3,6 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { AuthService } from 'src/app/service/module/auth.service';
-import { TicketComponent } from 'src/app/pages/management/ticket/ticket.component';
-import { TicketService } from 'src/app/service/module/ticket.service';
-import { MenuService } from 'src/app/service/module/menu.service';
 import { CheckInOutService } from 'src/app/service/module/checkinout.service';
 import { ToastrService } from 'ngx-toastr';
 import { base64DecodeUnicode } from 'src/app/utils/convert.util';
@@ -34,7 +31,6 @@ export class NavbarComponent implements OnInit {
     private element: ElementRef,
     private router: Router,
     private authService: AuthService,
-    private ticketService: TicketService,
     private checkInOutService: CheckInOutService,
     private toastService: ToastrService
   ) {
@@ -157,12 +153,12 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  searchTicket(item: any) {
-    this.listNotification = this.listNotification.filter(
-      (e) => e.id != item.id
-    );
-    this.ticketService.searchTicketForNotification(item).subscribe((res) => {
-      this.counter -= 1;
-    });
-  }
+  // searchTicket(item: any) {
+  //   this.listNotification = this.listNotification.filter(
+  //     (e) => e.id != item.id
+  //   );
+  //   this.ticketService.searchTicketForNotification(item).subscribe((res) => {
+  //     this.counter -= 1;
+  //   });
+  // }
 }
