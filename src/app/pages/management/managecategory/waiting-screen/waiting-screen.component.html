@@ -18,7 +18,9 @@
                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Notification
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                  <input type="text" formControlName="notification" class="form-control py-2" autocomplete="none" />
+                  <ng-select [items]="listWScreen" bindValue="notification" bindLabel="notification" formControlName="notification"
+                    placeholder="Select Show Type">
+                  </ng-select>
                 </div>
 
               </div>
