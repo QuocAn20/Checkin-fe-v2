@@ -3,6 +3,10 @@ import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CheckInOutService } from 'src/app/service/module/checkinout.service';
 import { InOutModalComponent } from './in-out-modal/in-out-modal.component';
+import { createFileType, downLoadFile } from 'src/app/utils/export.util';
+import { ToastrService } from 'ngx-toastr';
+import { RoomService } from 'src/app/service/module/room.service';
+import { UnitService } from 'src/app/service/module/unit.service';
 
 @Component({
   selector: 'app-in-out',
@@ -32,12 +36,17 @@ export class InOutComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
+    private toastService: ToastrService,
+    private roomService: RoomService,
+    private unitService: UnitService,
     private checkInOutService: CheckInOutService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
     this.getInOut();
+    this.getRoom();
+    this.getUnit();
   }
 
   initForm(){
@@ -51,6 +60,28 @@ export class InOutComponent implements OnInit{
 
   get f() {
     return this.form.controls;
+  }
+
+  getRoom(){
+    const json = {
+      status: 'Active'
+    };
+    this.roomService.getRoom(json).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.listRoom = res.data.map((e: any) => e.name);
+      }
+    });
+  }
+
+  getUnit(){
+    const json = {
+      status: 'Active'
+    };
+    this.unitService.getUnit(json).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.listUnit = res.data.map((e: any) => e.name);
+      }
+    });
   }
 
   getInOut(){
@@ -73,6 +104,26 @@ export class InOutComponent implements OnInit{
 
   search() {
     this.getInOut();
+  }
+
+  export() {
+    const json = {
+      fileType: 'pdf',
+    };
+    this.checkInOutService.export(json).subscribe(
+      (res) => {
+        if (res) {
+          downLoadFile(
+            res,
+            createFileType(json.fileType),
+            'CheckInOut_' + new Date().toDateString()
+          );
+        }
+      },
+      (error) => {
+        this.toastService.error('Export error', 'Error');
+      }
+    );
   }
 
   openInOutModal(item: any, type: any) {

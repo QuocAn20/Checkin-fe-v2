@@ -1,110 +1,113 @@
 <div class="modal-header align-middle">
-    <h4 id="modal-title" class="text-primary">
-      {{
-      type === "create"
-      ? "Create Unit"
-      : type === "edit"
-      ? "Edit Unit"
-      : "View"
-      }}
-    </h4>
-    <button (click)="activeModal.dismiss('Cross click')" aria-describedby="modal-title" class="close" type="button">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="form" id="form-1">
-      <div class="row">
-  
-        <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Day<span class="text-danger">(*)</span></label>
-          <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.day.errors }" [items]="listDay"
-            formControlName="day" placeholder="Enter day" bindLabel="day" bindValue="day">
-          </ng-select>
-        </div>
+  <h4 id="modal-title" class="text-primary">
+    {{
+    type === "create"
+    ? "Create Unit"
+    : type === "edit"
+    ? "View"
+    : "View"
+    }}
+  </h4>
+  <button (click)="activeModal.dismiss('Cross click')" aria-describedby="modal-title" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" id="form-1">
+    <div class="row">
 
-        <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Month<span class="text-danger">(*)</span></label>
-          <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.month.errors }" [items]="listMonth"
-            formControlName="month" placeholder="Enter month" bindLabel="month" bindValue="month">
-          </ng-select>
-        </div>
-  
-        <div class="row">
-          <div class="col-12 table-responsive mt-2">
-            <table class="table table-bordered table-sm table-hover m-w-tabble">
-                <thead>
-                    <tr class="m-header-table">
-                        <th class="text-center align-middle mw-100">STT</th>
-                        <th class="text-center align-middle mw-100">Code</th>
-                        <th class="text-center align-middle mw-50">Name</th>
-                        <th class="text-center align-middle mw-50">Room</th>
-                        <th class="text-center align-middle mw-100">Unit</th>                               
-                        <th class="text-center align-middle mw-100">Date</th>
-                        <th class="text-center align-middle mw-100">Check-In</th>
-                        <th class="text-center align-middle mw-100">Check-Out</th>
-                        <th class="text-center align-middle mw-100">Work Time</th>
-                        <th class="text-center align-middle mw-100">Late</th>
-                        <th class="text-center align-middle mw-100">Soon</th>
-                        <th class="text-center align-middle mw-100">Status</th>
-                        <th class="text-center align-middle mw-150">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngIf="listCheckIn.length === 0">
-                        <td class="text-center align-middle" colspan="13">No data</td>
-                    </tr>
-                    <tr *ngFor="let item of listCheckIn; index as i">
-                        <td class="text-center align-middle">
-                            {{i+1}}
-                        </td>
-                        <td class="align-middle text-center text-primary">
-                            <span class="m-cursor"> {{ item?.code }}</span>
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.name }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.room }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.unit }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.date | date: "dd/MM/yyyy"}}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.checkIn }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.checkOut }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.workTime }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.late }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.soon }}
-                        </td>
-                        <td class="align-middle">
-                            {{ item?.status }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        </div>
-  
+      <!-- <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Day<span class="text-danger">(*)</span></label>
+        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.day.errors }" [items]="listDay" formControlName="day"
+          placeholder="Enter day" bindLabel="day" bindValue="day">
+        </ng-select>
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button (click)="close()" class="btn btn-secondary" type="button">
-      <i class="fa-solid fa-xmark mr-1"></i>Cancel
-    </button>
-    <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
-      <i class="fa fa-check mr-1"></i>Confirm
-    </button>
-  </div>
+
+      <div class="col-sm-12 col-md-6 form-group">
+        <label class="pt-1">Month<span class="text-danger">(*)</span></label>
+        <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.month.errors }" [items]="listMonth" formControlName="month"
+          placeholder="Enter month" bindLabel="month" bindValue="month">
+        </ng-select>
+      </div> -->
+
+      <div class="row">
+        <div class="col-12 table-responsive mt-2">
+          <table class="table table-bordered table-sm table-hover m-w-tabble">
+            <thead>
+              <tr class="m-header-table">
+                <th class="text-center align-middle mw-100">STT</th>
+                <th class="text-center align-middle mw-100">Code</th>
+                <th class="text-center align-middle mw-50">Name</th>
+                <th class="text-center align-middle mw-50">Room</th>
+                <th class="text-center align-middle mw-100">Unit</th>
+                <th class="text-center align-middle mw-100">Date</th>
+                <th class="text-center align-middle mw-100">Check-In</th>
+                <th class="text-center align-middle mw-100">Check-Out</th>
+                <th class="text-center align-middle mw-100">Work Time</th>
+                <th class="text-center align-middle mw-100">Late</th>
+                <th class="text-center align-middle mw-100">Soon</th>
+                <th class="text-center align-middle mw-100">Status</th>
+                <th class="text-center align-middle mw-150">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="listCheckIn.length === 0">
+                <td class="text-center align-middle" colspan="13">No data</td>
+              </tr>
+              <tr *ngFor="let item of listCheckIn; index as i">
+                <td class="text-center align-middle">
+                  {{i+1}}
+                </td>
+                <td class="align-middle text-center text-primary">
+                  <span class="m-cursor"> {{ item?.code }}</span>
+                </td>
+                <td class="align-middle">
+                  {{ item?.name }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.room }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.unit }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.date | date: "dd/MM/yyyy"}}
+                </td>
+                <td class="align-middle">
+                  {{ item?.checkIn }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.checkOut }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.workTime }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.late }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.soon }}
+                </td>
+                <td class="align-middle">
+                  {{ item?.status }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success mr-1" (click)="export()" type="button">
+    <i class="fas fa-cloud-download-alt"></i> Export
+  </button>
+  <button (click)="close()" class="btn btn-secondary" type="button">
+    <i class="fa-solid fa-xmark mr-1"></i>Cancel
+  </button>
+  <!-- <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
+    <i class="fa fa-check mr-1"></i>Confirm
+  </button> -->
+</div>

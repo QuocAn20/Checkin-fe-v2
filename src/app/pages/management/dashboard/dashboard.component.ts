@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EmployeeService } from 'src/app/service/module/employee.service';
-import { TicketService } from 'src/app/service/module/ticket.service';
 import { Chart, registerables } from 'chart.js';
 
 @Component({
@@ -32,7 +31,6 @@ export class DashboardComponent {
   form: any;
 
   constructor(
-    private ticketService: TicketService,
     private employeeService: EmployeeService,
     private formBuilder: FormBuilder
   ) {
@@ -41,11 +39,11 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.initForm();
-    this.getTicketData();
-    this.getCountTicket();
-    this.getAllEmployee();
+    // this.getTicketData();
+    // this.getCountTicket();
+    // this.getAllEmployee();
 
-    this.getTicketDataForEmployee();
+    // this.getTicketDataForEmployee();
   }
 
   initForm() {
@@ -57,24 +55,24 @@ export class DashboardComponent {
   }
 
   search() {
-    this.getTicketDataForEmployee();
+    // this.getTicketDataForEmployee();
   }
 
-  getTicketData() {
-    this.ticketService.statisticMonthly({}).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.ticketDone = res.data.ticketDone;
-        this.ticketInProgress = res.data.ticketInProgress;
-        this.ticketNotStart = res.data.ticketNotStart;
+  // getTicketData() {
+  //   this.ticketService.statisticMonthly({}).subscribe((res) => {
+  //     if (res.errorCode === '0') {
+  //       this.ticketDone = res.data.ticketDone;
+  //       this.ticketInProgress = res.data.ticketInProgress;
+  //       this.ticketNotStart = res.data.ticketNotStart;
 
-        this.ticketChart(
-          this.ticketDone,
-          this.ticketInProgress,
-          this.ticketNotStart
-        );
-      }
-    });
-  }
+  //       this.ticketChart(
+  //         this.ticketDone,
+  //         this.ticketInProgress,
+  //         this.ticketNotStart
+  //       );
+  //     }
+  //   });
+  // }
 
   getAllEmployee() {
     this.employeeService.getAllEmployee({}).subscribe((res) => {
@@ -84,39 +82,39 @@ export class DashboardComponent {
     });
   }
 
-  getCountTicket() {
-    this.ticketService.getCountTicket({}).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.sumTicket = res.data.countSumTicket;
-        this.countDoneTicket = res.data.countDoneTicket;
-        this.countInProgressTicket = res.data.countInProgressTicket;
-        this.countNotStartTicket = res.data.countNotStartTicket;
+  // getCountTicket() {
+  //   this.ticketService.getCountTicket({}).subscribe((res) => {
+  //     if (res.errorCode === '0') {
+  //       this.sumTicket = res.data.countSumTicket;
+  //       this.countDoneTicket = res.data.countDoneTicket;
+  //       this.countInProgressTicket = res.data.countInProgressTicket;
+  //       this.countNotStartTicket = res.data.countNotStartTicket;
 
-        this.ticketRate(
-          this.sumTicket,
-          this.countDoneTicket,
-          this.countInProgressTicket,
-          this.countNotStartTicket
-        );
-      }
-    });
-  }
+  //       this.ticketRate(
+  //         this.sumTicket,
+  //         this.countDoneTicket,
+  //         this.countInProgressTicket,
+  //         this.countNotStartTicket
+  //       );
+  //     }
+  //   });
+  // }
 
-  getTicketDataForEmployee() {
-    const json = {
-      ...this.form.value,
-    };
+  // getTicketDataForEmployee() {
+  //   const json = {
+  //     ...this.form.value,
+  //   };
 
-    this.ticketService.getTicketDataForEmployee(json).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.listDataForEmployee = res.data.map((e: any) =>
-          e === null ? 0 : e?.sumService
-        );
+  //   this.ticketService.getTicketDataForEmployee(json).subscribe((res) => {
+  //     if (res.errorCode === '0') {
+  //       this.listDataForEmployee = res.data.map((e: any) =>
+  //         e === null ? 0 : e?.sumService
+  //       );
 
-        this.ticketForEmployee(this.listEmployee, this.listDataForEmployee);
-      }
-    });
-  }
+  //       this.ticketForEmployee(this.listEmployee, this.listDataForEmployee);
+  //     }
+  //   });
+  // }
 
   ticketChart(dataDone: any, ticketInProgress: any, ticketNotStart: any) {
     var speedCanvas: any = document.getElementById('speedChart');

@@ -37,6 +37,9 @@ export class EmployeeComponent implements OnInit {
     },
     {
       gender: 'Nu'
+    },
+    {
+      gender: 'Other'
     }
   ]
 
