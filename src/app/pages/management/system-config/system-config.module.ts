@@ -8,21 +8,16 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { PagesModule } from '../../../shares/share.mudule';
-import { ManageStatisticRoutingModule } from './managestatistic-routing.module';
-import { InOutComponent } from './in-out/in-out.component';
-import { ReportRegisterComponent } from './report-register/report-register.component';
-import { FeedBackComponent } from './feed-back/feed-back.component';
-import { ReportComponent } from './report/report.component';
-import { InOutModalComponent } from './in-out/in-out-modal/in-out-modal.component';
-import { ManagementModule } from '../management.module';
+import { SystemConfigRoutingModule } from './system-config-routing.module';
+import { MenuComponent } from './menu/menu.component';
+import { MenuModalComponent } from './menu/menu-modal/menu-modal.component';
+import { LoginConfigComponent } from './login-config/login-config.component';
 
 @NgModule({
   declarations: [
-    InOutComponent,
-    ReportRegisterComponent,
-    FeedBackComponent,
-    ReportComponent,
-    InOutModalComponent,
+    MenuComponent,
+    MenuModalComponent,
+    LoginConfigComponent
   ],
   imports: [
     CommonModule,
@@ -33,12 +28,8 @@ import { ManagementModule } from '../management.module';
     QRCodeModule,
     NgbPagination,
     NgxScannerQrcodeModule,
-    ManageStatisticRoutingModule,
     PagesModule,
-    ManagementModule
+    SystemConfigRoutingModule
   ],
-  exports: [
-    InOutComponent
-  ]
 })
-export class ManageStatisticModule {}
+export class SystemConfigModule {}

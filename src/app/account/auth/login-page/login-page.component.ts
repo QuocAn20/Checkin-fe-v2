@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { first } from 'rxjs';
+import { first, takeWhile } from 'rxjs';
 import { AuthService } from 'src/app/service/module/auth.service';
 import { CheckInOutService } from 'src/app/service/module/checkinout.service';
+import { LoginConfigService } from 'src/app/service/module/login-config.service';
 import { base64DecodeUnicode } from 'src/app/utils/convert.util';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-page',
@@ -15,6 +17,9 @@ import { base64DecodeUnicode } from 'src/app/utils/convert.util';
 export class LoginPageComponent implements OnInit {
   form: any;
   isSubmit: Boolean = false;
+  loginAttempts: number = 0;
+  loginSlots: number = 0;
+  listLimitLogin: any;
   listAuthData: Array<any> = [];
 
   constructor(
@@ -22,12 +27,14 @@ export class LoginPageComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private toastService: ToastrService,
+    private loginConfigService: LoginConfigService,
     private checkInOutService: CheckInOutService
   ) {}
 
   ngOnInit() {
-    document.body.style.backgroundImage = "url('assets/img/tet-holiday-1.jpg')";
+    document.body.style.backgroundImage = "url('assets/img/background-tet-17.jpg')";
     this.initForm();
+    this.getListLimitLogin();
   }
 
   initForm() {
@@ -58,21 +65,64 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
+  getListLimitLogin() {
+    this.loginConfigService.getLConfig({}).subscribe((res) => {
+      this.listLimitLogin = res.data;
+    });
+  }
+
+  showNotiLoginWrong() {
+    Swal.fire({
+      title: 'Warning!',
+      text: 'Out of Slots to Login, Please waiting to continue Login!',
+      icon: 'error',
+      showConfirmButton: false,
+      timer: this.listLimitLogin.timeLoginAgain * 1000,
+    }).then((res) => {
+      this.loginAttempts = 0;
+    });
+  }
+
+  showNotiLoginFull() {
+    Swal.fire({
+      title: 'Warning!',
+      text: 'Full Of slots login in this day',
+      icon: 'error',
+      showConfirmButton: false,
+      timer: this.listLimitLogin.timeLoginAgain * 1000,
+    }).then((res) => {
+      this.loginSlots = 0;
+    });
+  }
+
   login() {
     const json = this.form.value;
+    if (this.loginAttempts >= this.listLimitLogin.limitLoginWrong) {
+      this.showNotiLoginWrong();
+      return;
+    }
+
     this.authService
       .login(json)
       .pipe(first())
       .subscribe(
         (res) => {
           if (res) {
+            this.loginSlots++;
+            if (this.loginSlots >= this.listLimitLogin.limitLogin) {
+              this.showNotiLoginFull();
+              return;
+            }
             if (res.role === 'ADMIN') {
-              this.router.navigate(['/pages/management/dashboard']).then(() => {
+              this.router.navigate(['/pages/management/home-page']).then(() => {
                 window.location.reload();
               });
             } else if (res.role === 'EMPLOYEE') {
               this.checkInOutService
-                .createInOut({ id: this.getIdFromToken().currentUser.userId, status: 'InValid'})
+                .createInOut({
+                  id: this.getIdFromToken().currentUser.userId,
+                  status: 'InValid',
+                })
                 .subscribe((res) => {
                   if (res.errorCode === '0') {
                     this.toastService.success(res.errorDesc, 'Success');
@@ -80,14 +130,18 @@ export class LoginPageComponent implements OnInit {
                     this.toastService.error(res.errorDesc, 'Error');
                   }
                 });
-              this.router.navigate(['/pages/management/employee']).then(() => {
+              this.router.navigate(['/pages/management/home-page']).then(() => {
                 window.location.reload();
               });
             }
           }
         },
         (error) => {
-          this.toastService.error('Login failed!');
+          this.loginAttempts++;
+          if (this.loginAttempts < this.listLimitLogin.limitLoginWrong) {
+            this.toastService.error('Login failed!');
+          }
+          console.log(this.loginAttempts);
         }
       );
   }

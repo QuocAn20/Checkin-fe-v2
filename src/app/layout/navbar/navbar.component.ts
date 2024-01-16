@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/service/module/auth.service';
 import { CheckInOutService } from 'src/app/service/module/checkinout.service';
 import { ToastrService } from 'ngx-toastr';
 import { base64DecodeUnicode } from 'src/app/utils/convert.util';
+import { LoginConfigService } from 'src/app/service/module/login-config.service';
+import { interval, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'navbar-cmp',
@@ -19,6 +21,7 @@ export class NavbarComponent implements OnInit {
   counter = 0;
   listNotification: Array<any> = [];
   listAuthData: any;
+  timeOut: any;
 
   public isCollapsed = true;
   @ViewChild('navbar-cmp', { static: false }) button: any;
@@ -31,6 +34,7 @@ export class NavbarComponent implements OnInit {
     private element: ElementRef,
     private router: Router,
     private authService: AuthService,
+    private loginConfigService: LoginConfigService,
     private checkInOutService: CheckInOutService,
     private toastService: ToastrService
   ) {
@@ -46,8 +50,9 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.sidebarClose();
     });
-
     this.currentUser = this.authService.currentUser().userId;
+    this.getTimeOut();
+    this.startCountdown();
   }
 
   getTitle() {
@@ -141,24 +146,50 @@ export class NavbarComponent implements OnInit {
     const json = {
       id: this.getIdFromToken().currentUser.userId,
       date: this.getDate(),
-      status: 'Valid'
+      status: 'Valid',
+      role: this.getIdFromToken().currentUser.role
     };
-    this.checkInOutService.updateInOut(json).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.toastService.success(res.errorDesc, 'Success');
-        this.authService.logout();
-      } else {
-        this.toastService.error(res.errorDesc, 'Error');
-      }
+    if(json.role == 'ADMIN'){
+      this.authService.logout();
+    }else{
+      this.checkInOutService.updateInOut(json).subscribe((res) => {
+        if (res.errorCode === '0') {
+          this.toastService.success(res.errorDesc, 'Success');
+          this.authService.logout();
+        } else {
+          this.toastService.error(res.errorDesc, 'Error');
+        }
+      });
+    }
+  }
+
+  getTimeOut() {
+    this.loginConfigService.getLConfig({}).subscribe((res) => {
+      this.timeOut = res.data.timeInLogin;
     });
   }
 
-  // searchTicket(item: any) {
-  //   this.listNotification = this.listNotification.filter(
-  //     (e) => e.id != item.id
-  //   );
-  //   this.ticketService.searchTicketForNotification(item).subscribe((res) => {
-  //     this.counter -= 1;
-  //   });
-  // }
+  startCountdown() {
+    // Create an observable that emits every second
+    const countdown$ = interval(1000);
+
+    // Subscribe to the countdown observable
+    countdown$
+      .pipe(
+        // Use the takeWhile operator to continue counting down until the timeOut value is greater than 0
+        takeWhile(() => this.timeOut > 0)
+      )
+      .subscribe(() => {
+        // Decrease the timeOut value by 1 second
+        this.timeOut--;
+
+        // Check if the countdown has reached zero
+        if (this.timeOut === 0) {
+          // Handle timeout actions here
+          console.log('Timeout reached!');
+          this.logout();
+          // Perform any additional actions when the timeout occurs
+        }
+      });
+  }
 }

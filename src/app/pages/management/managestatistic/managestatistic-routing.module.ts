@@ -12,11 +12,6 @@ const routes: Routes = [
     component: InOutComponent,
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: "unit",
-  //   component: UnitComponent,
-  //   canActivate: [AuthGuard]
-  // },
   {
     path: "register",
     component: ReportRegisterComponent,
