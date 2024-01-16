@@ -32,7 +32,7 @@ export class LoginPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    document.body.style.backgroundImage = "url('assets/img/background-tet-17.jpg')";
+    document.body.style.backgroundImage = "url('assets/img/lunar-new-year.jpg')";
     this.initForm();
     this.getListLimitLogin();
   }

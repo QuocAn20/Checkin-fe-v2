@@ -38,6 +38,25 @@ export class LoginConfigComponent implements OnInit {
     return this.form.controls;
   }
 
+  refresh() {
+    this.ngOnInit();
+  }
+
+  submit() {
+    this.isSubmit = true;
+    if (this.form.status === 'INVALID') {
+      
+      return;
+    } else {
+      if (this.lConfig) {        
+        this.update();
+      } else {
+        this.refresh();
+      }
+    }
+    this.isSubmit = false;
+  }
+
   getLConfig() {
     const json = {
       ...this.form.value,

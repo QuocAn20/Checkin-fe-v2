@@ -98,6 +98,10 @@ export class MenuModalComponent implements OnInit{
     this.passEntry.emit();
   }
 
+  refresh(){
+    this.ngOnInit();
+  }
+
   submit() {
     this.isSubmit = true;
     if (this.form.status === 'INVALID') {
