@@ -9,7 +9,7 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
   {
-    path: '/pages/management/dashboard',
+    path: '/pages/management/home-page',
     title: 'Home',
   },
   {
@@ -27,10 +27,6 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/management/screen',
     title: 'Screen',
-  },
-  {
-    path: '/pages/management/menu',
-    title: 'Menu',
   },
   {
     path: '/pages/management/manageform',
@@ -79,6 +75,18 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/pages/management/managestatistic/in-out',
     title: 'In/Out',
+  },
+  {
+    path: '/pages/management/systemconfig',
+    title: 'System Config',
+  },
+  {
+    path: '/pages/management/systemconfig/menu',
+    title: 'Menu',
+  },
+  {
+    path: '/pages/management/systemconfig/login-config',
+    title: 'Login Config',
   },
 ];
 

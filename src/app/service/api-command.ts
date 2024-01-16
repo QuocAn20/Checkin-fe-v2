@@ -19,6 +19,8 @@ export class CommandURL{
   
   public static WAITINGSCREEN = environment.PROCESS_SERVICE + '/api/checkin/wscreen';
 
+  public static LCONFIG = environment.PROCESS_SERVICE + '/api/checkin/lconfig';
+
   public static INOUT = environment.PROCESS_SERVICE + '/api/checkin/in-out';
 
   public static ROLE = environment.PROCESS_SERVICE + '/api/checkin/role';

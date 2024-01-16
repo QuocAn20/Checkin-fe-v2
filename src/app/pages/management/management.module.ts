@@ -11,9 +11,9 @@ import { EmployeeModalComponent } from './employee/employee-modal/employee-modal
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MenuComponent } from './menu/menu.component';
-import { MenuModalComponent } from './menu/menu-modal/menu-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   imports: [
@@ -33,8 +33,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EmployeeComponent,
     EmployeeModalComponent,
     DashboardComponent,
-    MenuComponent,
-    MenuModalComponent
-  ],
+    PieChartComponent,
+    HomePageComponent
+  ], 
+  exports: [
+    DashboardComponent,
+    PieChartComponent
+  ]
 })
 export class ManagementModule {}

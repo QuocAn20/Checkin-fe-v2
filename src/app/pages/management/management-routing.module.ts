@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
 import { AuthGuard } from 'src/app/cors/guards/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { MenuComponent } from './menu/menu.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -12,13 +11,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'menu',
-    component: MenuComponent,
+    path: 'home-page',
+    component: HomePageComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -35,6 +29,11 @@ const routes: Routes = [
     path: "managestatistic",
     canActivate: [AuthGuard],
     loadChildren: () => import('./managestatistic/managestatistic.module').then(m => m.ManageStatisticModule)
+  },
+  {
+    path: "systemconfig",
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./system-config/system-config.module').then(m => m.SystemConfigModule)
   },
 ];
 
