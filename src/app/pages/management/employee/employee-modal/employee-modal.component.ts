@@ -3,7 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from 'src/app/service/module/employee.service';
+import { PasswordConfigService } from 'src/app/service/module/password-config.service';
 import { UnitService } from 'src/app/service/module/unit.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-modal',
@@ -27,6 +29,7 @@ export class EmployeeModalComponent implements OnInit{
   nationalIdImg: any;
   base64Image: string = '';
   listUnit: any;
+  listPassConfig: any;
 
   listQuantity = [
     {
@@ -45,12 +48,14 @@ export class EmployeeModalComponent implements OnInit{
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private unitService: UnitService,
+    private passConfigService: PasswordConfigService,
     private toastService: ToastrService
   ) {}
 
   ngOnInit() {
     this.initForm();
     this.getUnit();
+    this.getListPassConfig();
   }
 
   initForm() {
@@ -73,7 +78,7 @@ export class EmployeeModalComponent implements OnInit{
       status: [null, [Validators.required]],
       
       userName: [null],
-      password: [null, [Validators.minLength(6)]],
+      password: [null],
       roleCode: [null],
     });
 
@@ -116,16 +121,24 @@ export class EmployeeModalComponent implements OnInit{
   }
 
   create() {
-    this.f.roleCode.patchValue('EMPLOYEE');
-
-    this.employeeService.createEmployee(this.form.value).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.toastService.success(res.errorDesc, 'Success');
-        this.passEntry.emit(res);
-      } else {
-        this.toastService.error(res.errorDesc, 'Error');
-      }
-    });
+    if(this.f.password.value.length < this.listPassConfig.minLength){
+      this.showNotiMin();
+      this.f.password.patchValue(null);
+    }else if (this.f.password.value.length > this.listPassConfig.maxLength){
+      this.showNotiMax();
+      this.f.password.patchValue(null);
+    }else{
+      this.f.roleCode.patchValue('EMPLOYEE');
+  
+      this.employeeService.createEmployee(this.form.value).subscribe((res) => {
+        if (res.errorCode === '0') {
+          this.toastService.success(res.errorDesc, 'Success');
+          this.passEntry.emit(res);
+        } else {
+          this.toastService.error(res.errorDesc, 'Error');
+        }
+      });
+    }
   }
 
   update() {
@@ -149,5 +162,31 @@ export class EmployeeModalComponent implements OnInit{
       };
       reader.readAsDataURL(newFile);
     }
+  }
+
+  getListPassConfig() {
+    this.passConfigService.getPassConfig({}).subscribe((res) => {
+      this.listPassConfig = res.data;
+    });
+  }
+
+  showNotiMin() {
+    Swal.fire({
+      title: 'Warning!',
+      text: 'The Password is too short!',
+      icon: 'warning',
+      showConfirmButton: false,
+      timer: 5000,
+    })
+  }
+
+  showNotiMax() {
+    Swal.fire({
+      title: 'Warning!',
+      text: 'The Password is too long!',
+      icon: 'warning',
+      showConfirmButton: false,
+      timer: 5000,
+    })
   }
 }

@@ -25,11 +25,13 @@ export class CommandURL{
 
   public static ROLE = environment.PROCESS_SERVICE + '/api/checkin/role';
 
-  public static TICKET = environment.PROCESS_SERVICE + '/api/checkin/ticket';
+  public static PASSCONFIG = environment.PROCESS_SERVICE + '/api/checkin/pass-config';
 
   public static LOGIN = environment.PROCESS_SERVICE + '/api/checkin/auth';
 
   public static SCREEN = environment.PROCESS_SERVICE + '/api/checkin/screen';
 
   public static MENU = environment.PROCESS_SERVICE + '/api/checkin/menu';
+
+  public static USER = environment.PROCESS_SERVICE + '/api/checkin/user';
 }

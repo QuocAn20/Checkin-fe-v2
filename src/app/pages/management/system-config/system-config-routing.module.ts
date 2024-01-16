@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/cors/guards/auth.guard';
 import { MenuComponent } from './menu/menu.component';
 import { LoginConfigComponent } from './login-config/login-config.component';
+import { ChangedPasswordComponent } from './changed-password/changed-password.component';
+import { PasswordConfigComponent } from './password-config/password-config.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,16 @@ const routes: Routes = [
   {
     path: 'login-config',
     component: LoginConfigComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'password-config',
+    component: PasswordConfigComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'changed-password',
+    component: ChangedPasswordComponent,
     canActivate: [AuthGuard],
   },
 ]

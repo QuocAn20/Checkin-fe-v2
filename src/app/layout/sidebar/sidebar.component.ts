@@ -88,6 +88,14 @@ export const ROUTES: RouteInfo[] = [
     path: '/pages/management/systemconfig/login-config',
     title: 'Login Config',
   },
+  {
+    path: '/pages/management/systemconfig/password-config',
+    title: 'Password Config',
+  },
+  {
+    path: '/pages/management/systemconfig/changed-password',
+    title: 'Changed Password',
+  },
 ];
 
 @Component({

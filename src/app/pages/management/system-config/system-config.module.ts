@@ -12,12 +12,16 @@ import { SystemConfigRoutingModule } from './system-config-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { MenuModalComponent } from './menu/menu-modal/menu-modal.component';
 import { LoginConfigComponent } from './login-config/login-config.component';
+import { ChangedPasswordComponent } from './changed-password/changed-password.component';
+import { PasswordConfigComponent } from './password-config/password-config.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     MenuModalComponent,
-    LoginConfigComponent
+    LoginConfigComponent,
+    ChangedPasswordComponent,
+    PasswordConfigComponent
   ],
   imports: [
     CommonModule,
