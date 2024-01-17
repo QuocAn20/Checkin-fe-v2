@@ -89,6 +89,10 @@ export const ROUTES: RouteInfo[] = [
     title: 'Login Config',
   },
   {
+    path: '/pages/management/systemconfig/work-time',
+    title: 'Working Time',
+  },
+  {
     path: '/pages/management/systemconfig/password-config',
     title: 'Password Config',
   },
