@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { base64DecodeUnicode } from 'src/app/utils/convert.util';
 import { LoginConfigService } from 'src/app/service/module/login-config.service';
 import { interval, takeWhile } from 'rxjs';
+import { WorkTimeService } from 'src/app/service/module/work-time.service';
 
 @Component({
   selector: 'navbar-cmp',
@@ -22,6 +23,8 @@ export class NavbarComponent implements OnInit {
   listNotification: Array<any> = [];
   listAuthData: any;
   timeOut: any;
+  startTime: any;
+  endTime: any;
 
   public isCollapsed = true;
   @ViewChild('navbar-cmp', { static: false }) button: any;
@@ -36,6 +39,7 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService,
     private loginConfigService: LoginConfigService,
     private checkInOutService: CheckInOutService,
+    private workTimeService: WorkTimeService,
     private toastService: ToastrService
   ) {
     this.location = location;
@@ -51,6 +55,7 @@ export class NavbarComponent implements OnInit {
       this.sidebarClose();
     });
     this.currentUser = this.authService.currentUser().userId;
+    this.getWorkingTime();
     this.getTimeOut();
     this.startCountdown();
   }
@@ -147,12 +152,16 @@ export class NavbarComponent implements OnInit {
       id: this.getIdFromToken().currentUser.userId,
       date: this.getDate(),
       status: 'Valid',
-      role: this.getIdFromToken().currentUser.role
-    };
-    if(json.role == 'ADMIN'){
+      role: this.getIdFromToken().currentUser.role,
+      startTime: this.startTime,
+      endTime: this.endTime
+    };    
+    if (json.role == 'ADMIN') {
       this.authService.logout();
-    }else{
+    } else {
       this.checkInOutService.updateInOut(json).subscribe((res) => {
+        console.log(res);
+        
         if (res.errorCode === '0') {
           this.toastService.success(res.errorDesc, 'Success');
           this.authService.logout();
@@ -163,6 +172,13 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  getWorkingTime() {
+    this.workTimeService.getWorkTime({}).subscribe((res) => {
+      this.startTime = res.data[0].startTime;
+      this.endTime = res.data[0].endTime;
+    });
+  }
+
   getTimeOut() {
     this.loginConfigService.getLConfig({}).subscribe((res) => {
       this.timeOut = res.data.timeInLogin;
@@ -170,26 +186,14 @@ export class NavbarComponent implements OnInit {
   }
 
   startCountdown() {
-    // Create an observable that emits every second
     const countdown$ = interval(1000);
 
-    // Subscribe to the countdown observable
-    countdown$
-      .pipe(
-        // Use the takeWhile operator to continue counting down until the timeOut value is greater than 0
-        takeWhile(() => this.timeOut > 0)
-      )
-      .subscribe(() => {
-        // Decrease the timeOut value by 1 second
-        this.timeOut--;
-
-        // Check if the countdown has reached zero
-        if (this.timeOut === 0) {
-          // Handle timeout actions here
-          console.log('Timeout reached!');
-          this.logout();
-          // Perform any additional actions when the timeout occurs
-        }
-      });
+    countdown$.pipe(takeWhile(() => this.timeOut > 0)).subscribe(() => {
+      this.timeOut--;
+      if (this.timeOut === 0) {
+        console.log('Timeout reached!');
+        this.logout();
+      }
+    });    
   }
 }

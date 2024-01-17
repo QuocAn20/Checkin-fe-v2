@@ -5,6 +5,7 @@ import { MenuComponent } from './menu/menu.component';
 import { LoginConfigComponent } from './login-config/login-config.component';
 import { ChangedPasswordComponent } from './changed-password/changed-password.component';
 import { PasswordConfigComponent } from './password-config/password-config.component';
+import { WorkingTimeComponent } from './working-time/working-time.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
   {
     path: 'login-config',
     component: LoginConfigComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'work-time',
+    component: WorkingTimeComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -14,6 +14,7 @@ import { MenuModalComponent } from './menu/menu-modal/menu-modal.component';
 import { LoginConfigComponent } from './login-config/login-config.component';
 import { ChangedPasswordComponent } from './changed-password/changed-password.component';
 import { PasswordConfigComponent } from './password-config/password-config.component';
+import { WorkingTimeComponent } from './working-time/working-time.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PasswordConfigComponent } from './password-config/password-config.compo
     MenuModalComponent,
     LoginConfigComponent,
     ChangedPasswordComponent,
-    PasswordConfigComponent
+    PasswordConfigComponent,
+    WorkingTimeComponent
   ],
   imports: [
     CommonModule,
