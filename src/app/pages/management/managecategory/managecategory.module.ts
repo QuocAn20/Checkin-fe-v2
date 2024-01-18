@@ -21,6 +21,7 @@ import { EventModalComponent } from './event/event-modal/event-modal.component';
 import { NotificationModalComponent } from './notification/notification-modal/notification-modal.component';
 import { WaitingScreenModalComponent } from './waiting-screen/waiting-screen-modal/waiting-screen-modal.component';
 import { PagesModule } from "../../../shares/share.mudule";
+import { TranslateModule } from "@ngx-translate/core";
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { PagesModule } from "../../../shares/share.mudule";
         NgbPagination,
         NgxScannerQrcodeModule,
         ManageCategoryRoutingModule,
-        PagesModule
+        PagesModule,
+        TranslateModule
     ]
 })
 

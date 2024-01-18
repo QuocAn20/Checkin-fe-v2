@@ -9,6 +9,8 @@ import { base64DecodeUnicode } from 'src/app/utils/convert.util';
 import { LoginConfigService } from 'src/app/service/module/login-config.service';
 import { interval, takeWhile } from 'rxjs';
 import { WorkTimeService } from 'src/app/service/module/work-time.service';
+import { LanguageConfigService } from 'src/app/service/module/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'navbar-cmp',
@@ -22,9 +24,13 @@ export class NavbarComponent implements OnInit {
   counter = 0;
   listNotification: Array<any> = [];
   listAuthData: any;
+
   timeOut: any;
   startTime: any;
   endTime: any;
+
+  defaultLanguage: any;
+  supportLanguage: Array<any> = [];
 
   public isCollapsed = true;
   @ViewChild('navbar-cmp', { static: false }) button: any;
@@ -40,7 +46,9 @@ export class NavbarComponent implements OnInit {
     private loginConfigService: LoginConfigService,
     private checkInOutService: CheckInOutService,
     private workTimeService: WorkTimeService,
-    private toastService: ToastrService
+    private languageService: LanguageConfigService,
+    private toastService: ToastrService,
+    private translate: TranslateService
   ) {
     this.location = location;
     this.nativeElement = element.nativeElement;
@@ -56,6 +64,7 @@ export class NavbarComponent implements OnInit {
     });
     this.currentUser = this.authService.currentUser().userId;
     this.getWorkingTime();
+    this.getLanguage();
     this.getTimeOut();
     this.startCountdown();
   }
@@ -72,7 +81,6 @@ export class NavbarComponent implements OnInit {
     }
     return 'Dashboard';
   }
-
   sidebarToggle() {
     if (this.sidebarVisible === false) {
       this.sidebarOpen();
@@ -122,14 +130,12 @@ export class NavbarComponent implements OnInit {
       navbar.classList.remove('bg-white');
     }
   }
-
   show(menu: any) {
     const menuElement = document.getElementsByClassName(menu.className)[0];
     if (menuElement) {
       menuElement.classList.toggle('show');
     }
   }
-
   getIdFromToken(): any {
     if (sessionStorage.getItem('remember')) {
       this.listAuthData = JSON.parse(
@@ -145,6 +151,20 @@ export class NavbarComponent implements OnInit {
       d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1;
     const day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
     return d.getFullYear() + '-' + month + '-' + day;
+  }
+
+  getLanguage(){
+    this.languageService.getLanguage({}).subscribe((res) => {
+      this.defaultLanguage = res.data[0].defaultLanguage;
+      this.supportLanguage = res.data[0].supportLanguage;
+
+      this.translate.setDefaultLang(this.defaultLanguage);
+      this.translate.use(this.defaultLanguage);
+    });
+  }
+
+  translateLanguage(language: any){
+    this.translate.use(language);
   }
 
   logout() {

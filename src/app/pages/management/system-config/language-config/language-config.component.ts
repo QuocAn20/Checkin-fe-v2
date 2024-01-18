@@ -1,36 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { LoginConfigService } from 'src/app/service/module/login-config.service';
+import { LanguageConfigService } from 'src/app/service/module/language.service';
 
 @Component({
-  selector: 'app-login-config',
-  templateUrl: './login-config.component.html',
-  styleUrls: ['./login-config.component.scss'],
+  selector: 'app-language-config',
+  templateUrl: './language-config.component.html',
+  styleUrls: ['./language-config.component.scss'],
 })
-export class LoginConfigComponent implements OnInit {
+export class LanguageConfigComponent implements OnInit {
   form: any;
   isSubmit = false;
-  lConfig: Array<any> = [];
+  language: Array<any> = [];
+
+  listLanguage = [
+    {
+      languageName: 'vi',
+    },
+    {
+      languageName: 'en',
+    },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastService: ToastrService,
-    private loginConfigService: LoginConfigService
+    private languageConfigService: LanguageConfigService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.getLConfig();
+    this.getLanguage();
   }
 
   initForm() {
     this.form = this.formBuilder.group({
       id: [null],
-      timeInLogin: [null, [Validators.required]],
-      limitLoginWrong: [null, [Validators.required]],
-      limitLogin: [null, [Validators.required]],
-      timeLoginAgain: [null, [Validators.required]],
+      supportLanguageId: [null],
+      defaultLanguage: [null, [Validators.required]],
+      supportLanguage: [null, [Validators.required]],
+      uiLanguage: [null, [Validators.required]],
+      multiLanguage: [null, [Validators.required]],
     });
   }
 
@@ -45,10 +55,9 @@ export class LoginConfigComponent implements OnInit {
   submit() {
     this.isSubmit = true;
     if (this.form.status === 'INVALID') {
-      
       return;
     } else {
-      if (this.lConfig) {        
+      if (this.language) {
         this.update();
       } else {
         this.refresh();
@@ -57,17 +66,10 @@ export class LoginConfigComponent implements OnInit {
     this.isSubmit = false;
   }
 
-  getLConfig() {
-    const json = {
-      ...this.form.value,
-    };
-    this.loginConfigService.getLConfig(json).subscribe((res) => {
-      if (res.errorCode === '0') {
-        this.lConfig = res.data;
-        if (this.lConfig) {
-          this.form.patchValue(this.lConfig);
-        }
-      }
+  getLanguage() {
+    this.languageConfigService.getLanguage({}).subscribe((res) => {
+      this.language = res.data;
+      this.form.patchValue(this.language[0]);
     });
   }
 
@@ -75,7 +77,7 @@ export class LoginConfigComponent implements OnInit {
     const json = {
       ...this.form.value,
     };
-    this.loginConfigService.updateLConfig(json).subscribe((res) => {
+    this.languageConfigService.updateLanguage(json).subscribe((res) => {
       if (res.errorCode === '0') {
         this.toastService.success(res.errorDesc, 'Success');
       } else {

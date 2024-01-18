@@ -17,7 +17,7 @@
     <div class="row">
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Name<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-name' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" maxlength="255" class="form-control"
           formControlName="name" autocomplete="none" placeholder="Enter your name" type="text" />
         <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
@@ -26,20 +26,20 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Date Of Birth<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-dob' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.dob.errors }" maxlength="255" class="form-control"
           formControlName="dob" autocomplete="none" placeholder="Enter your date" type="date" />
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Gender<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-gender' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.gender.errors }" [items]="listGender" bindValue="gender"
           bindLabel="gender" formControlName="gender" placeholder="Select Gender">
         </ng-select>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Phone<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-phone' | translate }}<span class="text-danger">(*)</span></label>
         <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.phone.errors }" formControlName="phone"
           placeholder="Enter your phone" autocomplete="none" type="text" maxlength="255" />
         <div *ngIf="isSubmit && f.phone.errors" class="invalid-feedback">
@@ -49,7 +49,7 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Unit<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-unit' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.unit.errors }" [items]="listUnit" bindValue="unit"
           bindLabel="unit" formControlName="unit" placeholder="Select Unit">
         </ng-select>
@@ -59,7 +59,7 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Room<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-room' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.room.errors }" [items]="listRoom" bindValue="room"
           bindLabel="room" formControlName="room" placeholder="Select Room">
         </ng-select>
@@ -70,7 +70,7 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Position<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-position' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.position.errors }" [items]="listPosition" bindValue="position"
           bindLabel="position" formControlName="position" placeholder="Select Position">
         </ng-select>
@@ -80,7 +80,7 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Job<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-job' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.job.errors }" maxlength="255" class="form-control"
           formControlName="job" autocomplete="none" placeholder="Enter your job" type="text" />
         <div *ngIf="isSubmit && f.job.errors" class="invalid-feedback">
@@ -99,7 +99,7 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Status<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'status' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.status.errors }" [items]="listStatus" bindValue="status"
           bindLabel="status" formControlName="status" placeholder="Select status">
         </ng-select>
@@ -109,7 +109,7 @@
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">National ID<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-national-Id' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.nationalId.errors }" maxlength="255" class="form-control"
           formControlName="nationalId" autocomplete="none" placeholder="Enter your National ID" type="text" />
         <div *ngIf="isSubmit && f.nationalId.errors" class="invalid-feedback">
@@ -118,23 +118,23 @@
       </div>
 
       <div class="col-sm-12 col-md-6">
-        <label class="pt-1">Profile Image<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-profile-IMG' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.imgProfile.errors }" type="file" class="form-control py-2"
           formControlName="imgProfile" (change)="addFile($event)" />
       </div>
 
       <div class="col-sm-12 col-md-6">
-        <label class="pt-1">National ID Image<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'E-en-national-Id-IMG' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.imgNationalId.errors }" type="file" class="form-control py-2"
           formControlName="imgNationalId" (change)="addFile($event)" />
       </div>
 
     </div>
     <div class="modal-body" *ngIf="type === 'create'">
-      <h4 id="modal-title" class="text-primary">Employee account</h4>
+      <h4 id="modal-title" class="text-primary">{{ 'E-en-account-title' | translate }}</h4>
       <div class="row">
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Username<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'E-en-username' | translate }}<span class="text-danger">(*)</span></label>
           <input [ngClass]="{ 'is-invalid': isSubmit && f.userName.errors }" maxlength="255" class="form-control"
             formControlName="userName" placeholder="Enter your username" autocomplete="none" type="text" />
           <div *ngIf="isSubmit && f.userName.errors" class="invalid-feedback">
@@ -143,7 +143,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Password<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'E-en-password' | translate }}<span class="text-danger">(*)</span></label>
           <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.password.errors }"
             formControlName="password" placeholder="Enter your password" autocomplete="none" type="password"
             maxlength="255" />
@@ -159,9 +159,9 @@
 </div>
 <div class="modal-footer">
   <button (click)="close()" class="btn btn-secondary" type="button">
-    <i class="fa-solid fa-xmark mr-1"></i>Cancel
+    <i class="fa-solid fa-xmark mr-1"></i>{{ 'cancel' | translate }}
   </button>
   <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
-    <i class="fa fa-check mr-1"></i>Confirm
+    <i class="fa fa-check mr-1"></i>{{ 'confirm' | translate }}
   </button>
 </div>
