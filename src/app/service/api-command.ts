@@ -21,6 +21,8 @@ export class CommandURL{
 
   public static LCONFIG = environment.PROCESS_SERVICE + '/api/checkin/lconfig';
 
+  public static LANGUAGE = environment.PROCESS_SERVICE + '/api/checkin/language';
+
   public static WORKTIME = environment.PROCESS_SERVICE + '/api/checkin/work-time';
 
   public static INOUT = environment.PROCESS_SERVICE + '/api/checkin/in-out';

@@ -17,7 +17,7 @@
       <div class="row">
   
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Holiday<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'h-name' | translate }}<span class="text-danger">(*)</span></label>
           <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" formControlName="name"
             placeholder="Enter holiday" autocomplete="none" type="text" maxlength="255" />
           <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
@@ -27,7 +27,7 @@
         </div>
   
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Date<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'h-date' | translate }}<span class="text-danger">(*)</span></label>
           <input [ngClass]="{ 'is-invalid': isSubmit && f.date.errors }" maxlength="255" class="form-control"
             formControlName="date" autocomplete="none" placeholder="Enter date" type="date" />
           <div *ngIf="isSubmit && f.date.errors" class="invalid-feedback">
@@ -36,13 +36,13 @@
         </div>
   
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Note<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'note' | translate }}<span class="text-danger">(*)</span></label>
           <input [ngClass]="{ 'is-invalid': isSubmit && f.note.errors }" maxlength="255" class="form-control"
             formControlName="note" autocomplete="none" placeholder="Enter your note" type="text" />
         </div>
 
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">Status<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'status' | translate }}<span class="text-danger">(*)</span></label>
           <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.status.errors }" [items]="listStatus" bindValue="status"
             bindLabel="status" formControlName="status" placeholder="Select status">
           </ng-select>
@@ -56,9 +56,9 @@
   </div>
   <div class="modal-footer">
     <button (click)="close()" class="btn btn-secondary" type="button">
-      <i class="fa-solid fa-xmark mr-1"></i>Cancel
+      <i class="fa-solid fa-xmark mr-1"></i>{{ 'cancel' | translate }}
     </button>
     <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
-      <i class="fa fa-check mr-1"></i>Confirm
+      <i class="fa fa-check mr-1"></i>{{ 'confirm' | translate }}
     </button>
   </div>

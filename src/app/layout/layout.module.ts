@@ -5,6 +5,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { LayoutComponent } from "./layout.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { LayoutComponent } from "./layout.component";
     imports: [
       CommonModule,
       RouterModule,
+      TranslateModule
     ],
     exports:[
     ]

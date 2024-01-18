@@ -15,6 +15,7 @@ import { LoginConfigComponent } from './login-config/login-config.component';
 import { ChangedPasswordComponent } from './changed-password/changed-password.component';
 import { PasswordConfigComponent } from './password-config/password-config.component';
 import { WorkingTimeComponent } from './working-time/working-time.component';
+import { LanguageConfigComponent } from './language-config/language-config.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { WorkingTimeComponent } from './working-time/working-time.component';
     LoginConfigComponent,
     ChangedPasswordComponent,
     PasswordConfigComponent,
-    WorkingTimeComponent
+    WorkingTimeComponent,
+    LanguageConfigComponent
   ],
   imports: [
     CommonModule,

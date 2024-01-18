@@ -7,7 +7,7 @@
             <form [formGroup]="form">
               <div class="row">
 
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Event
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'ev-event' | translate }}
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                   <ng-select [items]="listEvent" formControlName="name" placeholder="Enter Event" class="py-2"
@@ -15,25 +15,25 @@
                   </ng-select>
                 </div>
 
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Start Date
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'ev-start-date' | translate }}
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                   <input type="date" formControlName="startDate" class="form-control py-2" autocomplete="none" />
                 </div>
 
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Start Time
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'ev-start-time' | translate }}
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                   <input type="time" formControlName="startTime" class="form-control py-2" autocomplete="none" />
                 </div>
 
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">End Date
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'ev-end-date' | translate }}
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                   <input type="date" formControlName="endDate" class="form-control py-2" autocomplete="none" />
                 </div>
 
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">End Time
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'ev-end-time' | translate }}
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                   <input type="time" formControlName="endTime" class="form-control py-2" autocomplete="none" />
@@ -45,15 +45,15 @@
             <div class="row pt-3">
               <div class="col-4 text-left">
                 <button type="button" class="btn btn-primary mr-1" (click)="openEventModal(null, 'create')">
-                  <i class="fas fa-plus mr-1"></i>Create
+                  <i class="fas fa-plus mr-1"></i>{{ 'create' | translate }}
                 </button>
               </div>
               <div class="col-8 text-right">
                 <button type="button" class="btn btn-secondary mr-1 mb-1" (click)="refresh()">
-                  <i class="fa-solid fa-rotate-right mr-1"></i>Refresh
+                  <i class="fa-solid fa-rotate-right mr-1"></i>{{ 'refresh' | translate }}
                 </button>
                 <button type="button" class="btn btn-primary mr-1 mb-1" (click)="search()">
-                  <i class="fas fa-search mr-1"></i>Search
+                  <i class="fas fa-search mr-1"></i>{{ 'search' | translate }}
                 </button>
               </div>
             </div>
@@ -75,20 +75,20 @@
             <thead>
               <tr class="m-header-table">
                 <th class="text-center align-middle mw-100">STT</th>
-                <th class="text-center align-middle mw-100">Code</th>
-                <th class="text-center align-middle mw-50">Event Name</th>
-                <th class="text-center align-middle mw-50">Start Date</th>
-                <th class="text-center align-middle mw-50">Start Time</th>
-                <th class="text-center align-middle mw-50">End Date</th>
-                <th class="text-center align-middle mw-50">End Time</th>
-                <th class="text-center align-middle mw-100">Status</th>
-                <th class="text-center align-middle mw-100">Note</th>
-                <th class="text-center align-middle mw-150">Action</th>
+                <th class="text-center align-middle mw-100">{{ 'ev-code' | translate }}</th>
+                <th class="text-center align-middle mw-50">{{ 'ev-name' | translate }}</th>
+                <th class="text-center align-middle mw-50">{{ 'ev-start-date' | translate }}</th>
+                <th class="text-center align-middle mw-50">{{ 'ev-start-time' | translate }}</th>
+                <th class="text-center align-middle mw-50">{{ 'ev-end-date' | translate }}</th>
+                <th class="text-center align-middle mw-50">{{ 'ev-end-time' | translate }}</th>
+                <th class="text-center align-middle mw-100">{{ 'status' | translate }}</th>
+                <th class="text-center align-middle mw-100">{{ 'note' | translate }}</th>
+                <th class="text-center align-middle mw-150">{{ 'action' | translate }}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngIf="listEvent.length === 0">
-                <td class="text-center align-middle" colspan="11">No data</td>
+                <td class="text-center align-middle" colspan="11">{{ 'no-data' | translate }}</td>
               </tr>
               <tr *ngFor="let item of listEvent; index as i">
                 <td class="text-center align-middle">
@@ -130,7 +130,7 @@
         <div class="row col-12 pr-0 justify-content-md-between align-items-md-center">
           <div class="p-0 col-sm-12 col-md-4 col-lg-4 col-xl-3 pr-0 d-none d-md-block">
             <div class="dataTables_length">
-              <label class="d-inline-flex align-items-center">Show
+              <label class="d-inline-flex align-items-center">{{ 'show' | translate }}
                 <select #t name="tickets-table_length" aria-controls="tickets-table" name="pageSize"
                   (change)="changePageSize(t.value)"
                   class="form-select custom-select custom-select-sm form-control form-control-sm mx-2">
@@ -138,13 +138,13 @@
                   <option [value]="25">25</option>
                   <option [value]="50">50</option>
                 </select>
-                rows</label>
+                {{ 'rows' | translate }}</label>
             </div>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mt-md-0 d-none d-xl-block m-mb-8 text-center">
-            Show
+            {{ 'show' | translate }}
             {{ totalSize === 0 ? 0 : (pageNumber - 1) * pageSize + 1 }}
-            - {{ pageNumber * pageSize }} of
+            - {{ pageNumber * pageSize }} {{ 'of' | translate }}
             {{ totalSize }}
           </div>
           <div class="p-0 col-sm-12 col-md-8 col-lg-4 col-xl-5">

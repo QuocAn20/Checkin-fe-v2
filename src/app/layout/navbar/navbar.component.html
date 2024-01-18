@@ -34,78 +34,44 @@
         </div>
       </form> -->
       <ul class="navbar-nav">
+
+        <li class="nav-item btn-rotate dropdown" placement="bottom-left" #translate>
+          <a class="nav-link btn-magnify" id="dropdownMenuLink" (click)="show(translate)">
+            <i class="nc-icon nc-globe"></i>
+            <p>
+              <span class="d-lg-none d-md-block">{{ 'Translate' | translate }}</span>
+            </p>
+          </a>
+          <div aria-labelledby="dropdownMenuLink" class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" (click)="translateLanguage('vi')">{{ 'Vietnamese' | translate }}</a>
+            <a class="dropdown-item" (click)="translateLanguage('en')">{{ 'English' | translate }}</a>
+          </div>
+        </li>
+
         <li class="nav-item dropdown" #menu>
           <a class="nav-link btn-magnify" id="dropdownMenuAccount" (click)="show(menu)">
             <i class="nc-icon nc-single-02"></i>
             <p>
-              <span class="d-lg-none d-md-block">Stats</span>
+              <span class="d-lg-none d-md-block">Account</span>
             </p>
           </a>
           <div aria-labelledby="dropdownMenuAccount" class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="/pages/management/employee">Info</a>
+            <a class="dropdown-item" href="/pages/management/employee">{{ 'Info' | translate }}</a>
             <!-- <a class="dropdown-item" href="#">Setting</a> -->
-            <a class="dropdown-item" (click)="logout()">Log out</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </li>
-
-        <!-- <li
-          class="nav-item btn-rotate dropdown"
-          placement="bottom-left"
-          #notification
-        >
-          <a
-            class="nav-link dropdown-toggle"
-            id="dropdownMenuLink"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            (click)="show(notification)"
-          >
-            <i class="nc-icon nc-bell-55"></i>
-            <span class="notification" *ngIf="counter > 0">{{ counter }}</span>
-            <p>
-              <span class="d-lg-none d-md-block">Some Actions</span>
-            </p>
-          </a>
-          <div
-            aria-labelledby="dropdownMenuLink"
-            class="dropdown-menu dropdown-menu-right"
-          >
-            <div
-              style="margin-bottom: auto; border-radius: 0px; cursor: pointer"
-              class="dropdown-item alert alert-info alert-with-icon alert-dismissible fade show"
-              data-notify="container"
-              *ngFor="let item of listNotification"
-            >
-              <button
-                type="button"
-                aria-hidden="true"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <i class="nc-icon nc-simple-remove"></i>
-              </button>
-              <span data-notify="icon" class="nc-icon nc-bell-55"></span>
-              <span data-notify="message" (click)="searchTicket(item)">
-                {{ item.name }} has booked transaction at {{ item.time }} in
-                {{ item.date }}
-              </span>
-            </div>
-          </div>
-        </li> -->
 
         <li class="nav-item dropdown setting" #setting>
           <a class="nav-link btn-magnify" id="dropdownMenuSetting" (click)="show(setting)">
             <i class="nc-icon nc-settings-gear-65"></i>
             <p>
-              <span class="d-lg-none d-md-block">Account</span>
+              <span class="d-lg-none d-md-block">Setting</span>
             </p>
           </a>
           <div aria-labelledby="dropdownMenuSetting" class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" routerLink="/pages/management/managecategory/waiting-screen">Screen</a>
             <a class="dropdown-item" routerLink="/pages/management/manageform/survey">Survey</a>
-            <!-- <a class="dropdown-item" routerLink="/management/trash">Trash</a> -->
           </div>
         </li>
       </ul>

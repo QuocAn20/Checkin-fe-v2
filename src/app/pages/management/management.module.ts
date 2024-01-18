@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     NgxScannerQrcodeModule,
     NgApexchartsModule,
     NgbModule,
+    TranslateModule
   ],
   declarations: [
     EmployeeComponent,

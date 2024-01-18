@@ -6,7 +6,7 @@
           <div class="p-2">
             <form [formGroup]="form">
               <div class="row">
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Holiday
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'h-holiday' | translate }}
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                   <ng-select [items]="listHoliday" formControlName="name" placeholder="Enter Holiday"
@@ -14,7 +14,7 @@
                   </ng-select>
                 </div>
 
-                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Date
+                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'h-date' | translate }}
                 </label>
                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                   <input type="date" formControlName="date" class="form-control py-2" autocomplete="none" />
@@ -26,15 +26,15 @@
             <div class="row pt-3">
               <div class="col-4 text-left">
                 <button type="button" class="btn btn-primary mr-1" (click)="openHolidayModal(null, 'create')">
-                  <i class="fas fa-plus mr-1"></i>Create
+                  <i class="fas fa-plus mr-1"></i>{{ 'create' | translate }}
                 </button>
               </div>
               <div class="col-8 text-right">
                 <button type="button" class="btn btn-secondary mr-1 mb-1" (click)="refresh()">
-                  <i class="fa-solid fa-rotate-right mr-1"></i>Refresh
+                  <i class="fa-solid fa-rotate-right mr-1"></i>{{ 'refresh' | translate }}
                 </button>
                 <button type="button" class="btn btn-primary mr-1 mb-1" (click)="search()">
-                  <i class="fas fa-search mr-1"></i>Search
+                  <i class="fas fa-search mr-1"></i>{{ 'search' | translate }}
                 </button>
               </div>
             </div>
@@ -45,7 +45,7 @@
       <div class="border-bottom-dotted mt-2">
         <div class="row">
           <div class="col-6">
-            <label class="text-uppercase font-weight-medium theme-color">Holiday list</label>
+            <label class="text-uppercase font-weight-medium theme-color">{{ 'h-title' | translate }}</label>
           </div>
         </div>
       </div>
@@ -56,17 +56,17 @@
             <thead>
               <tr class="m-header-table">
                 <th class="text-center align-middle mw-100">STT</th>
-                <th class="text-center align-middle mw-100">Code</th>
-                <th class="text-center align-middle mw-50">Holiday Name</th>
-                <th class="text-center align-middle mw-50">Date</th>
-                <th class="text-center align-middle mw-100">Status</th>
-                <th class="text-center align-middle mw-100">Note</th>
-                <th class="text-center align-middle mw-150">Action</th>
+                <th class="text-center align-middle mw-100">{{ 'h-code' | translate }}</th>
+                <th class="text-center align-middle mw-50">{{ 'h-name' | translate }}</th>
+                <th class="text-center align-middle mw-50">{{ 'h-date' | translate }}</th>
+                <th class="text-center align-middle mw-100">{{ 'status' | translate }}</th>
+                <th class="text-center align-middle mw-100">{{ 'note' | translate }}</th>
+                <th class="text-center align-middle mw-150">{{ 'action' | translate }}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngIf="listHoliday.length === 0">
-                <td class="text-center align-middle" colspan="11">No data</td>
+                <td class="text-center align-middle" colspan="11">{{ 'no-data' | translate }}</td>
               </tr>
               <tr *ngFor="let item of listHoliday; index as i">
                 <td class="text-center align-middle">
@@ -99,7 +99,7 @@
         <div class="row col-12 pr-0 justify-content-md-between align-items-md-center">
           <div class="p-0 col-sm-12 col-md-4 col-lg-4 col-xl-3 pr-0 d-none d-md-block">
             <div class="dataTables_length">
-              <label class="d-inline-flex align-items-center">Show
+              <label class="d-inline-flex align-items-center">{{ 'show' | translate }}
                 <select #t name="tickets-table_length" aria-controls="tickets-table" name="pageSize"
                   (change)="changePageSize(t.value)"
                   class="form-select custom-select custom-select-sm form-control form-control-sm mx-2">
@@ -107,13 +107,13 @@
                   <option [value]="25">25</option>
                   <option [value]="50">50</option>
                 </select>
-                rows</label>
+                {{ 'rows' | translate }}</label>
             </div>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mt-md-0 d-none d-xl-block m-mb-8 text-center">
-            Show
+            {{ 'show' | translate }}
             {{ totalSize === 0 ? 0 : (pageNumber - 1) * pageSize + 1 }}
-            - {{ pageNumber * pageSize }} of
+            - {{ pageNumber * pageSize }} {{ 'of' | translate }}
             {{ totalSize }}
           </div>
           <div class="p-0 col-sm-12 col-md-8 col-lg-4 col-xl-5">
