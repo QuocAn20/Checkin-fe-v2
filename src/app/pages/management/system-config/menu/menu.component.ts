@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit{
   ngOnInit() {
     this.initForm();
     this.getAllMenu();
-    // this.getMenu();
+    this.getMenu();
   }
 
   initForm() {
