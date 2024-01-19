@@ -36,18 +36,18 @@
             <thead>
               <tr class="m-header-table">
                 <th class="text-center align-middle mw-100">STT</th>
-                <th class="text-center align-middle mw-100">Code</th>
-                <th class="text-center align-middle mw-50">Name</th>
-                <th class="text-center align-middle mw-50">Room</th>
-                <th class="text-center align-middle mw-100">Unit</th>
-                <th class="text-center align-middle mw-100">Date</th>
-                <th class="text-center align-middle mw-100">Check-In</th>
-                <th class="text-center align-middle mw-100">Check-Out</th>
-                <th class="text-center align-middle mw-100">Work Time</th>
-                <th class="text-center align-middle mw-100">Late</th>
-                <th class="text-center align-middle mw-100">Soon</th>
-                <th class="text-center align-middle mw-100">Status</th>
-                <th class="text-center align-middle mw-150">Action</th>
+                <th class="text-center align-middle mw-100">{{ 'e-code' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'e-name' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'e-room' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'e-unit' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'h-date' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'i/o-check-in' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'i/o-check-out' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'i/o-work-time' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'i/o-late' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'i/o-soon' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'status' | translate }}</th>
+                                <th class="text-center align-middle mw-150">{{ 'action' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -89,7 +89,7 @@
                   {{ item?.soon }}
                 </td>
                 <td class="align-middle">
-                  {{ item?.status }}
+                  {{ item?.status | translate }}
                 </td>
               </tr>
             </tbody>
@@ -102,10 +102,10 @@
 </div>
 <div class="modal-footer">
   <button class="btn btn-success mr-1" (click)="export()" type="button">
-    <i class="fas fa-cloud-download-alt"></i> Export
+    <i class="fas fa-cloud-download-alt"></i>{{ 'export' | translate }}
   </button>
   <button (click)="close()" class="btn btn-secondary" type="button">
-    <i class="fa-solid fa-xmark mr-1"></i>Cancel
+    <i class="fa-solid fa-xmark mr-1"></i>{{ 'cancel' | translate }}
   </button>
   <!-- <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
     <i class="fa fa-check mr-1"></i>Confirm

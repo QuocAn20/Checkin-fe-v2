@@ -17,83 +17,83 @@
     <div class="row">
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-name' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-name' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" maxlength="255" class="form-control"
           formControlName="name" autocomplete="none" placeholder="Enter your name" type="text" />
         <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
-          <span *ngIf="f.name.errors.required">Please enter your name</span>
+          <span *ngIf="f.name.errors.required">{{ 'e-name-require' | translate }}</span>
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-dob' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-dob' | translate }}</label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.dob.errors }" maxlength="255" class="form-control"
           formControlName="dob" autocomplete="none" placeholder="Enter your date" type="date" />
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-gender' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-gender' | translate }}</label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.gender.errors }" [items]="listGender" bindValue="gender"
           bindLabel="gender" formControlName="gender" placeholder="Select Gender">
         </ng-select>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-phone' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-phone' | translate }}</label>
         <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.phone.errors }" formControlName="phone"
           placeholder="Enter your phone" autocomplete="none" type="text" maxlength="255" />
         <div *ngIf="isSubmit && f.phone.errors" class="invalid-feedback">
-          <span *ngIf="f.phone.errors.pattern">Please enter valid phone number</span>
+          <span *ngIf="f.phone.errors.pattern">{{ 'e-phone-validate' | translate }}</span>
           <br />
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-unit' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-unit' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.unit.errors }" [items]="listUnit" bindValue="unit"
           bindLabel="unit" formControlName="unit" placeholder="Select Unit">
         </ng-select>
         <div *ngIf="isSubmit && f.unit.errors" class="invalid-feedback">
-          <span *ngIf="f.unit.errors.required">Please enter your unit</span>
+          <span *ngIf="f.unit.errors.required">{{ 'e-unit-require' | translate }}</span>
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-room' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-room' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.room.errors }" [items]="listRoom" bindValue="room"
           bindLabel="room" formControlName="room" placeholder="Select Room">
         </ng-select>
         <div *ngIf="isSubmit && f.room.errors" class="invalid-feedback">
-          <span *ngIf="f.room.errors.required">Please enter your room</span>
+          <span *ngIf="f.room.errors.required">{{ 'e-room-require' | translate }}</span>
           <br />
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-position' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-position' | translate }}<span class="text-danger">(*)</span></label>
         <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.position.errors }" [items]="listPosition" bindValue="position"
           bindLabel="position" formControlName="position" placeholder="Select Position">
         </ng-select>
         <div *ngIf="isSubmit && f.position.errors" class="invalid-feedback">
-          <span *ngIf="f.position.errors.required">Please enter your position</span>
+          <span *ngIf="f.position.errors.required">{{ 'e-position-require' | translate }}</span>
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-job' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-job' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.job.errors }" maxlength="255" class="form-control"
           formControlName="job" autocomplete="none" placeholder="Enter your job" type="text" />
         <div *ngIf="isSubmit && f.job.errors" class="invalid-feedback">
-          <span *ngIf="f.job.errors.required">Please enter your job</span>
+          <span *ngIf="f.job.errors.required">{{ 'e-job-require' | translate }}</span>
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">Email<span class="text-danger">(*)</span></label>
+        <label class="pt-1">Email</label>
         <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.email.errors }" formControlName="email"
           placeholder="Enter your email" autocomplete="none" type="text" maxlength="255" />
         <div *ngIf="isSubmit && f.email.errors" class="invalid-feedback">
-          <span *ngIf="f.email.errors.pattern">Please enter valid email</span>
+          <span *ngIf="f.email.errors.pattern">{{ 'e-email-validate' | translate }}</span>
           <br />
         </div>
       </div>
@@ -104,37 +104,34 @@
           bindLabel="status" formControlName="status" placeholder="Select status">
         </ng-select>
         <div *ngIf="isSubmit && f.status.errors" class="invalid-feedback">
-          <span *ngIf="f.status.errors.required">Please enter status</span>
+          <span *ngIf="f.status.errors.required">{{ 'status-require' | translate }}</span>
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 form-group">
-        <label class="pt-1">{{ 'E-en-national-Id' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-national-Id' | translate }}</label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.nationalId.errors }" maxlength="255" class="form-control"
           formControlName="nationalId" autocomplete="none" placeholder="Enter your National ID" type="text" />
-        <div *ngIf="isSubmit && f.nationalId.errors" class="invalid-feedback">
-          <span *ngIf="f.nationalId.errors.required">Please enter your National ID</span>
-        </div>
       </div>
 
       <div class="col-sm-12 col-md-6">
-        <label class="pt-1">{{ 'E-en-profile-IMG' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-profile-IMG' | translate }}</label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.imgProfile.errors }" type="file" class="form-control py-2"
           formControlName="imgProfile" (change)="addFile($event)" />
       </div>
 
       <div class="col-sm-12 col-md-6">
-        <label class="pt-1">{{ 'E-en-national-Id-IMG' | translate }}<span class="text-danger">(*)</span></label>
+        <label class="pt-1">{{ 'e-national-Id-IMG' | translate }}</label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.imgNationalId.errors }" type="file" class="form-control py-2"
           formControlName="imgNationalId" (change)="addFile($event)" />
       </div>
 
     </div>
     <div class="modal-body" *ngIf="type === 'create'">
-      <h4 id="modal-title" class="text-primary">{{ 'E-en-account-title' | translate }}</h4>
+      <h4 id="modal-title" class="text-primary">{{ 'e-account-title' | translate }}</h4>
       <div class="row">
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">{{ 'E-en-username' | translate }}<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'e-username' | translate }}<span class="text-danger">(*)</span></label>
           <input [ngClass]="{ 'is-invalid': isSubmit && f.userName.errors }" maxlength="255" class="form-control"
             formControlName="userName" placeholder="Enter your username" autocomplete="none" type="text" />
           <div *ngIf="isSubmit && f.userName.errors" class="invalid-feedback">
@@ -143,7 +140,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">{{ 'E-en-password' | translate }}<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'e-password' | translate }}<span class="text-danger">(*)</span></label>
           <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.password.errors }"
             formControlName="password" placeholder="Enter your password" autocomplete="none" type="password"
             maxlength="255" />

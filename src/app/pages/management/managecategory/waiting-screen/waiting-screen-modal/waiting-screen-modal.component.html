@@ -17,49 +17,49 @@
         <div class="row">
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Show Type<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'ws-show-type' | translate }}<span class="text-danger">(*)</span></label>
                 <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.showType.errors }" [items]="listTypes"
                     formControlName="showType" placeholder="Enter show type" bindValue="showType" bindLabel="showType">
                 </ng-select>
                 <div *ngIf="isSubmit && f.showType.errors" class="invalid-feedback">
-                    <span *ngIf="f.showType.errors.required">Please enter show type</span>
+                    <span *ngIf="f.showType.errors.required">{{ 'ws-show-type-require' | translate }}</span>
                     <br />
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Status<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'status' | translate }}<span class="text-danger">(*)</span></label>
                 <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.status.errors }" [items]="listStatus"
                     bindValue="status" bindLabel="status" formControlName="status" placeholder="Select status">
                 </ng-select>
                 <div *ngIf="isSubmit && f.status.errors" class="invalid-feedback">
-                    <span *ngIf="f.status.errors.required">Please enter status</span>
+                    <span *ngIf="f.status.errors.required">{{ 'status-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Notification<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'ws-notification' | translate }}<span class="text-danger">(*)</span></label>
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.notification.errors }" maxlength="255"
                     class="form-control" formControlName="notification" autocomplete="none"
                     placeholder="Enter notification" type="text" />
                 <div *ngIf="isSubmit && f.notification.errors" class="invalid-feedback">
-                    <span *ngIf="f.notification.errors.required">Please enter notification</span>
+                    <span *ngIf="f.notification.errors.required">{{ 'ws-notification-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Note<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'note' | translate }}</label>
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.note.errors }" maxlength="255" class="form-control"
                     formControlName="note" autocomplete="none" placeholder="Enter your notification place"
                     type="text" />
             </div>
 
             <div class="col-sm-12 col-md-6">
-                <label class="pt-1">Content<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'ws-content' | translate }}<span class="text-danger">(*)</span></label>
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.contentFile.errors }" type="file" class="form-control py-2"
                          (change)="addFile($event)" />
                 <div *ngIf="isSubmit && f.contentFile.errors" class="invalid-feedback">
-                    <span *ngIf="f.contentFile.errors.required">Please enter your content</span><br />
+                    <span *ngIf="f.contentFile.errors.required">{{ 'ws-content-require' | translate }}</span><br />
                 </div>
             </div>
 
@@ -75,9 +75,9 @@
 </div>
 <div class="modal-footer">
     <button (click)="close()" class="btn btn-secondary" type="button">
-        <i class="fa-solid fa-xmark mr-1"></i>Cancel
+        <i class="fa-solid fa-xmark mr-1"></i>{{ 'cancel' | translate }}
     </button>
     <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
-        <i class="fa fa-check mr-1"></i>Confirm
+        <i class="fa fa-check mr-1"></i>{{ 'confirm' | translate }}
     </button>
 </div>

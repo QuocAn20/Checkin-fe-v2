@@ -6,31 +6,31 @@
     <form [formGroup]="form" id="form-1">
         <div class="row">
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Giờ làm việc bắt đầu<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'wt-start' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.startTime.errors }" class="form-control"
                     formControlName="startTime" autocomplete="none" type="time" />
                 <div *ngIf="isSubmit && f.startTime.errors" class="invalid-feedback">
-                    <span *ngIf="f.startTime.errors.required">Please enter the old password</span>
+                    <span *ngIf="f.startTime.errors.required">{{ 'wt-start-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Giờ làm việc kết thúc<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'wt-end' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.endTime.errors }" class="form-control"
                     formControlName="endTime" autocomplete="none" type="time" />
                 <div *ngIf="isSubmit && f.endTime.errors" class="invalid-feedback">
-                    <span *ngIf="f.endTime.errors.required">Please enter the new password</span>
+                    <span *ngIf="f.endTime.errors.required">{{ 'wt-end-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Ngày làm việc trong tuần<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'wt-work-day' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
@@ -38,12 +38,12 @@
                     bindLabel="day" bindValue="day" autocomplete="none" [items]="listDay" [multiple]="true">
                 </ng-select>
                 <div *ngIf="isSubmit && f.workDay.errors" class="invalid-feedback">
-                    <span *ngIf="f.workDay.errors.required">Please confirm new pasword</span>
+                    <span *ngIf="f.workDay.errors.required">{{ 'wt-work-day-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Ngày nghỉ<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'wt-free-day' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
@@ -51,7 +51,7 @@
                     bindLabel="day" bindValue="day" autocomplete="none" [items]="listDay" [multiple]="true">
                 </ng-select>
                 <div *ngIf="isSubmit && f.freeDay.errors" class="invalid-feedback">
-                    <span *ngIf="f.freeDay.errors.required">Please confirm new pasword</span>
+                    <span *ngIf="f.freeDay.errors.required">{{ 'wt-free-day-require' | translate }}</span>
                 </div>
             </div>
 
@@ -61,6 +61,6 @@
 
 <div class="modal-footer">
     <button (click)="submit()" class="btn btn-primary" type="button">
-        <i class="fa fa-check mr-1"></i>Save
+        <i class="fa fa-check mr-1"></i>{{ 'save' | translate }}
     </button>
 </div>

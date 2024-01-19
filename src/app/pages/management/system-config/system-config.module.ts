@@ -16,6 +16,7 @@ import { ChangedPasswordComponent } from './changed-password/changed-password.co
 import { PasswordConfigComponent } from './password-config/password-config.component';
 import { WorkingTimeComponent } from './working-time/working-time.component';
 import { LanguageConfigComponent } from './language-config/language-config.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LanguageConfigComponent } from './language-config/language-config.compo
     NgbPagination,
     NgxScannerQrcodeModule,
     PagesModule,
-    SystemConfigRoutingModule
+    SystemConfigRoutingModule,
+    TranslateModule
   ],
 })
 export class SystemConfigModule {}

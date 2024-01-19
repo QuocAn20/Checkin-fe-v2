@@ -17,7 +17,7 @@
         <div class="row">
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">{{ 'ntf-type' | translate }}<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'ntf-type' | translate }}</label>
                 <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.notiType.errors }" [items]="listNotiType"
                     formControlName="notiType" placeholder="Enter notification type" bindLabel="name" bindValue="code" >
                 </ng-select>
@@ -29,17 +29,14 @@
                     formControlName="object" placeholder="Enter object" bindLabel="object" bindValue="object">
                 </ng-select>
                 <div *ngIf="isSubmit && f.object.errors" class="invalid-feedback">
-                    <span *ngIf="f.object.errors.required">Please enter object</span>
+                    <span *ngIf="f.object.errors.required">{{ 'ntf-object-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">{{ 'ntf-content' | translate }}<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'ntf-content' | translate }}</label>
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.content.errors }" maxlength="255" class="form-control"
                     formControlName="content" autocomplete="none" placeholder="Enter your content" type="text" />
-                <div *ngIf="isSubmit && f.content.errors" class="invalid-feedback">
-                    <span *ngIf="f.content.errors.required">Please enter content</span>
-                </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
@@ -48,12 +45,12 @@
                     formControlName="notiPlace" autocomplete="none" placeholder="Enter your notification place"
                     type="text" />
                 <div *ngIf="isSubmit && f.notiPlace.errors" class="invalid-feedback">
-                    <span *ngIf="f.notiPlace.errors.required">Please enter notification place</span>
+                    <span *ngIf="f.notiPlace.errors.required">{{ 'ntf-place-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">{{ 'note' | translate }}<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'note' | translate }}</label>
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.note.errors }" maxlength="255" class="form-control"
                     formControlName="note" autocomplete="none" placeholder="Enter your notification place"
                     type="text" />
@@ -65,7 +62,7 @@
                     bindValue="status" bindLabel="status" formControlName="status" placeholder="Select status">
                 </ng-select>
                 <div *ngIf="isSubmit && f.status.errors" class="invalid-feedback">
-                    <span *ngIf="f.status.errors.required">Please enter status</span>
+                    <span *ngIf="f.status.errors.required">{{ 'status-require' | translate }}</span>
                 </div>
             </div>
 

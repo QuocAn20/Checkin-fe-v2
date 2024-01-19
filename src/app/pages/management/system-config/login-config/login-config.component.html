@@ -6,50 +6,50 @@
     <form [formGroup]="form" id="form-1">
         <div class="row">
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Thời gian tồn tại phiên đăng nhập<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'lc-time-login' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.timeInLogin.errors }" class="form-control"
                     formControlName="timeInLogin" autocomplete="none" type="number" />
                 <div *ngIf="isSubmit && f.timeInLogin.errors" class="invalid-feedback">
-                    <span *ngIf="f.timeInLogin.errors.required">Please enter the time in Login</span>
+                    <span *ngIf="f.timeInLogin.errors.required">{{ 'lc-time-login-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Số lần tối đa đăng nhập sai, nhập sai<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'lc-max-incorrect' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.limitLoginWrong.errors }" class="form-control"
                     formControlName="limitLoginWrong" autocomplete="none" type="number" />
                 <div *ngIf="isSubmit && f.limitLoginWrong.errors" class="invalid-feedback">
-                    <span *ngIf="f.limitLoginWrong.errors.required">Please enter the limit Login Wrong</span>
+                    <span *ngIf="f.limitLoginWrong.errors.required">{{ 'lc-max-incorrect-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Số lần tối đa đăng nhập trong ngày<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'lc-max-login-day' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.limitLogin.errors }" class="form-control"
                     formControlName="limitLogin" autocomplete="none" type="number" />
                 <div *ngIf="isSubmit && f.limitLogin.errors" class="invalid-feedback">
-                    <span *ngIf="f.limitLogin.errors.required">Please enter the limit Login</span>
+                    <span *ngIf="f.limitLogin.errors.required">{{ 'lc-max-login-day-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Thời gian đăng nhập lại<span class="text-danger">(*)</span></label>
-                <p>(khi vượt quá số lần đăng nhâp sai)</p>
+                <label class="pt-1">{{ 'lc-time-log-again' | translate }}<span class="text-danger">(*)</span></label>
+                <p>{{ 'lc-explaints' | translate }}</p>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.timeLoginAgain.errors }" class="form-control"
                     formControlName="timeLoginAgain" autocomplete="none" type="number" />
                 <div *ngIf="isSubmit && f.timeLoginAgain.errors" class="invalid-feedback">
-                    <span *ngIf="f.timeLoginAgain.errors.required">Please enter the time Login Again</span>
+                    <span *ngIf="f.timeLoginAgain.errors.required">{{ 'lc-time-log-again-require' | translate }}</span>
                 </div>
             </div>
 
@@ -59,6 +59,6 @@
 
 <div class="modal-footer">
     <button (click)="submit()" class="btn btn-primary" type="button">
-        <i class="fa fa-check mr-1"></i>Save
+        <i class="fa fa-check mr-1"></i>{{ 'save' | translate }}
     </button>
 </div>

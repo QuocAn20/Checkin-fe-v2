@@ -6,54 +6,54 @@
     <form [formGroup]="form" id="form-1">
         <div class="row">
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Ngôn ngữ mặc định<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'lgc-default' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.defaultLanguage.errors }" [items]="listLanguage"
                     formControlName="defaultLanguage" autocomplete="none" bindLabel="languageName"
-                    bindValue="languageName">
+                    bindValue="langValue">
                 </ng-select>
                 <div *ngIf="isSubmit && f.defaultLanguage.errors" class="invalid-feedback">
-                    <span *ngIf="f.defaultLanguage.errors.required">Please enter the default Language</span>
+                    <span *ngIf="f.defaultLanguage.errors.required">{{ 'lgc-default-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Ngôn ngữ hỗ trợ<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'lgc-support' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.supportLanguage.errors }" [items]="listLanguage"
                     [multiple]="true" formControlName="supportLanguage" autocomplete="none" bindLabel="languageName"
-                    bindValue="languageName">
+                    bindValue="langValue">
                 </ng-select>
                 <div *ngIf="isSubmit && f.supportLanguage.errors" class="invalid-feedback">
-                    <span *ngIf="f.supportLanguage.errors.required">Please enter the support Language</span>
+                    <span *ngIf="f.supportLanguage.errors.required">{{ 'lgc-support-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Ngôn ngữ giao diện<span class="text-danger">(*)</span>
+                <label class="pt-1">{{ 'lgc-ui-lang' | translate }}<span class="text-danger">(*)</span>
                 </label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <ng-select [ngClass]="{ 'is-invalid': isSubmit && f.uiLanguage.errors }" [items]="listLanguage"
-                    formControlName="uiLanguage" autocomplete="none" bindLabel="languageName" bindValue="languageName">
+                    formControlName="uiLanguage" autocomplete="none" bindLabel="languageName" bindValue="langValue">
                 </ng-select>
                 <div *ngIf="isSubmit && f.uiLanguage.errors" class="invalid-feedback">
-                    <span *ngIf="f.uiLanguage.errors.required">Please enter the UI Language</span>
+                    <span *ngIf="f.uiLanguage.errors.required">{{ 'lgc-ui-lang-require' | translate }}</span>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 form-group">
-                <label class="pt-1">Đa ngôn ngữ<span class="text-danger">(*)</span></label>
+                <label class="pt-1">{{ 'lgc-multi-lang' | translate }}<span class="text-danger">(*)</span></label>
             </div>
             <div class="col-sm-12 col-md-6 form-group">
                 <input [ngClass]="{ 'is-invalid': isSubmit && f.multiLanguage.errors }" formControlName="multiLanguage"
                     autocomplete="none" type="checkbox" />
                 <div *ngIf="isSubmit && f.multiLanguage.errors" class="invalid-feedback">
-                    <span *ngIf="f.multiLanguage.errors.required">Please check to support multiple Language</span>
+                    <span *ngIf="f.multiLanguage.errors.required">{{ 'lgc-multi-lang-require' | translate }}</span>
                 </div>
             </div>
 
@@ -63,6 +63,6 @@
 
 <div class="modal-footer">
     <button (click)="submit()" class="btn btn-primary" type="button">
-        <i class="fa fa-check mr-1"></i>Save
+        <i class="fa fa-check mr-1"></i>{{ 'save' | translate }}
     </button>
 </div>
