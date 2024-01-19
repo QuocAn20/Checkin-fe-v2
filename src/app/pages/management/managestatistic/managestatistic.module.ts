@@ -15,6 +15,7 @@ import { FeedBackComponent } from './feed-back/feed-back.component';
 import { ReportComponent } from './report/report.component';
 import { InOutModalComponent } from './in-out/in-out-modal/in-out-modal.component';
 import { ManagementModule } from '../management.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ManagementModule } from '../management.module';
     NgxScannerQrcodeModule,
     ManageStatisticRoutingModule,
     PagesModule,
-    ManagementModule
+    ManagementModule,
+    TranslateModule
   ],
   exports: [
     InOutComponent

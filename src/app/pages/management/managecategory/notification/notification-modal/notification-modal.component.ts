@@ -54,7 +54,7 @@ export class NotificationModalComponent implements OnInit{
       code: [null],
       notiType: [null],
       object: [null, [Validators.required]],
-      content: [null, [Validators.required]],
+      content: [null],
       notiPlace: [null, [Validators.required]],
       note: [null],
       status: [null, [Validators.required]]

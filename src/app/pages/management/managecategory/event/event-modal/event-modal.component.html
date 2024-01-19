@@ -21,7 +21,7 @@
           <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" formControlName="name"
             placeholder="Enter Event" autocomplete="none" type="text" maxlength="255" />
           <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
-            <span *ngIf="f.name.errors.required">Please enter event</span>
+            <span *ngIf="f.name.errors.required">{{ 'ev-name-require' | translate }}</span>
             <br />
           </div>
         </div>
@@ -31,7 +31,7 @@
           <input [ngClass]="{ 'is-invalid': isSubmit && f.startDate.errors }" maxlength="255" class="form-control"
             formControlName="startDate" autocomplete="none" placeholder="Enter startDate" type="date" />
           <div *ngIf="isSubmit && f.startDate.errors" class="invalid-feedback">
-            <span *ngIf="f.startDate.errors.required">Please enter start date</span>
+            <span *ngIf="f.startDate.errors.required">{{ 'ev-start-date-require' | translate }}</span>
           </div>
         </div>
 
@@ -40,7 +40,7 @@
             <input [ngClass]="{ 'is-invalid': isSubmit && f.startTime.errors }" maxlength="255" class="form-control"
               formControlName="startTime" autocomplete="none" placeholder="Enter start time" type="time" />
             <div *ngIf="isSubmit && f.startTime.errors" class="invalid-feedback">
-              <span *ngIf="f.startTime.errors.required">Please enter start time</span>
+              <span *ngIf="f.startTime.errors.required">{{ 'ev-start-time-require' | translate }}</span>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
             <input [ngClass]="{ 'is-invalid': isSubmit && f.endDate.errors }" maxlength="255" class="form-control"
               formControlName="endDate" autocomplete="none" placeholder="Enter endDate" type="date" />
             <div *ngIf="isSubmit && f.endDate.errors" class="invalid-feedback">
-              <span *ngIf="f.endDate.errors.required">Please enter end date</span>
+              <span *ngIf="f.endDate.errors.required">{{ 'ev-end-date-require' | translate }}</span>
             </div>
           </div>
   
@@ -58,12 +58,12 @@
               <input [ngClass]="{ 'is-invalid': isSubmit && f.endTime.errors }" maxlength="255" class="form-control"
                 formControlName="endTime" autocomplete="none" placeholder="Enter end time" type="time" />
               <div *ngIf="isSubmit && f.endTime.errors" class="invalid-feedback">
-                <span *ngIf="f.endTime.errors.required">Please enter end time</span>
+                <span *ngIf="f.endTime.errors.required">{{ 'ev-end-time-require' | translate }}</span>
               </div>
           </div>
   
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">{{ 'note' | translate }}<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'note' | translate }}</label>
           <input [ngClass]="{ 'is-invalid': isSubmit && f.note.errors }" maxlength="255" class="form-control"
             formControlName="note" autocomplete="none" placeholder="Enter your note" type="text" />
         </div>
@@ -74,7 +74,7 @@
             bindLabel="status" formControlName="status" placeholder="Select status">
           </ng-select>
           <div *ngIf="isSubmit && f.status.errors" class="invalid-feedback">
-            <span *ngIf="f.status.errors.required">Please enter status</span>
+            <span *ngIf="f.status.errors.required">{{ 'status-require' | translate }}</span>
           </div>
         </div>
   

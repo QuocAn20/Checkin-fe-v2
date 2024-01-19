@@ -21,7 +21,7 @@
           <input class="form-control" [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" formControlName="name"
             placeholder="Enter holiday" autocomplete="none" type="text" maxlength="255" />
           <div *ngIf="isSubmit && f.name.errors" class="invalid-feedback">
-            <span *ngIf="f.name.errors.required">Please enter holiday</span>
+            <span *ngIf="f.name.errors.required">{{ 'h-name-require' | translate }}</span>
             <br />
           </div>
         </div>
@@ -31,12 +31,12 @@
           <input [ngClass]="{ 'is-invalid': isSubmit && f.date.errors }" maxlength="255" class="form-control"
             formControlName="date" autocomplete="none" placeholder="Enter date" type="date" />
           <div *ngIf="isSubmit && f.date.errors" class="invalid-feedback">
-            <span *ngIf="f.date.errors.required">Please enter date</span>
+            <span *ngIf="f.date.errors.required">{{ 'h-date-require' | translate }}</span>
           </div>
         </div>
   
         <div class="col-sm-12 col-md-6 form-group">
-          <label class="pt-1">{{ 'note' | translate }}<span class="text-danger">(*)</span></label>
+          <label class="pt-1">{{ 'note' | translate }}</label>
           <input [ngClass]="{ 'is-invalid': isSubmit && f.note.errors }" maxlength="255" class="form-control"
             formControlName="note" autocomplete="none" placeholder="Enter your note" type="text" />
         </div>
@@ -47,7 +47,7 @@
             bindLabel="status" formControlName="status" placeholder="Select status">
           </ng-select>
           <div *ngIf="isSubmit && f.status.errors" class="invalid-feedback">
-            <span *ngIf="f.status.errors.required">Please enter status</span>
+            <span *ngIf="f.status.errors.required">{{ 'status-require' | translate }}</span>
           </div>
         </div>
   

@@ -15,10 +15,12 @@ export class LanguageConfigComponent implements OnInit {
 
   listLanguage = [
     {
-      languageName: 'vi',
+      languageName: 'Vietnamese',
+      langValue: 'vi'
     },
     {
-      languageName: 'en',
+      languageName: 'English',
+      langValue: 'en'
     },
   ];
 
