@@ -7,33 +7,26 @@ import { CommandURL } from '../api-command';
 @Injectable({
   providedIn: 'root',
 })
-export class SurveyService {
+export class SuggestionService {
   constructor(private http: HttpClient) {}
 
-  createSurvey(json: any) {
+  createSuggest(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.SURVEY + '/createSurvey',
+      CommandURL.SUGGEST + '/createSuggest',
       json
     );
   }
 
-  getSurvey(json: any) {
+  getSuggest(json: any) {
     return this.http.post<BaseListResponse>(
-      CommandURL.SURVEY + '/getSurvey',
+      CommandURL.SUGGEST + '/getSuggest',
       json
     );
   }
 
-  updateSurvey(json: any) {
+  updateSuggest(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.SURVEY + '/updateSurvey',
-      json
-    );
-  }
-
-  deleteSurvey(json: any) {
-    return this.http.post<BaseResponse>(
-      CommandURL.SURVEY + '/deleteSurvey',
+      CommandURL.SUGGEST + '/updateSuggest',
       json
     );
   }

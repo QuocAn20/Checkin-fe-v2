@@ -28,6 +28,8 @@ export class CommandURL{
   public static INOUT = environment.PROCESS_SERVICE + '/api/checkin/in-out';
 
   public static ROLE = environment.PROCESS_SERVICE + '/api/checkin/role';
+  
+  public static SUGGEST = environment.PROCESS_SERVICE + '/api/checkin/suggest';
 
   public static PASSCONFIG = environment.PROCESS_SERVICE + '/api/checkin/pass-config';
 

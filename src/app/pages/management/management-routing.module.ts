@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
 import { AuthGuard } from 'src/app/cors/guards/auth.guard';
 import { HomePageComponent } from './home-page/home-page.component';
+import { SuggestionBoxComponent } from './suggestion-box/suggestion-box.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'home-page',
     component: HomePageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'suggest',
+    component: SuggestionBoxComponent,
     canActivate: [AuthGuard],
   },
   {

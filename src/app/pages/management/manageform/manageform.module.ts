@@ -12,6 +12,7 @@ import { ManageFormRoutingModule } from "./manageform-routing.module";
 import { SurveyModalComponent } from './survey/survey-modal/survey-modal.component';
 import { RegisterModalComponent } from './register/register-modal/register-modal.component';
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
+import { TranslateModule } from "@ngx-translate/core";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
         QRCodeModule,
         NgbPagination,
         NgxScannerQrcodeModule,
-        ManageFormRoutingModule
+        ManageFormRoutingModule,
+        TranslateModule
     ],
     declarations: [
         RegisterComponent,

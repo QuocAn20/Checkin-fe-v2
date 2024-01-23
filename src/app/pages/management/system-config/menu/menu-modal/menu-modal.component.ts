@@ -41,7 +41,7 @@ export class MenuModalComponent implements OnInit{
       name: 'nc-bullet-list-67',
     },
     {
-      name: 'nc-note-03',
+      name: 'nc-email-85',
     },
     {
       name: 'nc-paper',

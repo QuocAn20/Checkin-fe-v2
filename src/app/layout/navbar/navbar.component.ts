@@ -132,6 +132,8 @@ export class NavbarComponent implements OnInit {
   }
   show(menu: any) {
     const menuElement = document.getElementsByClassName(menu.className)[0];
+    console.log(menuElement);
+    
     if (menuElement) {
       menuElement.classList.toggle('show');
     }
