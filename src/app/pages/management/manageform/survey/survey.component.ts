@@ -25,10 +25,10 @@ export class SurveyComponent implements OnInit{
       qType: 'Yes/No'
     },
     {
-      qType: 'Multiple-choice'
+      qType: 'MultipleChoice'
     },
     {
-      qType: 'Multiple Answers'
+      qType: 'MultipleAnswers'
     }
   ]
 

@@ -6,39 +6,39 @@
                     <div class="p-2">
                         <form [formGroup]="form">
                             <div class="row">
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Code
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 's-code' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <input type="text" formControlName="code" class="form-control py-2"
-                                        autocomplete="none" />
+                                        autocomplete="none" placeholder="Type Survey Code" />
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Name
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 's-name' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <input type="text" formControlName="name" class="form-control py-2"
-                                        autocomplete="none" />
+                                        autocomplete="none" placeholder="Type Survey Name" />
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Start-Time
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 's-start-time' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <input type="time" formControlName="startTime" class="form-control py-2"
                                         autocomplete="none" />
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">End-Time
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 's-end-time' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <input type="time" formControlName="endTime" class="form-control py-2"
                                         autocomplete="none" />
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Question-Type
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 's-question-type' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <ng-select [items]="questionType" formControlName="questionType" class="py-2"
-                                        bindLabel="qType" bindValue="qType" autocomplete="none" />
+                                        bindLabel="qType" bindValue="qType" placeholder="Select Question Type" autocomplete="none" />
                                 </div>
 
                             </div>
@@ -67,7 +67,7 @@
             <div class="border-bottom-dotted mt-2">
                 <div class="row">
                     <div class="col-6">
-                        <label class="text-uppercase font-weight-medium theme-color">Survey list</label>
+                        <label class="text-uppercase font-weight-medium theme-color">{{ 's-title' | translate }}</label>
                     </div>
                 </div>
             </div>
@@ -78,15 +78,15 @@
                         <thead>
                             <tr class="m-header-table">
                                 <th class="text-center align-middle mw-100">STT</th>
-                                <th class="text-center align-middle mw-100">Code</th>
-                                <th class="text-center align-middle mw-50">Name</th>
-                                <th class="text-center align-middle mw-50">Question-Type</th>
-                                <th class="text-center align-middle mw-50">Create-Date</th>
-                                <th class="text-center align-middle mw-50">Require</th>
-                                <th class="text-center align-middle mw-50">Non-Require</th>
-                                <th class="text-center align-middle mw-100">Start-Time</th>
-                                <th class="text-center align-middle mw-150">End-Time</th>
-                                <th class="text-center align-middle mw-150">Percent</th>
+                                <th class="text-center align-middle mw-100">{{ 's-code' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 's-name' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 's-question-type' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 's-create-date' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 's-require' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 's-non-require' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 's-start-time' | translate }}</th>
+                                <th class="text-center align-middle mw-150">{{ 's-end-time' | translate }}</th>
+                                <th class="text-center align-middle mw-150">{{ 's-percent' | translate }}</th>
                                 <th class="text-center align-middle mw-150">{{ 'action' | translate }}</th>
                             </tr>
                         </thead>
@@ -106,16 +106,16 @@
                                     {{ item?.name }}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.questionType }}
+                                    {{ item?.questionType | translate }}
                                 </td>
                                 <td class="align-middle">
                                     {{ item?.createDate | date : "dd/MM/yyyy"}}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.objectRequire }}
+                                    {{ item?.objectRequire | translate }}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.objectNonRequire }}
+                                    {{ item?.objectNonRequire | translate }}
                                 </td>
                                 <td class="align-middle">
                                     {{ item?.startTime }}

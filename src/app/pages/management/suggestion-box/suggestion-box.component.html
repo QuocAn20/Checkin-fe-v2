@@ -7,37 +7,37 @@
                         <form [formGroup]="form">
                             <div class="row">
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Code
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-code' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <input type="text" formControlName="code" class="form-control py-2"
-                                        autocomplete="none" />
+                                        autocomplete="none" placeholder="Type Suggest Code" />
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Name
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-name' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <ng-select [items]="listSuggest" bindLabel="name" bindValue="name"
-                                        formControlName="name" class="py-2" autocomplete="none">
+                                        formControlName="name" placeholder="Select Suggestion" class="py-2" autocomplete="none">
                                     </ng-select>
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Creator
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-creator' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <input type="text" formControlName="creator" class="form-control py-2"
-                                        autocomplete="none" />
+                                        autocomplete="none" placeholder="Type Creator" />
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Room
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-room' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <ng-select [items]="listRoom" formControlName="room" class="py-2" bindLabel="name"
-                                        bindValue="name" autocomplete="none">
+                                        bindValue="name" placeholder="Select Room" autocomplete="none">
                                     </ng-select>
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Date
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-date' | translate }}
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
                                     <input type="date" formControlName="createDate" class="form-control py-2"
@@ -70,7 +70,7 @@
             <div class="border-bottom-dotted mt-2">
                 <div class="row">
                     <div class="col-6">
-                        <label class="text-uppercase font-weight-medium theme-color">Suggest List</label>
+                        <label class="text-uppercase font-weight-medium theme-color">{{ 'sb-title' | translate }}</label>
                     </div>
                 </div>
             </div>
@@ -81,11 +81,11 @@
                         <thead>
                             <tr class="m-header-table">
                                 <th class="text-center align-middle mw-100">STT</th>
-                                <th class="text-center align-middle mw-100">code</th>
-                                <th class="text-center align-middle mw-50">name</th>
-                                <th class="text-center align-middle mw-50">date</th>
-                                <th class="text-center align-middle mw-50">creator</th>
-                                <th class="text-center align-middle mw-50">room</th>
+                                <th class="text-center align-middle mw-100">{{ 'sb-code' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-name' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-date' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-creator' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-room' | translate }}</th>
                                 <th class="text-center align-middle mw-100">{{ 'status' | translate }}</th>
                                 <th class="text-center align-middle mw-100">{{ 'note' | translate }}</th>
                                 <th class="text-center align-middle mw-150">{{ 'action' | translate }}</th>

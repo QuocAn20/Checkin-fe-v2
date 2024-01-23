@@ -102,13 +102,13 @@
                   {{ item?.dob | date : "dd-MM-yyyy" }}
                 </td>
                 <td class="align-middle">
-                  {{ item?.gender }}
+                  {{ item?.gender | translate}}
                 </td>
                 <td class="align-middle">
                   {{ item?.room }}
                 </td>
                 <td class="align-middle">
-                  {{ item?.position }}
+                  {{ item?.position | translate }}
                 </td>
                 <td class="align-middle">
                   {{ item?.status | translate }}

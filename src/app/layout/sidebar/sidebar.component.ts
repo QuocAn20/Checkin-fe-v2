@@ -69,6 +69,10 @@ export const ROUTES: RouteInfo[] = [
     title: 'In/Out',
   },
   {
+    path: '/pages/management/managestatistic/feedback',
+    title: 'Feedback',
+  },
+  {
     path: '/pages/management/suggest',
     title: 'Suggestion Box',
   },
