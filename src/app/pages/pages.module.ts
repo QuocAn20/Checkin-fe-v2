@@ -11,9 +11,7 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+
 
 @NgModule({
   imports: [
@@ -26,13 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     QRCodeModule,
     NgxScannerQrcodeModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
+    TranslateModule,
   ],
   declarations: [],
 })

@@ -6,6 +6,7 @@
                     <div class="p-2">
                         <form [formGroup]="form">
                             <div class="row">
+
                                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Code
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
@@ -16,29 +17,31 @@
                                 <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Name
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <input type="text" formControlName="name" class="form-control py-2"
+                                    <ng-select [items]="listSuggest" bindLabel="name" bindValue="name"
+                                        formControlName="name" class="py-2" autocomplete="none">
+                                    </ng-select>
+                                </div>
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Creator
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <input type="text" formControlName="creator" class="form-control py-2"
                                         autocomplete="none" />
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Start-Time
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Room
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <input type="time" formControlName="startTime" class="form-control py-2"
-                                        autocomplete="none" />
+                                    <ng-select [items]="listRoom" formControlName="room" class="py-2" bindLabel="name"
+                                        bindValue="name" autocomplete="none">
+                                    </ng-select>
                                 </div>
 
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">End-Time
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Date
                                 </label>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <input type="time" formControlName="endTime" class="form-control py-2"
+                                    <input type="date" formControlName="createDate" class="form-control py-2"
                                         autocomplete="none" />
-                                </div>
-
-                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">Question-Type
-                                </label>
-                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
-                                    <ng-select [items]="questionType" formControlName="questionType" class="py-2"
-                                        bindLabel="qType" bindValue="qType" autocomplete="none" />
                                 </div>
 
                             </div>
@@ -47,7 +50,7 @@
                         <div class="row pt-3">
                             <div class="col-4 text-left">
                                 <button type="button" class="btn btn-primary mr-1"
-                                    (click)="openSurveyModal(null, 'create')">
+                                    (click)="openSuggestModal(null, 'create')">
                                     <i class="fas fa-plus mr-1"></i>{{ 'create' | translate }}
                                 </button>
                             </div>
@@ -67,7 +70,7 @@
             <div class="border-bottom-dotted mt-2">
                 <div class="row">
                     <div class="col-6">
-                        <label class="text-uppercase font-weight-medium theme-color">Survey list</label>
+                        <label class="text-uppercase font-weight-medium theme-color">Suggest List</label>
                     </div>
                 </div>
             </div>
@@ -78,59 +81,50 @@
                         <thead>
                             <tr class="m-header-table">
                                 <th class="text-center align-middle mw-100">STT</th>
-                                <th class="text-center align-middle mw-100">Code</th>
-                                <th class="text-center align-middle mw-50">Name</th>
-                                <th class="text-center align-middle mw-50">Question-Type</th>
-                                <th class="text-center align-middle mw-50">Create-Date</th>
-                                <th class="text-center align-middle mw-50">Require</th>
-                                <th class="text-center align-middle mw-50">Non-Require</th>
-                                <th class="text-center align-middle mw-100">Start-Time</th>
-                                <th class="text-center align-middle mw-150">End-Time</th>
-                                <th class="text-center align-middle mw-150">Percent</th>
+                                <th class="text-center align-middle mw-100">code</th>
+                                <th class="text-center align-middle mw-50">name</th>
+                                <th class="text-center align-middle mw-50">date</th>
+                                <th class="text-center align-middle mw-50">creator</th>
+                                <th class="text-center align-middle mw-50">room</th>
+                                <th class="text-center align-middle mw-100">{{ 'status' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'note' | translate }}</th>
                                 <th class="text-center align-middle mw-150">{{ 'action' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngIf="listSurvey.length === 0">
+                            <tr *ngIf="listSuggest.length === 0">
                                 <td class="text-center align-middle" colspan="11">{{ 'no-data' | translate }}</td>
                             </tr>
-                            <tr *ngFor="let item of listSurvey; index as i">
-                                <td class="align-middle">
+                            <tr *ngFor="let item of listSuggest; index as i">
+                                <td class="text-center align-middle">
                                     {{i+1}}
                                 </td>
                                 <td class="align-middle text-center text-primary"
-                                    (click)="openSurveyModal(item, 'view')">
+                                    (click)="openSuggestModal(item, 'view')">
                                     <span class="m-cursor"> {{ item?.code }}</span>
                                 </td>
                                 <td class="align-middle">
                                     {{ item?.name }}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.questionType }}
-                                </td>
-                                <td class="align-middle">
                                     {{ item?.createDate | date : "dd/MM/yyyy"}}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.objectRequire }}
+                                    {{ item?.creator }}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.objectNonRequire }}
+                                    {{ item?.room }}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.startTime }}
+                                    {{ item?.status | translate }}
                                 </td>
                                 <td class="align-middle">
-                                    {{ item?.endTime }}
-                                </td>
-                                <td class="align-middle">
-                                    {{ item?.percent }}
+                                    {{ item?.note }}
                                 </td>
                                 <td class="align-middle text-center">
                                     <i class="fas fa-edit fa-lg text-primary m-cursor" title="Chỉnh sửa"
-                                        (click)="openSurveyModal(item, 'edit')"></i>
-                                    <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá"
-                                        (click)="delete(item)"></i>
+                                        (click)="openSuggestModal(item, 'edit')"></i>
+                                    <!-- <i class="fas fa-trash fa-lg text-danger ml-1 m-cursor" title="Xoá" (click)="delete(item)"></i> -->
                                 </td>
                             </tr>
                         </tbody>

@@ -15,6 +15,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SuggestionBoxComponent } from './suggestion-box/suggestion-box.component';
+import { SuggestionBoxModalComponent } from './suggestion-box/suggestion-box-modal/suggestion-box-modal.component';
 
 @NgModule({
   imports: [
@@ -36,7 +38,9 @@ import { TranslateModule } from '@ngx-translate/core';
     EmployeeModalComponent,
     DashboardComponent,
     PieChartComponent,
-    HomePageComponent
+    HomePageComponent,
+    SuggestionBoxComponent,
+    SuggestionBoxModalComponent
   ], 
   exports: [
     DashboardComponent,

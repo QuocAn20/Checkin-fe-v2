@@ -71,7 +71,7 @@ export class MenuComponent implements OnInit{
   }
 
   refresh() {
-    this.ngOnInit();
+    this.getMenu();
   }
 
   search() {

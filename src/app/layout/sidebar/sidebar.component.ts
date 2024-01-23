@@ -21,14 +21,6 @@ export const ROUTES: RouteInfo[] = [
     title: 'Employees',
   },
   {
-    path: '/management/ticket',
-    title: 'Ticket',
-  },
-  {
-    path: '/management/screen',
-    title: 'Screen',
-  },
-  {
     path: '/pages/management/manageform',
     title: 'Form Management',
   },
@@ -75,6 +67,10 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/pages/management/managestatistic/in-out',
     title: 'In/Out',
+  },
+  {
+    path: '/pages/management/suggest',
+    title: 'Suggestion Box',
   },
   {
     path: '/pages/management/systemconfig',

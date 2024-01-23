@@ -14,26 +14,34 @@ import { SurveyService } from 'src/app/service/module/survey.service';
 export class SurveyComponent implements OnInit{
   
   form: any;
-  listRequire: any;
-  listNonRequire: any;
-  listQuestionType: any;
   listSurvey: Array<any> = [];
 
   totalSize = 0;
   pageSize = 10;
   pageNumber = 1;
 
+  questionType =[
+    {
+      qType: 'Yes/No'
+    },
+    {
+      qType: 'Multiple-choice'
+    },
+    {
+      qType: 'Multiple Answers'
+    }
+  ]
+
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
+    public toastService: ToastrService,
     private surveyService: SurveyService,
-    public toastService: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
     this.getSurvey();
-    this.getStt(this.listSurvey);
   }
 
   initForm() {
@@ -50,21 +58,12 @@ export class SurveyComponent implements OnInit{
     return this.form.controls;
   }
 
-  getStt(item: any) {
-    let counter = 0;
-    for (let i = 0; i < item.length; i++) {
-      if (item[i].status === '0') counter++;
-    }
-  }
-
   getSurvey() {
     const json = {
       page: this.pageNumber,
       limit: this.pageSize,
       ...this.form.value,
     };
-
-    console.log();
 
     this.surveyService.getSurvey(json).subscribe((res) => {
       if (res.errorCode === '0') {
@@ -73,14 +72,6 @@ export class SurveyComponent implements OnInit{
       }
     });
   }
-
-  // getRole() {
-  //   this.serviceBankingService.getService({}).subscribe((res) => {
-  //     if (res.errorCode === '0') {
-  //       this.listRole = res.data;
-  //     }
-  //   });
-  // }
 
   refresh() {
     this.ngOnInit();
@@ -134,10 +125,9 @@ export class SurveyComponent implements OnInit{
     if (item) {
       modalRef.componentInstance.item = item;
     }
-
     modalRef.componentInstance.type = type;
-    // modalRef.componentInstance.listRole = this.listRole;
-
+    modalRef.componentInstance.listSurvey = this.listSurvey;
+    modalRef.componentInstance.questionType = this.questionType;
     modalRef.componentInstance.passEntry.subscribe((receive: any) => {
       this.modalService.dismissAll();
       this.getSurvey();
