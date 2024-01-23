@@ -1,1 +1,145 @@
-<p>feed-back works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 card-box">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="p-2">
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-room' | translate }}
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <ng-select [items]="listRoom" formControlName="room" class="py-2" bindLabel="name"
+                                        bindValue="name" placeholder="Select Room" autocomplete="none">
+                                    </ng-select>
+                                </div>
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-date' | translate }}
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <input type="date" formControlName="createDate" class="form-control py-2"
+                                        autocomplete="none" />
+                                </div>
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'sb-unit' | translate }}
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <ng-select [items]="listUnit" formControlName="unit" class="py-2" bindLabel="name"
+                                        bindValue="name" placeholder="Select Unit" autocomplete="none">
+                                    </ng-select>
+                                </div>
+
+                                <label class="col-sm-4 col-md-6 col-lg-5 col-xl-2 col-form-label mt-2">{{ 'status' | translate }}
+                                </label>
+                                <div class="col-sm-7 col-md-6 col-lg-7 col-xl-4 mt-2">
+                                    <ng-select [items]="listStatus" bindLabel="status" bindValue="status"
+                                        formControlName="status" placeholder="Select Status" class="py-2" autocomplete="none">
+                                    </ng-select>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <div class="row pt-3">
+                            <div class="col-4 text-left">
+                                <button class="btn btn-success mr-1" (click)="export()" type="button">
+                                    <i class="fas fa-cloud-download-alt"></i> {{ 'export' | translate }}
+                                </button>
+                            </div>
+                            <div class="col-8 text-right">
+                                <button type="button" class="btn btn-secondary mr-1 mb-1" (click)="refresh()">
+                                    <i class="fa-solid fa-rotate-right mr-1"></i>{{ 'refresh' | translate }}
+                                </button>
+                                <button type="button" class="btn btn-primary mr-1 mb-1" (click)="search()">
+                                    <i class="fas fa-search mr-1"></i>{{ 'search' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-bottom-dotted mt-2">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="text-uppercase font-weight-medium theme-color">{{ 'sb-title' | translate }}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 table-responsive mt-2">
+                    <table class="table table-bordered table-sm table-hover m-w-tabble">
+                        <thead>
+                            <tr class="m-header-table">
+                                <th class="text-center align-middle mw-100">STT</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-name' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-date' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-creator' | translate }}</th>
+                                <th class="text-center align-middle mw-50">{{ 'sb-room' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'status' | translate }}</th>
+                                <th class="text-center align-middle mw-100">{{ 'sb-num' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="listSuggest.length === 0">
+                                <td class="text-center align-middle" colspan="11">{{ 'no-data' | translate }}</td>
+                            </tr>
+                            <tr *ngFor="let item of listSuggest; index as i">
+                                <td class="text-center align-middle">
+                                    {{i+1}}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.name }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.createDate | date : "dd/MM/yyyy"}}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.creator }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.room }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.status | translate }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ item?.countSuggest }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row col-12 pr-0 justify-content-md-between align-items-md-center">
+                    <div class="p-0 col-sm-12 col-md-4 col-lg-4 col-xl-3 pr-0 d-none d-md-block">
+                        <div class="dataTables_length">
+                            <label class="d-inline-flex align-items-center">{{ 'show' | translate }}
+                                <select #t name="tickets-table_length" aria-controls="tickets-table" name="pageSize"
+                                    (change)="changePageSize(t.value)"
+                                    class="form-select custom-select custom-select-sm form-control form-control-sm mx-2">
+                                    <option [value]="10">10</option>
+                                    <option [value]="25">25</option>
+                                    <option [value]="50">50</option>
+                                </select>
+                                {{ 'rows' | translate }}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mt-md-0 d-none d-xl-block m-mb-8 text-center">
+                        {{ 'show' | translate }}
+                        {{ totalSize === 0 ? 0 : (pageNumber - 1) * pageSize + 1 }}
+                        - {{ pageNumber * pageSize }} {{ 'of' | translate }}
+                        {{ totalSize }}
+                    </div>
+                    <div class="p-0 col-sm-12 col-md-8 col-lg-4 col-xl-5">
+                        <div class="text-md-right float-md-right mt-2">
+                            <ngb-pagination (pageChange)="changePage($event)" [(page)]="pageNumber"
+                                [collectionSize]="totalSize" [pageSize]="pageSize" [rotate]="true">
+                            </ngb-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseListResponse } from 'src/app/models/base-list-response.model';
 import { BaseResponse } from 'src/app/models/base-response.model';
@@ -24,10 +24,24 @@ export class SuggestionService {
     );
   }
 
+  getCountSuggest(json: any) {
+    return this.http.post<BaseResponse>(
+      CommandURL.SUGGEST + '/getCountSuggest',
+      json
+    );
+  }
+
   updateSuggest(json: any) {
     return this.http.post<BaseResponse>(
       CommandURL.SUGGEST + '/updateSuggest',
       json
     );
+  }
+
+  export(json: any) {
+    return this.http.post(CommandURL.SUGGEST + '/export', json, {
+      responseType: 'arraybuffer',
+      headers: new HttpHeaders(),
+    });
   }
 }

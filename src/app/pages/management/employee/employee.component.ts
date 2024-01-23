@@ -24,19 +24,19 @@ export class EmployeeComponent implements OnInit {
 
   listPosition =[
     {
-      position: 'Nhan Vien'
+      position: 'Employee'
     },
     {
-      position: 'Truong Phong'
+      position: 'Manager'
     }
   ]
 
   listGender =[
     {
-      gender: 'Nam'
+      gender: 'Male'
     },
     {
-      gender: 'Nu'
+      gender: 'Female'
     },
     {
       gender: 'Other'

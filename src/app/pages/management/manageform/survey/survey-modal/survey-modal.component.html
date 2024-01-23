@@ -111,7 +111,7 @@
     <button (click)="submit()" class="btn btn-primary" type="button" *ngIf="type !== 'view'">
         <i class="fa fa-check mr-1"></i>{{ 'confirm' | translate }}
     </button>
-    <button (click)="detete()" class="btn btn-danger" type="button" *ngIf="type !== 'view'">
+    <button (click)="detete()" class="btn btn-danger" type="button" *ngIf="type !== 'view' && type !== 'create'">
         <i class="fa fa-check mr-1"></i>{{ 'delete' | translate }}
     </button>
 </div>

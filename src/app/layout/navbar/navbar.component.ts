@@ -63,8 +63,8 @@ export class NavbarComponent implements OnInit {
       this.sidebarClose();
     });
     this.currentUser = this.authService.currentUser().userId;
-    this.getWorkingTime();
     this.getLanguage();
+    this.getWorkingTime();
     this.getTimeOut();
     this.startCountdown();
   }
@@ -212,6 +212,8 @@ export class NavbarComponent implements OnInit {
 
     countdown$.pipe(takeWhile(() => this.timeOut > 0)).subscribe(() => {
       this.timeOut--;
+      // console.log(this.timeOut);
+            
       if (this.timeOut === 0) {
         console.log('Timeout reached!');
         this.logout();
