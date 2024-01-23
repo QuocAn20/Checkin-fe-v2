@@ -41,7 +41,7 @@
               <span class="d-lg-none d-md-block">Account</span>
             </p>
           </a>
-          <div aria-labelledby="dropdownMenuAccount" class="dropdown-menu dropdown-menu-right">
+          <div aria-labelledby="dropdownMenuAccount" class="dropdown-menu dropdown-menu-right" (click)="show(menu)">
             <a class="dropdown-item" href="/pages/management/employee">{{ 'Info' | translate }}</a>
             <!-- <a class="dropdown-item" href="#">Setting</a> -->
             <a class="dropdown-item" (click)="logout()">Logout</a>
@@ -55,7 +55,7 @@
               <span class="d-lg-none d-md-block">{{ 'Translate' | translate }}</span>
             </p>
           </a>
-          <div aria-labelledby="dropdownMenuLink" class="dropdown-menu dropdown-menu-right">
+          <div aria-labelledby="dropdownMenuLink" class="dropdown-menu dropdown-menu-right" (click)="show(translate)">
             <a class="dropdown-item" (click)="translateLanguage('vi')">{{ 'Vietnamese' | translate }}</a>
             <a class="dropdown-item" (click)="translateLanguage('en')">{{ 'English' | translate }}</a>
           </div>
@@ -69,7 +69,7 @@
               <span class="d-lg-none d-md-block">Setting</span>
             </p>
           </a>
-          <div aria-labelledby="dropdownMenuSetting" class="dropdown-menu dropdown-menu-right">
+          <div aria-labelledby="dropdownMenuSetting" class="dropdown-menu dropdown-menu-right" (click)="show(setting)">
             <a class="dropdown-item" routerLink="/pages/management/managecategory/waiting-screen">Screen</a>
             <a class="dropdown-item" routerLink="/pages/management/manageform/survey">Survey</a>
           </div>
