@@ -24,6 +24,13 @@ export class CheckInOutService {
     );
   }
 
+  getCountLate(json: any) {
+    return this.http.post<BaseListResponse>(
+      CommandURL.INOUT + '/getCountLate',
+      json
+    );
+  }
+
   updateInOut(json: any) {
     return this.http.post<BaseResponse>(
       CommandURL.INOUT + '/updateInOut',

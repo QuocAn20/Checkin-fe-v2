@@ -120,7 +120,33 @@ export class EmployeeModalComponent implements OnInit{
     this.isSubmit = false;
   }
 
-  create() {
+  validatorCharPass(){
+    const hasSPCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(
+      this.f.password.value
+    );
+    const hasNumber = /\d/.test(this.f.password.value);
+    const hasCharacter = /[a-z]/.test(this.f.password.value);
+
+    if (
+      this.listPassConfig.minChar > 0 &&
+      this.listPassConfig.minNum > 0 &&
+      this.listPassConfig.minSPChar > 0
+    ) {
+      if (hasCharacter && hasNumber && hasSPCharacter) {
+        this.validatorLength();
+      } else {
+        this.f.password.patchValue(null);
+        this.toastService.warning(
+          'This Password need at Least 1 Character, 1 Special Character and 1 Number',
+          'Warning'
+        );
+      }
+    } else {
+      this.validatorLength();
+    }
+  }
+
+  validatorLength(){
     if(this.f.password.value.length < this.listPassConfig.minLength){
       this.showNotiMin();
       this.f.password.patchValue(null);
@@ -139,6 +165,10 @@ export class EmployeeModalComponent implements OnInit{
         }
       });
     }
+  }
+
+  create() {
+    this.validatorCharPass();
   }
 
   update() {
