@@ -9,6 +9,7 @@ import {
   ApexStroke,
   ApexGrid,
 } from 'ng-apexcharts';
+import { CheckInOutService } from 'src/app/service/module/checkinout.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -25,24 +26,34 @@ export type ChartOptions = {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
+
   @ViewChild('chart') chart: ChartComponent | any;
   public chartOptions: Partial<ChartOptions> | any;
 
-  constructor() {
-    
+  listLate: Array<any> = [];
+
+  constructor(private checkInOutService: CheckInOutService) {}
+
+  ngOnInit(): void {
+    this.getInOut();
   }
 
-  ngOnInit() {
-    this.inItChart();
+  getInOut() {
+    this.checkInOutService.getCountLate({}).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.listLate = res.data.countLate;
+        this.inItChart(this.listLate);
+      }
+    });
   }
 
-  inItChart(){
+  inItChart(data : any) {
     this.chartOptions = {
       series: [
         {
           name: 'In/Out',
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 15, 20, 12],
+          data: data,
         },
       ],
       chart: {
@@ -59,7 +70,7 @@ export class DashboardComponent implements OnInit{
         curve: 'straight',
       },
       title: {
-        text: 'Employee Trends by Month',
+        text: 'Employee Late by Month',
         align: 'left',
       },
       grid: {
