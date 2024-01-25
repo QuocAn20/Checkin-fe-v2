@@ -6,7 +6,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
-import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { PagesModule } from '../../../shares/share.mudule';
 import { ManageStatisticRoutingModule } from './managestatistic-routing.module';
 import { InOutComponent } from './in-out/in-out.component';
@@ -32,7 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
     NgSelectModule,
     FormsModule,
     QRCodeModule,
-    NgbPagination,
+    NgbPaginationModule,
     NgxScannerQrcodeModule,
     ManageStatisticRoutingModule,
     PagesModule,

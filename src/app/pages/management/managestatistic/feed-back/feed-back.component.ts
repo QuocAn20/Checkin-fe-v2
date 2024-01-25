@@ -76,6 +76,7 @@ export class FeedBackComponent implements OnInit{
     this.suggestService.getCountSuggest(json).subscribe((res) => {
       if (res.errorCode === '0') {
         this.listSuggest = res.data;
+        this.totalSize = res.totalRecord;
       }
     });
   }
