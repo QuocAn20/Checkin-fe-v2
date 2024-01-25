@@ -14,12 +14,10 @@ const routes: Routes = [
   {
     path: 'home-page',
     component: HomePageComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'suggest',
     component: SuggestionBoxComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: "manageform",
@@ -33,12 +31,10 @@ const routes: Routes = [
   },
   {
     path: "managestatistic",
-    canActivate: [AuthGuard],
     loadChildren: () => import('./managestatistic/managestatistic.module').then(m => m.ManageStatisticModule)
   },
   {
     path: "systemconfig",
-    canActivate: [AuthGuard],
     loadChildren: () => import('./system-config/system-config.module').then(m => m.SystemConfigModule)
   },
 ];

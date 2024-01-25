@@ -10,7 +10,6 @@ const routes: Routes = [
   {
     path: "in-out",
     component: InOutComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: "register",

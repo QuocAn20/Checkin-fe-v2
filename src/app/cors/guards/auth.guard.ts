@@ -9,7 +9,6 @@ import {
 import { AuthService } from 'src/app/service/module/auth.service';
 
 @Injectable({ providedIn: 'root' })
-
 export class AuthGuard implements CanActivate {
   [x: string]: any;
   constructor(private router: Router, private authService: AuthService) {}
@@ -19,12 +18,14 @@ export class AuthGuard implements CanActivate {
       const currentUser = await this.authService.currentUser();
 
       if (currentUser) {
-        return true;
+        if (this.authService.currentUser().role == 'ADMIN') {
+          return true;
+        }
       }
     } catch (error) {
       console.error('Authentication error:', error);
     }
-    // this.router.navigate(['']);
+    this.router.navigate(['']);
     return false;
   }
 }

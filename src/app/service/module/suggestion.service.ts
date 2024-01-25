@@ -25,7 +25,7 @@ export class SuggestionService {
   }
 
   getCountSuggest(json: any) {
-    return this.http.post<BaseResponse>(
+    return this.http.post<BaseListResponse>(
       CommandURL.SUGGEST + '/getCountSuggest',
       json
     );
