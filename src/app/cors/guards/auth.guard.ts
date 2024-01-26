@@ -6,12 +6,17 @@ import {
   RouterStateSnapshot,
   CanActivate,
 } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/module/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   [x: string]: any;
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router, 
+    private authService: AuthService,
+    public toastService: ToastrService
+    ) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     try {
@@ -26,6 +31,7 @@ export class AuthGuard implements CanActivate {
       console.error('Authentication error:', error);
     }
     this.router.navigate(['']);
+    this.toastService.error('You must be ADMIN to using this', 'Error');
     return false;
   }
 }
