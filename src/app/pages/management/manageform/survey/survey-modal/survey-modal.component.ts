@@ -80,11 +80,11 @@ export class SurveyModalComponent implements OnInit{
       this.form.patchValue(this.item);
       // change value of objectRequire[] to string
       if (this.item.objectRequire) {
-        this.f.objectRequire.setValue(this.item.objectRequire.split(", "));
+        this.f.objectRequire.setValue(this.item.objectRequire.split(","));
       }
       // change value of objectNonRequire[] to string
       if (this.item.objectNonRequire) {
-        this.f.objectNonRequire.setValue(this.item.objectNonRequire.split(", "));
+        this.f.objectNonRequire.setValue(this.item.objectNonRequire.split(","));
       }
     }
   }

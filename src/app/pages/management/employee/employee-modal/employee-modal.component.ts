@@ -10,10 +10,9 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-modal',
   templateUrl: './employee-modal.component.html',
-  styleUrls: ['./employee-modal.component.scss']
+  styleUrls: ['./employee-modal.component.scss'],
 })
-export class EmployeeModalComponent implements OnInit{
-
+export class EmployeeModalComponent implements OnInit {
   @Input() type: any;
   @Input() item: any;
   @Input() listRole: any;
@@ -65,18 +64,21 @@ export class EmployeeModalComponent implements OnInit{
       name: [null, [Validators.required]],
       dob: [null],
       gender: [null],
-      phone: [null, [Validators.pattern("(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})")]],
+      phone: [
+        null,
+        [Validators.pattern('(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})')],
+      ],
       nationalId: [null],
       imgNationalId: [null],
       unit: [null, [Validators.required]],
       room: [null, [Validators.required]],
       position: [null, [Validators.required]],
       job: [null, [Validators.required]],
-      email: [null, [Validators.pattern("(^[^\s@]+@[^\s@]+\.[^\s@]+$)")]],
+      email: [null, [Validators.pattern('(^[^s@]+@[^s@]+.[^s@]+$)')]],
       imgProfile: [null],
       role: [null],
       status: [null, [Validators.required]],
-      
+
       userName: [null],
       password: [null],
       roleCode: [null],
@@ -89,7 +91,7 @@ export class EmployeeModalComponent implements OnInit{
 
   getUnit() {
     const json = {
-      status: 'Active'
+      status: 'Active',
     };
     this.unitService.getUnit(json).subscribe((res) => {
       if (res.errorCode === '0') {
@@ -108,7 +110,7 @@ export class EmployeeModalComponent implements OnInit{
 
   submit() {
     this.isSubmit = true;
-    if (this.form.status === 'INVALID') {      
+    if (this.form.status === 'INVALID') {
       return;
     } else {
       if (this.item) {
@@ -120,7 +122,7 @@ export class EmployeeModalComponent implements OnInit{
     this.isSubmit = false;
   }
 
-  validatorCharPass(){
+  validatorCharPass() {
     const hasSPCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(
       this.f.password.value
     );
@@ -146,16 +148,16 @@ export class EmployeeModalComponent implements OnInit{
     }
   }
 
-  validatorLength(){
-    if(this.f.password.value.length < this.listPassConfig.minLength){
+  validatorLength() {
+    if (this.f.password.value.length < this.listPassConfig.minLength) {
       this.showNotiMin();
       this.f.password.patchValue(null);
-    }else if (this.f.password.value.length > this.listPassConfig.maxLength){
+    } else if (this.f.password.value.length > this.listPassConfig.maxLength) {
       this.showNotiMax();
       this.f.password.patchValue(null);
-    }else{
+    } else {
       this.f.roleCode.patchValue('EMPLOYEE');
-  
+
       this.employeeService.createEmployee(this.form.value).subscribe((res) => {
         if (res.errorCode === '0') {
           this.toastService.success(res.errorDesc, 'Success');
@@ -176,6 +178,21 @@ export class EmployeeModalComponent implements OnInit{
       if (res.errorCode === '0') {
         this.toastService.success(res.errorDesc, 'Success');
         this.passEntry.emit(res);
+      } else {
+        this.toastService.error(res.errorDesc, 'Error');
+      }
+    });
+  }
+
+  onFileSelected(event: any) {
+    const selectedFile = event.target.files[0];
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    this.employeeService.upload(formData).subscribe((res) => {
+      this.form.patchValue(res.data.listSuccess[0]);
+      if (res.errorCode === '0') {
+        this.toastService.success(res.errorDesc, 'Success');
       } else {
         this.toastService.error(res.errorDesc, 'Error');
       }
@@ -207,7 +224,7 @@ export class EmployeeModalComponent implements OnInit{
       icon: 'warning',
       showConfirmButton: false,
       timer: 5000,
-    })
+    });
   }
 
   showNotiMax() {
@@ -217,6 +234,6 @@ export class EmployeeModalComponent implements OnInit{
       icon: 'warning',
       showConfirmButton: false,
       timer: 5000,
-    })
+    });
   }
 }

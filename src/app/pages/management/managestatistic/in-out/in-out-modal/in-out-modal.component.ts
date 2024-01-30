@@ -176,7 +176,7 @@ export class InOutModalComponent implements OnInit{
     
     if(this.item){      
       this.form.patchValue(this.item);
-      this.getInOut(this.item.employeeId);
+      this.getInOut(this.item.code);
     }
     
   }
@@ -203,7 +203,7 @@ export class InOutModalComponent implements OnInit{
 
   getInOut(item: any){
     const json = {
-      employeeId: item
+      code: item
     };
     this.checkInOutService.getInOut(json).subscribe((res) => {
       if (res.errorCode === '0') {

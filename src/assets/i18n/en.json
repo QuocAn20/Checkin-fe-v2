@@ -36,6 +36,8 @@
   "export": "Export",
   "submit": "Submit",
   "save": "Save",
+  "upload": "Upload",
+  "file-upload": "File Upload",
 
   "no-data": "No Data",
   "status": "Status",
@@ -44,6 +46,7 @@
   "note": "Note",
   
   "e-title": "Employee List",
+  "e-info": "Input Infomation",
   "e-code": "Employee Code",
   "e-name": "Employee Name",
   "e-name-require": "Please enter your name",

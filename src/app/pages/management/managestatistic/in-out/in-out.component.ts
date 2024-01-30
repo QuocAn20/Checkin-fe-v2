@@ -7,14 +7,14 @@ import { createFileType, downLoadFile } from 'src/app/utils/export.util';
 import { ToastrService } from 'ngx-toastr';
 import { RoomService } from 'src/app/service/module/room.service';
 import { UnitService } from 'src/app/service/module/unit.service';
+import { base64DecodeUnicode } from 'src/app/utils/convert.util';
 
 @Component({
   selector: 'app-in-out',
   templateUrl: './in-out.component.html',
-  styleUrls: ['./in-out.component.scss']
+  styleUrls: ['./in-out.component.scss'],
 })
-export class InOutComponent implements OnInit{
-
+export class InOutComponent implements OnInit {
   form: any;
   listCheckIn: Array<any> = [];
 
@@ -24,14 +24,15 @@ export class InOutComponent implements OnInit{
 
   listRoom: Array<any> = [];
   listUnit: Array<any> = [];
-  listStatus =[
+  listAuthData: Array<any> = [];
+  listStatus = [
     {
-      status: 'Valid'
+      status: 'Valid',
     },
     {
-      status: 'InValid'
-    }
-  ]
+      status: 'InValid',
+    },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,12 +50,12 @@ export class InOutComponent implements OnInit{
     this.getUnit();
   }
 
-  initForm(){
+  initForm() {
     this.form = this.formBuilder.group({
       room: [null],
       date: [null],
       unit: [null],
-      status: [null]
+      status: [null],
     });
   }
 
@@ -62,9 +63,9 @@ export class InOutComponent implements OnInit{
     return this.form.controls;
   }
 
-  getRoom(){
+  getRoom() {
     const json = {
-      status: 'Active'
+      status: 'Active',
     };
     this.roomService.getRoom(json).subscribe((res) => {
       if (res.errorCode === '0') {
@@ -73,9 +74,9 @@ export class InOutComponent implements OnInit{
     });
   }
 
-  getUnit(){
+  getUnit() {
     const json = {
-      status: 'Active'
+      status: 'Active',
     };
     this.unitService.getUnit(json).subscribe((res) => {
       if (res.errorCode === '0') {
@@ -84,7 +85,39 @@ export class InOutComponent implements OnInit{
     });
   }
 
-  getInOut(){
+  getIdFromToken(): any {
+    if (sessionStorage.getItem('remember')) {
+      this.listAuthData = JSON.parse(
+        base64DecodeUnicode(sessionStorage.getItem('remember'))
+      );
+      return this.listAuthData;
+    }
+  }
+
+  getInOut() {
+    if (this.getIdFromToken().currentUser.role == 'ADMIN') {
+      this.getAllInOut();
+    } else {
+      this.getInOutById();
+    }
+  }
+
+  getInOutById() {
+    const json = {
+      page: this.pageNumber,
+      limit: this.pageSize,
+      employeeId: this.getIdFromToken().currentUser.userId,
+      ...this.form.value,
+    };
+    this.checkInOutService.getInOut(json).subscribe((res) => {
+      if (res.errorCode === '0') {
+        this.listCheckIn = res.data;
+        this.totalSize = res.totalRecord;
+      }
+    });
+  }
+
+  getAllInOut() {
     const json = {
       page: this.pageNumber,
       limit: this.pageSize,
@@ -136,7 +169,7 @@ export class InOutComponent implements OnInit{
       modalRef.componentInstance.item = item;
     }
     modalRef.componentInstance.type = type;
-    modalRef.componentInstance.listCheckIn = this.listCheckIn
+    modalRef.componentInstance.listCheckIn = this.listCheckIn;
 
     modalRef.componentInstance.passEntry.subscribe((receive: any) => {
       this.modalService.dismissAll();
