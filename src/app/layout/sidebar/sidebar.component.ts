@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/module/auth.service';
 import { MenuService } from 'src/app/service/module/menu.service';
@@ -109,6 +110,13 @@ export const ROUTES: RouteInfo[] = [
 @Component({
   selector: 'sidebar-cmp',
   templateUrl: 'sidebar.component.html',
+  animations: [
+    trigger('slide', [
+      state('up', style({ height: 0 })),
+      state('down', style({ height: '*' })),
+      transition('up <=> down', animate(200))
+    ])
+  ]
 })
 export class SidebarComponent implements OnInit {
   public menuItems: Array<any> = [];
@@ -136,5 +144,14 @@ export class SidebarComponent implements OnInit {
         this.listMenu = res.data;
       }
     });
+  }
+
+  getState(currentMenu: any) {
+
+    if (currentMenu.active) {
+      return 'down';
+    } else {
+      return 'up';
+    }
   }
 }

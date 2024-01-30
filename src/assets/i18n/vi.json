@@ -36,6 +36,8 @@
   "export": "Xuất",
   "submit": "Nộp",
   "save": "Lưu",
+  "upload": "Tải lên",
+  "file-upload": "File Tải lên",
 
   "no-data": "Không có giá trị",
   "status": "Trạng thái",
@@ -44,6 +46,7 @@
   "note": "Ghi chú",
   
   "e-title": "Danh sách nhân viên",
+  "e-info": "Nhập thông tin",
   "e-code": "Mã nhân viên",
   "e-name": "Tên nhân viên",
   "e-name-require": "Vui lòng nhập tên nhân viên",

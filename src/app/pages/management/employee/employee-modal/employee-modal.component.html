@@ -14,8 +14,19 @@
 </div>
 <div class="modal-body">
   <form [formGroup]="form" id="form-1">
-    <div class="row">
 
+    <div class="modal-body" *ngIf="type === 'create'">
+      <h4 id="modal-title" class="text-primary">{{ 'upload' | translate }}</h4>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <label class="pt-1">{{ 'file-upload' | translate }}</label>
+          <input class="form-control py-2" type="file" (change)="onFileSelected($event)" accept=".xlsx,.xls" />
+        </div>
+      </div>
+    </div>
+
+    <h4 id="modal-title" class="text-primary">{{ 'e-info' | translate }}</h4>
+    <div class="row">
       <div class="col-sm-12 col-md-6 form-group">
         <label class="pt-1">{{ 'e-name' | translate }}<span class="text-danger">(*)</span></label>
         <input [ngClass]="{ 'is-invalid': isSubmit && f.name.errors }" maxlength="255" class="form-control"

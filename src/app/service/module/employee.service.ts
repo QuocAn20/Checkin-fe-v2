@@ -44,4 +44,11 @@ export class EmployeeService {
       json
     );
   }
+
+  upload(json: any){
+    return this.http.post<BaseResponse>(
+      CommandURL.EMPLOYEE + '/upload',
+      json
+    );
+  }
 }
