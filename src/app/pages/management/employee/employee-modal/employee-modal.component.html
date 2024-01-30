@@ -22,6 +22,10 @@
           <label class="pt-1">{{ 'file-upload' | translate }}</label>
           <input class="form-control py-2" type="file" (change)="onFileSelected($event)" accept=".xlsx,.xls" />
         </div>
+        <div class="col-sm-12 col-md-6">
+          <a class="btn btn-primary" href="../assets/simple-file/Form-input-employee.xlsx" download><i
+              class="fas fa-cloud-download-alt"></i> {{ 'file-simple' | translate }}</a>
+        </div>
       </div>
     </div>
 
