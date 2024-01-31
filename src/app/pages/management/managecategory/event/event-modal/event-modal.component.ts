@@ -46,13 +46,13 @@ export class EventModalComponent implements OnInit{
     this.form = this.formBuilder.group({
       id: [null],
       code: [null],
-      name: [null, [Validators.required]],
-      startDate: [null, [Validators.required]],
-      startTime: [null, [Validators.required]],
-      endDate: [null, [Validators.required]],
-      endTime: [null, [Validators.required]],
-      note: [null],
-      status: [null, [Validators.required]]
+      name: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      startDate: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      startTime: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      endDate: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      endTime: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      note: [{value: null, disabled: this.type === "view" ? true : false}],
+      status: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]]
     });
   }
 

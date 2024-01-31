@@ -76,13 +76,13 @@ export class SuggestionBoxModalComponent implements OnInit{
       id: [null],
       code: [null],
       createDate: [null],
-      name: [null, [Validators.required]],
+      name: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
       creator: [null],
       room: [null],
-      suggestion: [null, [Validators.required]],
-      reply: [null],
-      note: [null],
-      status: [null, [Validators.required]],
+      suggestion: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      reply: [{value: null, disabled: this.type === "view" ? true : false}],
+      note: [{value: null, disabled: this.type === "view" ? true : false}],
+      status: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
       creatorId: [null]
     });
   }

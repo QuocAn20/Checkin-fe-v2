@@ -46,10 +46,10 @@ export class UnitModalComponent implements OnInit{
     this.form = this.formBuilder.group({
       id: [null],
       code: [null],
-      name: [null, [Validators.required]],
-      branch: [null, [Validators.required]],
-      note: [null],
-      status: [null, [Validators.required]]
+      name: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      branch: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      note: [{value: null, disabled: this.type === "view" ? true : false}],
+      status: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]]
     });
   }
 

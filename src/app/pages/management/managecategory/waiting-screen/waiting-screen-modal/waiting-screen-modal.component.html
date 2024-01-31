@@ -56,8 +56,10 @@
 
             <div class="col-sm-12 col-md-6">
                 <label class="pt-1">{{ 'ws-content' | translate }}<span class="text-danger">(*)</span></label>
-                <input [ngClass]="{ 'is-invalid': isSubmit && f.contentFile.errors }" type="file" class="form-control py-2"
-                         (change)="addFile($event)" />
+                <!-- <input [ngClass]="{ 'is-invalid': isSubmit && f.contentFile.errors }" type="file" class="form-control py-2"
+                         (change)="addFile($event)" formControlName="contentFile"/> -->
+                <input [ngClass]="{ 'is-invalid': isSubmit && f.contentFile.errors }" type="file"
+                    class="form-control py-2" formControlName="contentFile" (change)="addFile($event)" />
                 <div *ngIf="isSubmit && f.contentFile.errors" class="invalid-feedback">
                     <span *ngIf="f.contentFile.errors.required">{{ 'ws-content-require' | translate }}</span><br />
                 </div>

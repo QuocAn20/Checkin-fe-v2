@@ -93,17 +93,17 @@ export class SurveyModalComponent implements OnInit{
     this.form = this.formBuilder.group({
       id: [null],
       code: [null],
-      createDate: [null],
-      name: [null, [Validators.required]],
-      question: [null, [Validators.required]],
-      questionType: [null, [Validators.required]],
-      objectRequire: [null],
-      objectNonRequire: [null],
-      startTime: [null, [Validators.required]],
-      endTime: [null],
-      percent: [null, [Validators.required]],
-      status: [null, [Validators.required]],
-      note: [null]
+      createDate: [{value: null, disabled: this.type === "view" ? true : false}],
+      name: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      question: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      questionType: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      objectRequire: [{value: null, disabled: this.type === "view" ? true : false}],
+      objectNonRequire: [{value: null, disabled: this.type === "view" ? true : false}],
+      startTime: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      endTime: [{value: null, disabled: this.type === "view" ? true : false}],
+      percent: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      status: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      note: [{value: null, disabled: this.type === "view" ? true : false}]
     });
   }
 
