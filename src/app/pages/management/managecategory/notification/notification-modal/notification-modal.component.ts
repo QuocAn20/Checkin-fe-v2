@@ -52,12 +52,12 @@ export class NotificationModalComponent implements OnInit{
     this.form = this.formBuilder.group({
       id: [null],
       code: [null],
-      notiType: [null],
-      object: [null, [Validators.required]],
-      content: [null],
-      notiPlace: [null, [Validators.required]],
-      note: [null],
-      status: [null, [Validators.required]]
+      notiType: [{value: null, disabled: this.type === "view" ? true : false}],
+      object: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      content: [{value: null, disabled: this.type === "view" ? true : false}],
+      notiPlace: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      note: [{value: null, disabled: this.type === "view" ? true : false}],
+      status: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]]
     });
   }
 

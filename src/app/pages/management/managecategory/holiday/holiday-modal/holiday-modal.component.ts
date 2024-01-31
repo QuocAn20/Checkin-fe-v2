@@ -46,10 +46,10 @@ export class HolidayModalComponent implements OnInit{
     this.form = this.formBuilder.group({
       id: [null],
       code: [null],
-      name: [null, [Validators.required]],
-      date: [null, [Validators.required]],
-      note: [null],
-      status: [null, [Validators.required]]
+      name: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      date: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      note: [{value: null, disabled: this.type === "view" ? true : false}],
+      status: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]]
     });
   }
 

@@ -57,11 +57,11 @@ export class WaitingScreenModalComponent implements OnInit{
     this.form = this.formBuilder.group({
       id: [null],
       code: [null],
-      showType: [null, [Validators.required]],
-      status: [null, [Validators.required]],
-      contentFile: [null, [Validators.required]],
-      notification: [null, [Validators.required]],
-      note: [null],
+      showType: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      status: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      contentFile: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      notification: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      note: [{value: null, disabled: this.type === "view" ? true : false}],
     });
   }
 
