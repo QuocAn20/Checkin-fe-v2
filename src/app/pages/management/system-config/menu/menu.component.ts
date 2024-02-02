@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class MenuComponent implements OnInit{
   form: any;
   listMenu: Array<any> = [];
+  listAllMenu: Array<any> = [];
   listParentMenu: Array<any> = [];
 
   totalSize = 0;
@@ -58,19 +59,17 @@ export class MenuComponent implements OnInit{
   }
 
   getAllMenu(){
-    const json = {
-      ...this.form.value,
-    };
-    this.menuService.getMenu(json).subscribe((res) => {
+    this.menuService.getMenu({}).subscribe((res) => {
       if (res.errorCode === '0') {
-        this.listMenu = res.data;
-        this.listParentMenu = this.listMenu.filter(e => e.parentId === null)
+        this.listAllMenu = res.data;
+        this.listParentMenu = this.listAllMenu.filter(e => e.parentId === null)
         this.totalSize = res.totalRecord;
       }
     });
   }
 
   refresh() {
+    this.initForm();
     this.getMenu();
   }
 
