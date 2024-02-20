@@ -7,7 +7,7 @@
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                <input type="text" class="form-control" id="floatingInput" placeholder="Username"
                   formControlName="username" />
                 <label for="floatingInput">Username</label>
                 <p class="form-input-item-error" *ngIf="isSubmit && f.username.errors?.required">
@@ -30,12 +30,17 @@
                 </p>
               </div>
 
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck" />
+              <div class="mb-3">
+                <input class="form-check-input" type="checkbox" id="rememberPasswordCheck" />
                 <label class="form-check-label" for="rememberPasswordCheck">
                   Remember password
                 </label>
               </div>
+              
+              <div class="mb-3">
+                <a href="/forgot">Forgot Password</a>
+              </div>
+
               <div class="d-grid">
                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
                   Sign in
