@@ -7,33 +7,33 @@ import { CommandURL } from '../api-command';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class RegisterService {
   constructor(private http: HttpClient) {}
 
-  createUser(json: any) {
+  createRegister(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.USER + '/createUser',
+      CommandURL.REGISTER + '/createRegister',
       json
     );
   }
 
-  getUser(json: any) {
+  getRegister(json: any) {
     return this.http.post<BaseListResponse>(
-      CommandURL.USER + '/getUser',
+      CommandURL.REGISTER + '/getRegister',
       json
     );
   }
 
-  changedPassword(json: any) {
+  updateRegister(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.USER + '/changedPassword',
+      CommandURL.REGISTER + '/updateRegister',
       json
     );
   }
 
-  forgotPassword(json: any) {
+  deleteRegister(json: any) {
     return this.http.post<BaseResponse>(
-      CommandURL.USER + '/forgotPassword',
+      CommandURL.REGISTER + '/deleteRegister',
       json
     );
   }

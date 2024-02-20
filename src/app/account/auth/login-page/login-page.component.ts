@@ -97,7 +97,7 @@ export class LoginPageComponent implements OnInit {
 
   login() {
     const json = this.form.value;
-    if (this.loginAttempts >= this.listLimitLogin.limitLoginWrong) {
+    if (this.loginAttempts >= this.listLimitLogin?.limitLoginWrong) {
       this.showNotiLoginWrong();
       return;
     }
@@ -138,7 +138,7 @@ export class LoginPageComponent implements OnInit {
         },
         (error) => {
           this.loginAttempts++;
-          if (this.loginAttempts < this.listLimitLogin.limitLoginWrong) {
+          if (this.loginAttempts < this.listLimitLogin?.limitLoginWrong) {
             this.toastService.error('Login failed!');
           }
           console.log(this.loginAttempts);
