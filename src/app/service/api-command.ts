@@ -42,4 +42,6 @@ export class CommandURL{
   public static MENU = environment.PROCESS_SERVICE + '/api/checkin/menu';
 
   public static USER = environment.PROCESS_SERVICE + '/api/checkin/user';
+  
+  public static DECENTRAL = environment.PROCESS_SERVICE + '/api/checkin/decentral';
 }

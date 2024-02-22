@@ -17,6 +17,7 @@ import { PasswordConfigComponent } from './password-config/password-config.compo
 import { WorkingTimeComponent } from './working-time/working-time.component';
 import { LanguageConfigComponent } from './language-config/language-config.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { DecentralizationComponent } from './decentralization/decentralization.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ChangedPasswordComponent,
     PasswordConfigComponent,
     WorkingTimeComponent,
-    LanguageConfigComponent
+    LanguageConfigComponent,
+    DecentralizationComponent
   ],
   imports: [
     CommonModule,

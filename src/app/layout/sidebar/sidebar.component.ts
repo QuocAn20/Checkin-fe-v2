@@ -105,6 +105,10 @@ export const ROUTES: RouteInfo[] = [
     path: '/pages/management/systemconfig/changed-password',
     title: 'Changed Password',
   },
+  {
+    path: '/pages/management/systemconfig/decentralization',
+    title: 'Decentralization',
+  },
 ];
 
 @Component({
