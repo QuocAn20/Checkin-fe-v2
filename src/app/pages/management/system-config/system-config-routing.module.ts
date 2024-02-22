@@ -7,6 +7,7 @@ import { ChangedPasswordComponent } from './changed-password/changed-password.co
 import { PasswordConfigComponent } from './password-config/password-config.component';
 import { WorkingTimeComponent } from './working-time/working-time.component';
 import { LanguageConfigComponent } from './language-config/language-config.component';
+import { DecentralizationComponent } from './decentralization/decentralization.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'language',
     component: LanguageConfigComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'decentralization',
+    component: DecentralizationComponent,
     canActivate: [AuthGuard],
   },
 ]

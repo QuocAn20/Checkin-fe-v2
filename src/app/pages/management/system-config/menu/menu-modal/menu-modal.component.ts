@@ -77,12 +77,12 @@ export class MenuModalComponent implements OnInit{
   initForm() {
     this.form = this.formBuilder.group({
       id: [null],
-      name: [null, [Validators.required]],
-      path: [null, [Validators.required]],
-      icon: [null, [Validators.required]],
-      roleCode: [null, [Validators.required]],
-      numerate: [null, [Validators.required]],
-      parentId: [null]
+      name: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      path: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      icon: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      roleCode: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      numerate: [{value: null, disabled: this.type === "view" ? true : false}, [Validators.required]],
+      parentId: [{value: null, disabled: this.type === "view" ? true : false}]
     });
 
     if (this.item) {
