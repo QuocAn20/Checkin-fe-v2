@@ -33,7 +33,7 @@ export class DecentralizationComponent implements OnInit {
       menuId: item?.menuId,
       menuName: item?.menuName,
       creator: item?.creator,
-      adminChecked: item?.adminChecked,
+      // adminChecked: item?.adminChecked,
       emplChecked: item?.emplChecked,
     };
     this.decentralService.updateDecentral(json).subscribe((res) => {
